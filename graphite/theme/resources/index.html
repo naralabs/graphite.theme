@@ -3,6 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Bika LIMS</title>
+        <link href="http://localhost:8080/Plone/portal_css/Sunburst%20Theme/++theme++graphite.theme/css/ionicons.css" media="screen" type="text/css" rel="stylesheet">
         <link href="http://localhost:8080/Plone/portal_css/Sunburst%20Theme/++theme++graphite.theme/css/main.css" media="screen" type="text/css" rel="stylesheet">
         <!--[if IE]>
             <link rel="stylesheet" media="screen" type="text/css" href="stylesheets/iefixes.css" />
@@ -16,39 +17,9 @@
                     <div id="logo"></div>
                 </div>
             </div>
-            <!--div id="menutop">
-                <div class="constraint">
-                    <div id="menu-top-1">
-                        <ul>
-                            <li><a href='#'>Dashboard</a></li>
-                            <li><a href='#'>Tools</a></li>
-                            <li><a href='#'>Laboratory</a></li>
-                            <li class='selected'><a href='#'>Analysis and workflow</a></li>
-                            <li><a href='#'>Samples</a></li>
-                            <li><a href='#'>Management</a></li>
-                            <li><a href='#'>Accounting</a></li>
-                            <li><a href='#'>Other</a></li>
-                        </ul>
-                    </div>
-                    <div id="menu-top-2">
-                        <ul id='menu-top-analysis'>
-                            <li>Analysis Categories</li>
-                            <li>Analysis Profiles</li>
-                            <li>Analysis Requests</li>
-                            <li>Analysis Templates</li>
-                            <li>Analysis Services</li>
-                            <li>Analysis Specifications</li>
-                            <li>AR Imports</li>
-                            <li>AR Priorities</li>
-                            <li>Batches</li>
-                            <li>Calculations</li>
-                            <li>Methods</li>
-                            <li>Worksheets</li>
-                            <li>Worksheet Templates</li>
-                        </ul>
-                    </div>
-                </div>
-            </div-->
+            <div id='backtotop'>
+                <a href="#" class='back-to-top'></a>
+            </div>
             <div id="content-wrapper">
                 <div class="constraint">
                     <div class="column-left">
@@ -175,13 +146,18 @@
                         <div id="breadcrumbs"></div>
                         <div id="content"></div>
                     </div>
-                    <div class="column-right"></div>
+                    <div class="column-right">
+                    </div>
                 </div>
             </div>
             <div id="footer">
                 <div class="constraint">
                 </div>
             </div>
+        </div>
+        <div id="loading-pane" style="display: none;top:0;right:0;left:0;position:absolute;z-index:1500;text-align:center;">
+            <span class='ion-loading-c'></span>
+            <span class='loading-text'></span>
         </div>
     </body>
 </html>

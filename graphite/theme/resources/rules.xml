@@ -44,10 +44,8 @@
         <!-- Document Content -->
         <replace css:content="#content" css:theme="#content" />
 
-
         <!-- Footer -->
         <replace css:content-children="#portal-footer-wrapper" css:theme-children="#footer"/>
-        <after css:content="#kss-spinner" theme-children="/html/body" />
 
     </rules>
 

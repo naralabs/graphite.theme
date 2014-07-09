@@ -5,33 +5,32 @@
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
-  src: local('Open Sans'), local('OpenSans'), url('fonts/opensans.woff') format('woff');
+  src: local('Open Sans'), local('OpenSans'), url('../fonts/opensans.woff') format('woff');
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300;
-  src: local('Open Sans Light'), local('OpenSans-Light'), url('fonts/opensans-light.woff') format('woff');
+  src: local('Open Sans Light'), local('OpenSans-Light'), url('../fonts/opensans-light.woff') format('woff');
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 600;
-  src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url('fonts/opensans-semibold.woff') format('woff');
+  src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url('../fonts/opensans-semibold.woff') format('woff');
 }
 @font-face {
   font-family: 'Titillium Web';
   font-style: normal;
   font-weight: 400;
-  src: local('Titillium Web'), local('TitilliumWeb-Regular'), url('fonts/titilliumweb-regular') format('woff');
+  src: local('Titillium Web'), local('TitilliumWeb-Regular'), url('../fonts/titilliumweb-regular.woff') format('woff');
 }
 @font-face {
   font-family: 'Titillium Web';
   font-style: normal;
   font-weight: 600;
-  src: local('Titillium WebSemiBold'), local('TitilliumWeb-SemiBold'), url('fonts/titilliumweb-semibold') format('woff');
+  src: local('Titillium WebSemiBold'), local('TitilliumWeb-SemiBold'), url('../fonts/titilliumweb-semibold.woff') format('woff');
 }
-
 
 html, body {
     color:#333;
@@ -41,14 +40,21 @@ html, body {
     padding-top:0px;
     height:100%;
 }
+
 a {
     outline: 0;
     color:#205C90;
     text-decoration:none;
 }
+
 a:hover {
     color:#2b7bc1;
 }
+
+fieldset {
+    border:none;
+}
+
 
 .hiddenStructure {
     display: none;
@@ -170,6 +176,7 @@ div.nav-container ul.navtree li ul li a:hover {
     -ms-transition: none;
     transition: none;
 }
+
 div.nav-container ul.navtree li ul li:last-child {
     margin-bottom: -20px;
     padding-bottom: 10px;
@@ -227,16 +234,6 @@ div.show-column-left a:hover {
     -ms-transition: opacity 250ms ease-in-out;
     transition: opacity 250ms ease-in-out;
 }
-
-div.column-center-loading {
-    position: absolute;
-    background: url("../images/loading.gif") no-repeat center center transparent;
-    left:0;
-    top:0;
-    right:0;
-    bottom:0;
-}
-
 #breadcrumbs {
     color: #333333;
     font-family:'Titillium Web','Open Sans', sans-serif, Helvetica, Arial;
@@ -246,6 +243,12 @@ div.column-center-loading {
 
 #content h1 {
     font-family: 'Titillium web',Arial,Helvetica,Sans;
+    font-weight: 300;
+}
+
+#content h1 img {
+    margin-right: 15px;
+    vertical-align: middle;
 }
 
 .bika-listing-table-container {
@@ -362,3 +365,18 @@ input.action_button:hover {
 }
 #content .bika-listing-table thead tr td.listing-filter-row a:first-child {
 }
+
+
+#loading-pane {
+    font-size:50px;
+    color:#0B486B;
+    background-color:#fff;
+    opacity:0.7;
+    moz-opacity:0.7;
+}
+#loading-pane .loading-text {
+    font-size:40px;
+    line-height:50px;
+    font-weight:300;
+}
+
