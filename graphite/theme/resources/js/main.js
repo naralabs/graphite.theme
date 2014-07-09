@@ -2,6 +2,8 @@ $(document).ready(function(){
 
     loadNavMenuTransitions();
     loadNavMenuAnchorHandlers();
+    loadWrappers();
+    loadStyles();
     fixLayout();
     $(window).on("resize", fixLayout);
 
@@ -101,5 +103,16 @@ $(document).ready(function(){
     function backToTop() {
         var offset = $('#content-wrapper').offset().top - parseInt($('#content-wrapper').css('margin-top'));
         $('html,body').animate({scrollTop: offset}, 'slow');
+    }
+
+    function loadWrappers() {
+        /*$("select" ).wrap( "<div class='styled-select'></div>" );*/
+    }
+
+    function loadStyles() {
+        $('input.context_action_link').filter(function() {
+            return $(this).css('background-image') != '';
+        }).css("background", "");
+        $('.filter-search-button').addClass('ion-ios7-search');
     }
 });

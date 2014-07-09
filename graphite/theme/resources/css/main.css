@@ -54,12 +54,30 @@ a:hover {
 fieldset {
     border:none;
 }
+input.filter-search-input,
+select {
+    border: 1px solid #CCCCCC;
+    margin: 0 5px;
+    padding: 3px;
+    background-color:#fff;
+}
 
+select:focus,
+input.filter-search-input:focus {
+    -webkit-box-shadow: 0 0 2px 1px #0B486B;
+    -moz-box-shadow: 0 0 2px 1px #0B486B;
+    box-shadow: 0 0 2px 1px #0B486B;
+}
 
 .hiddenStructure {
     display: none;
     visibility: hidden;
 }
+
+.filter-search-button {
+    font-size: 17px;
+}
+
 #wrap {
     margin: 0 auto 0 auto;
     width:100%;
@@ -323,10 +341,11 @@ td.state-invalid {
     border-right: 1px solid #3B8686;
     border-bottom: 1px solid #3B8686;
 }
+
+input.context_action_link,
 input[type="submit"] {
     background-color: #18456C;
     border: medium none;
-    border-radius: 5px 5px 5px 5px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
     color: #FFFFFF;
     cursor: pointer;
@@ -335,14 +354,22 @@ input[type="submit"] {
     font-size: 0.9em;
     line-height: 1;
     margin-right: 10px;
-    padding: 3px 6px 4px;
+    padding: 3px 10px 4px;
     position: relative;
     text-decoration: none;
     text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
 }
+
+input.context_action_link:hover,
 input[type="submit"]:hover {
-    background-color: #205C90;
-    transition: all 0.25s ease-out 0s;
+    opacity:0.8;
+    -moz-opacity:0.8;
+    filter:alpha(opacity=80);
+    -webkit-transition: opacity 250ms ease-in-out;
+    -moz-transition: opacity 250ms ease-in-out;
+    -o-transition: opacity 250ms ease-in-out;
+    -ms-transition: opacity 250ms ease-in-out;
+    transition: opacity 250ms ease-in-out;
 }
 input.action_button {
     box-shadow: 0 0 0;
@@ -360,7 +387,6 @@ input.action_button:hover {
 }
 #content .bika-listing-table thead tr td.listing-filter-row {
     background-color: #dcdcdc;
-    border-bottom: 1px solid #cdcdcd;
     padding: 4px 10px 4px 0;
 }
 #content .bika-listing-table thead tr td.listing-filter-row a:first-child {
