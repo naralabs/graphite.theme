@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rules
+    xmlns="http://namespaces.plone.org/diazo"
+    xmlns:css="http://namespaces.plone.org/diazo/css"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+    <!-- Rules applying to standard Plone pages -->
+    <rules css:if-content="#visual-portal-wrapper">
+
+        <!-- indent and strip space for pretty output -->
+        <xsl:output indent="yes"/>
+        <xsl:strip-space elements="*"/>
+
+        <theme href="index.html" />
+
+        <!--
+        Copy standard header tags, including base (very important for
+        Plone default pages to work correctly), meta, title and
+        style sheets/scripts, in the order they appear in the content.
+         -->
+        <drop theme="/html/head/meta" />
+        <drop theme="/html/head/title" />
+        <drop theme="/html/head/base" />
+        <drop theme="/html/head/style" />
+        <drop theme="/html/head/script" />
+        <!--drop theme="/html/head/link" /-->
+        <drop theme="/html/head/comment()" />
+
+        <after theme-children="/html/head" content="/html/head/title"  />
+        <after theme-children="/html/head" content="/html/head/base" />
+        <after theme-children="/html/head" content="/html/head/meta" />
+        <!--after theme-children="/html/head" content="/html/head/link" /-->
+        <after theme-children="/html/head" content="/html/head/comment()" />
+        <after theme-children="/html/head" content="/html/head/style" />
+        <after theme-children="/html/head" content="/html/head/script" />
+
+        <!-- logo -->
+        <replace css:content="#portal-logo" css:theme-children="#logo" />
+        <!--drop css:theme="#logo" css:if-not-content="body.section-front-page"/-->
+
+        <!-- Breadcrumbs -->
+        <replace css:content-children='#portal-breadcrumbs' css:theme-children='#breadcrumbs' />
+
+        <!-- Document Content -->
+        <replace css:content="#content" css:theme="#content" />
+
+
+        <!-- Footer -->
+        <replace css:content-children="#portal-footer-wrapper" css:theme-children="#footer"/>
+        <after css:content="#kss-spinner" theme-children="/html/body" />
+
+    </rules>
+
+</rules>

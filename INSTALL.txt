@@ -1,0 +1,22 @@
+Graphite Theme Installation
+------------------------
+
+To install Graphite Theme, you can do this:
+
+1. Add ``graphite.theme`` to the list of eggs to install, e.g.:
+
+    eggs =
+        ...
+        graphite.theme
+
+2. Add ``src/graphite.theme`` to the develop section from buildout:
+
+    develop = 
+        src/graphite.theme
+
+3. Re-run buildout, e.g. with:
+
+    $ ./bin/buildout
+
+
+

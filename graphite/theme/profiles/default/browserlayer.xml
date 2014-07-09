@@ -1,0 +1,10 @@
+<layers>
+
+    <!-- Enable the Graphite Theme layer when installed -->
+
+    <layer
+        name="graphite.theme"
+        interface="graphite.theme.interfaces.IGraphiteTheme"
+        />
+
+</layers>

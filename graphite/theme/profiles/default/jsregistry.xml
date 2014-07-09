@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<object name="portal_javascripts">
+
+    <javascript
+        id="++theme++graphite.theme/js/main.js"
+        expression="request/HTTP_X_THEME_ENABLED | nothing" /-->
+
+</object>
