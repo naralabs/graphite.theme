@@ -114,5 +114,6 @@ $(document).ready(function(){
             return $(this).css('background-image') != '';
         }).css("background", "");
         $('.filter-search-button').addClass('ion-ios7-search');
+        $('div.alert').prepend('<span class="ion-alert-circled"></span>');
     }
 });

@@ -78,6 +78,18 @@ input.filter-search-input:focus {
     font-size: 17px;
 }
 
+div.alert {
+    font-size: 1.1em;
+    padding: 20px;
+    background-color:#CFF09E;
+    margin: 15px 0;
+}
+
+div.alert:before {
+    font-family: "Ionicons";
+    content: "\f100  ";
+}
+
 #wrap {
     margin: 0 auto 0 auto;
     width:100%;
