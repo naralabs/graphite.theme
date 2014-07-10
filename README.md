@@ -1,5 +1,7 @@
 ##Graphite Theme##
 
+**UNDER DEVELOPMENT - NOT FOR PRODUCTION USE**
+
 Graphite Theme is a Diazo Theme for Bika LIMS https://github.com/bikalabs/Bika-LIMS
 
 This product may contain traces of nuts.
