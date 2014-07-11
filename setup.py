@@ -6,8 +6,8 @@ version = '0.9'
 setup(name='graphite.theme',
       version=version,
       description="Graphite Theme for Bika LIMS",
-      long_description=open("README.md").read() + "\n" +
-                       open(os.path.join("docs", "HISTORY.txt")).read(),
+      long_description=open("README.md").read() + "\n\n" +
+                       open("CHANGELOG.txt").read(),
       # Get more strings from
       # http://pypi.python.org/pypi?:action=list_classifiers
       classifiers=[
