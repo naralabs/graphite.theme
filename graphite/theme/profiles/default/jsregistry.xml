@@ -3,6 +3,6 @@
 
     <javascript
         id="++theme++graphite.theme/js/main.js"
-        expression="request/HTTP_X_THEME_ENABLED | nothing" /-->
+        expression="request/HTTP_X_THEME_ENABLED | nothing" />
 
 </object>
