@@ -140,7 +140,6 @@ $(document).ready(function(){
         backToTop();
     });
 
-
     function loadNavMenuTransitions() {
         $('ul.navtree li').not("ul.navtree li ul li").mouseenter(function() {
             $(this).addClass('open');
@@ -154,6 +153,40 @@ $(document).ready(function(){
         if ($('ul.navtree li.open').length == 0) {
             $('ul.navtree li.active').closest('li').mouseenter();
         }
+    }
+
+    function loadContentAnchorHandlers() {
+        $('div.column-center a').click(function(e) {
+            e.preventDefault();
+            var text = $(this).html();
+            var url = $(this).attr('href');
+            toggleLoading("Loading "+text+"...");
+            $.ajax(url)
+            .done(function(data) {
+                var htmldata = data;
+                htmldata = $(htmldata).find('div.column-center').html();
+                var breaddata = $(htmldata).find('#breadcrumbs').html();
+                $('#breadcrumbs').html(breaddata);
+                $('div.column-center').html(htmldata);
+            })
+            .fail(function(data) {
+                var htmldata = $('<div/>').html(data.responseText).text();
+                var htmldata = "<p>Request URL: <a href='"+url+"'>"+url+"</a></p>" + htmldata;
+                $('div.column-center').html("<div class='error-page'>"+htmldata+"</div>");
+                toggleLoading();
+                fixLayout();
+            })
+            .always(function() {
+                currsectionid = url.replace(window.portal_url, '');
+                window.history.pushState(currsectionid, '', url);
+                loadBreadcrumbs();
+                loadContentAnchorHandlers();
+                toggleLoading();
+                fixLayout();
+                backToTop();
+            });
+
+        });
     }
 
     function loadNavMenuAnchorHandlers() {
@@ -183,6 +216,7 @@ $(document).ready(function(){
                 currsectionid = url.replace(window.portal_url, '');
                 window.history.pushState(currsectionid, '', url);
                 loadBreadcrumbs();
+                loadContentAnchorHandlers();
                 toggleLoading();
                 fixLayout();
                 backToTop();
