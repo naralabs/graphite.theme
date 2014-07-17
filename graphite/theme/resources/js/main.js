@@ -296,10 +296,10 @@ $(document).ready(function(){
 
     function toggleLoading(message) {
         if ($('#loading-pane').is(':visible')) {
-            $('#loading-pane').fadeOut();
+            $('#loading-pane').fadeOut('fast');
         } else {
             $('#loading-pane span.loading-text').html(message);
-            $('#loading-pane').fadeIn();
+            $('#loading-pane').fadeIn('fast');
         }
     }
 
