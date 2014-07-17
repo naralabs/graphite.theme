@@ -206,6 +206,11 @@ div.nav-container ul.navtree li ul li a:hover {
     -ms-transition: none;
     transition: none;
 }
+div.nav-container ul.navtree ul li a img {
+    margin-left: -5px;
+    padding-right: 4px;
+    vertical-align: top;
+}
 
 div.nav-container ul.navtree li ul li:last-child {
     margin-bottom: -20px;
@@ -235,6 +240,7 @@ a.hide-column-left {
 }
 a.hide-column-left:hover {
     opacity:1;
+    moz-opacity:1;
     filter:alpha(opacity=100);
     -webkit-transition: opacity 250ms ease-in-out;
     -moz-transition: opacity 250ms ease-in-out;
@@ -417,4 +423,6 @@ input.action_button:hover {
     line-height:50px;
     font-weight:300;
 }
-
+div.error-page {
+    padding:30px;
+}

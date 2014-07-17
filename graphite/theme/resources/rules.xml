@@ -41,6 +41,78 @@
         <!-- Breadcrumbs -->
         <replace css:content-children='#portal-breadcrumbs' css:theme-children='#breadcrumbs' />
 
+        <!-- Navigation menu
+             We add the content navmenu into a hidden div.
+             The themed menu is built using javascript. This way we can
+             overcome the Admin->Site setup for Bika Setup contentypes
+             menu items being rendered. The menu items will only be rendered
+             if the user has enough privileges.
+        -->
+        <after css:theme-children='#portal-nav-1'>
+            <xsl:for-each css:select="ul.navTreeLevel0 > li.navTreeItem">
+                <xsl:if test="count(a/span/text()) &lt; 1">
+                    <li class="{@class} level1">
+                        <a href="{div/a/@href}"><xsl:value-of css:select="div > a"/></a>
+                    </li>
+                </xsl:if>
+                <xsl:if test="count(a/span/text()) &gt; 0">
+                    <li class="{@class} level1">
+                        <a href="{a/@href}"><xsl:value-of css:select="a > span"/></a>
+                        <xsl:if test="count(ul/text()) &gt; 0">
+                            <ul>
+                                <xsl:for-each css:select="ul.navTreeLevel1 > li.navTreeItem">
+                                    <li class='level2'>
+                                        <xsl:if test="count(a/span/text()) &gt; 0">
+                                            <a href="{a/@href}"><xsl:value-of css:select="a > span"/></a>
+                                        </xsl:if>
+                                        <xsl:if test="count(a/span/text()) &lt; 1">
+                                            <a href="{a/@href}"><xsl:value-of css:select="a"/></a>
+                                        </xsl:if>
+                                    </li>
+                                </xsl:for-each>
+                           </ul>
+                        </xsl:if>
+                    </li>
+                </xsl:if>
+            </xsl:for-each>
+            <xsl:for-each css:select="#portal-globalnav li">
+                <li class='level1'>
+                    <a href="{a/@href}"><xsl:value-of css:select="a"/></a>
+                </li>
+            </xsl:for-each>
+        </after>
+        <after css:theme-children='#portal-nav-2'>
+            <xsl:for-each css:select="ul.navTreeLevel0 > li.navTreeItemInPath > ul > li">
+                <xsl:if test="count(a/span/text()) &lt; 1">
+                    <li class="{@class} level1">
+                        <a href="{div/a/@href}"><xsl:value-of css:select="div > a"/></a>
+                    </li>
+                </xsl:if>
+                <xsl:if test="count(a/span/text()) &gt; 0">
+                    <li class="{@class} level1">
+                        <a href="{a/@href}"><xsl:value-of css:select="a > span"/></a>
+                        <xsl:if test="count(ul/text()) &gt; 0">
+                            <ul>
+                                <xsl:for-each css:select="ul.navTreeLevel1 > li.navTreeItem">
+                                    <li class='level2'>
+                                        <xsl:if test="count(a/span/text()) &gt; 0">
+                                            <a href="{a/@href}"><xsl:value-of css:select="a > span"/></a>
+                                        </xsl:if>
+                                        <xsl:if test="count(a/span/text()) &lt; 1">
+                                            <a href="{a/@href}"><xsl:value-of css:select="a"/></a>
+                                        </xsl:if>
+                                    </li>
+                                </xsl:for-each>
+                           </ul>
+                       </xsl:if>
+                   </li>
+                </xsl:if>
+            </xsl:for-each>
+        </after>
+
+        <replace css:theme-children='#portletNavigationTree' css:content='.portletNavigationTree'/>
+        <replace css:theme-children='#portal-globalnav' css:content='#portal-globalnav' />
+
         <!-- Document Content -->
         <replace css:content="#content" css:theme="#content" />
 

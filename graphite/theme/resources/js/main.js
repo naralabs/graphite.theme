@@ -1,7 +1,101 @@
 $(document).ready(function(){
 
-    loadNavMenuTransitions();
-    loadNavMenuAnchorHandlers();
+    // Navigation menu sections
+    var navmenu = {
+        'Quick access': {'id':'nav-quick',
+                         'items': ['clients',
+                                   'batches',
+                                   'analysisrequests',
+                                   'samples',
+                                   'worksheets',
+                                   'arimports',
+                                   'methods',
+                                   'referencesamples',
+                                   'supplyorders',
+                                   'pricelists',
+                                   'invoices'
+                                   ],
+                         },
+        'Laboratory':   {'id': 'nav-setup',
+                         'items': ['bika_setup',
+                                   'bika_labcontacts',
+                                   'bika_departments',
+                                   'bika_analysiscategories',
+                                   'bika_analysisprofiles',
+                                   'analysisrequests',
+                                   'bika_artemplates',
+                                   'bika_analysisservices',
+                                   'bika_analysisspecs',
+                                   'arimports',
+                                   'arpiorities',
+                                   'batches',
+                                   'bika_calculations',
+                                   'methods',
+                                   'worksheets',
+                                   'worksheettemplates',
+                                  ],
+                         },
+        'Workflow':     {'id': 'nav-workflow',
+                         'items': ['bika_analysiscategories',
+                                   'bika_analysisprofiles',
+                                   'analysisrequests',
+                                   'bika_artemplates',
+                                   'analysisservices',
+                                   'analysisspecs',
+                                   'arimports',
+                                   'arpriorities',
+                                   'batches',
+                                   'bika_calculations',
+                                   'methods',
+                                   'worksheets',
+                                   'worksheettemplates'
+                                  ],
+                        },
+        'Samples':      {'id': 'nav-samples',
+                         'items': ['samples',
+                                 'bika_sampleconditions',
+                                 'bika_samplematrices',
+                                 'bika_sampletypes',
+                                 'bika_samplingdeviations',
+                                 'bika_srtemplates',
+                                 'referencesamples',
+                                 'bika_referencedefinitions',
+                                ],
+                        },
+        'Management':   {'id': 'nav-management',
+                         'items': ['clients',
+                                 'bika_instruments',
+                                 'bika_instrumenttypes',
+                                 'bika_containers',
+                                 'bika_products',
+                                 'bika_manufacturers',
+                                 'bika_preservations',
+                                 'bika_storagelocations',
+                                 'bika_suppliers'
+                                ],
+                        },
+        'Accounting':   {'id': 'nav-accounting',
+                         'items': ['invoices',
+                                   'pricelists',
+                                   'supplyorders'
+                                ],
+                        },
+        'Tools':        {'id': 'nav-tools',
+                         'items': ['report',
+                                   'import'
+                                ],
+                        },
+        'Other':        {'id': 'nav-other',
+                        'items': ['bika_attachmenttypes',
+                                 'bika_batchlabels',
+                                 'bika_subgroups',
+                                 ],
+                        },
+    };
+    var runtimenav = {};
+    var currsectionid = window.location.href.replace(window.portal_url, '');
+
+    loadNavMenu();
     loadWrappers();
     loadStyles();
     fixLayout();
@@ -51,6 +145,9 @@ $(document).ready(function(){
         $('ul.navtree li').not("ul.navtree li ul li").mouseleave(function() {
             $(this).removeClass('open');
         });
+        if ($('ul.navtree li.open').length == 0) {
+            $('ul.navtree li.active').closest('li').mouseenter();
+        }
     }
 
     function loadNavMenuAnchorHandlers() {
@@ -61,18 +158,81 @@ $(document).ready(function(){
             var text = $(this).html();
             var url = $(this).attr('href');
             toggleLoading("Loading "+text+"...");
-            $.ajax({
-                url: url,
-                type: 'GET',
-                success: function(data, textStatus, $XHR){
-                    var htmldata = data;
-                    htmldata = $(htmldata).find('div.column-center').html();
-                    $('div.column-center').html(htmldata);
-                    toggleLoading();
-                    fixLayout();
-                    backToTop();
-                }
+            $.ajax(url)
+            .done(function(data) {
+                var htmldata = data;
+                htmldata = $(htmldata).find('div.column-center').html();
+                $('div.column-center').html(htmldata);
+            })
+            .fail(function(data) {
+                var htmldata = $('<div/>').html(data.responseText).text();
+                var htmldata = "<p>Request URL: <a href='"+url+"'>"+url+"</a></p>" + htmldata;
+                $('div.column-center').html("<div class='error-page'>"+htmldata+"</div>");
+                toggleLoading();
+                fixLayout();
+            })
+            .always(function() {
+                currsectionid = url.replace(window.portal_url, '');
+                toggleLoading();
+                fixLayout();
+                backToTop();
             });
+        });
+    }
+
+    function loadNavMenu() {
+        var portal_url = window.portal_url;
+        $('ul.navtree li a').each(function() {
+            $(this).attr('href', portal_url + $(this).attr('href'));
+        });
+
+        // Get all items from Site setup
+        var sitesetup_url = portal_url + '/bika_setup?diazo.off=1';
+        $.ajax(sitesetup_url)
+        .done(function(data) {
+            var htmldata = data;
+            htmldata = $(htmldata).find('#portal-column-one dl.portletNavigationTree').html();
+            $(htmldata).find('a').each(function() {
+                var href = $(this).attr('href');
+                var id = $(this).attr('href').split("/");
+                var img = $(this).find('img');
+                id = id[id.length-1];
+                runtimenav[id] = [$(this).attr('href'),
+                                  $(this).find('span').length ? $.trim($(this).find('span').html()) : $.trim($(this).html()),
+                                  $(this).find('img').length ? $(this).find('img').attr('src') : ""];
+            });
+            console.log(runtimenav);
+            // Populate the nav-menu
+            var activedetected = false;
+            for (var section in navmenu) {
+                var items = navmenu[section]['items'];
+                $.each(items, function(i, item) {
+                    if (item in runtimenav) {
+                        console.log(section+" - "+item+" - "+runtimenav[item]);
+                        var sectionid = navmenu[section]['id']
+                        var sectionul = null;
+                        if ($('ul.navtree li.'+sectionid).length < 1) {
+                            sectionli = '<li class="'+sectionid+'">'+section+'<ul></ul></li>';
+                            $('ul.navtree').append(sectionli);
+                            sectionul = $(sectionli).find('ul');
+                        } else {
+                            sectionul = $('ul.navtree li.'+sectionid+' ul');
+                        }
+                        var runitem = runtimenav[item];
+                        var active = !activedetected && currsectionid.indexOf('/'+item) > -1;
+                        var cssclass = '';
+                        if (active) {
+                            cssclass = ' class="active"';
+                            activedetected = true;
+                        }
+                        $(sectionul).append('<li'+cssclass+'><a href="'+runitem[0]+'"><img src="'+runitem[2]+'">'+runitem[1]+'</a></li>');
+                    }
+                });
+            }
+        })
+        .always(function() {
+            loadNavMenuTransitions();
+            loadNavMenuAnchorHandlers();
         });
     }
 
@@ -103,10 +263,6 @@ $(document).ready(function(){
     function backToTop() {
         var offset = $('#content-wrapper').offset().top - parseInt($('#content-wrapper').css('margin-top'));
         $('html,body').animate({scrollTop: offset}, 'slow');
-    }
-
-    function loadWrappers() {
-        /*$("select" ).wrap( "<div class='styled-select'></div>" );*/
     }
 
     function loadStyles() {
