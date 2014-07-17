@@ -118,7 +118,11 @@
 
         <!-- Footer -->
         <replace css:content-children="#portal-footer-wrapper" css:theme-children="#footer"/>
-
+        <after css:theme-children='#footer'>
+            <div class='themedby'>
+                <a href='http://github.com/naralabs/graphite.theme'>Graphite Theme</a> by <a href='http://naralabs.com' class='logo-naralabs'><span>Naralabs</span></a>
+            </div>
+        </after>
     </rules>
 
 </rules>

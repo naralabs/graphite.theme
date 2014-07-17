@@ -102,7 +102,6 @@ div.constraint {
     height:100%;
 }
 #content-wrapper {
-    height: 100%;
     margin-top: 80px;
 }
 #content-wrapper div.column-left,
@@ -418,12 +417,8 @@ input[type="submit"]:hover {
     transition: opacity 250ms ease-in-out;
 }
 input.action_button {
-    box-shadow: 0 0 0;
-    color: #555555;
     font-size: 1em;
     margin-right: 5px;
-    padding: 1px 4px;
-    text-shadow: 0 0 0;
 }
 input.action_button:hover {
     background-color: #DCDCDC !important;
@@ -464,4 +459,44 @@ input.action_button:hover {
 }
 div.error-page {
     padding:30px;
+}
+.bika-listing-table tfoot {
+    background-color: #DCDCDC;
+}
+.bika-listing-table tfoot tr td {
+    padding:10px;
+}
+.bika-listing-table tfoot tr td table td {
+    padding:0;
+}
+#footer {
+    border-bottom: medium none;
+    border-top: 2px solid #DCDCDC;
+    box-shadow: 0 0 10px 2px #CDCDCD;
+    margin-bottom: 0;
+    margin-top: 60px;
+    padding-bottom: 20px;
+    text-align: center;
+}
+#footer br {
+    display:none;
+}
+#footer ul li {
+    list-style-type:none;
+    display:inline;
+}
+div.themedby {
+    color:#333;
+}
+a.logo-naralabs{
+    background:url('../images/logo-naralabs.png') left top no-repeat;
+    width: 70px;
+    height:18px;
+    padding-left:70px;
+    margin-left:5px;
+}
+a.logo-naralabs span {
+    overflow: hidden;
+    visibility:hidden;
+    display:none;
 }
