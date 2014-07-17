@@ -181,6 +181,7 @@ $(document).ready(function(){
             })
             .always(function() {
                 currsectionid = url.replace(window.portal_url, '');
+                window.history.pushState(currsectionid, '', url);
                 loadBreadcrumbs();
                 toggleLoading();
                 fixLayout();
