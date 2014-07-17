@@ -165,6 +165,12 @@ $(document).ready(function(){
             $.ajax(url)
             .done(function(data) {
                 var htmldata = data;
+                // Get the body class
+                var bodyregex = RegExp('body.+class="(.*?)"', 'g');
+                var matches = bodyregex.exec(data);
+                if (matches.length > 1) {
+                    $('body').attr('css', matches[1]);
+                }
                 htmldata = $(htmldata).find('div.column-center').html();
                 var breaddata = $(htmldata).find('#breadcrumbs').html();
                 $('#breadcrumbs').html(breaddata);
@@ -201,6 +207,12 @@ $(document).ready(function(){
             $.ajax(url)
             .done(function(data) {
                 var htmldata = data;
+                // Get the body class
+                var bodyregex = RegExp('body.+class="(.*?)"', 'g');
+                var matches = bodyregex.exec(data);
+                if (matches.length > 1) {
+                    $('body').attr('css', matches[1]);
+                }
                 htmldata = $(htmldata).find('div.column-center').html();
                 var breaddata = $(htmldata).find('#breadcrumbs').html();
                 $('#breadcrumbs').html(breaddata);
@@ -276,6 +288,7 @@ $(document).ready(function(){
             loadBreadcrumbs();
             loadNavMenuTransitions();
             loadNavMenuAnchorHandlers();
+            $(document.body).trigger('load');
         });
     }
 

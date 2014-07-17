@@ -34,6 +34,21 @@
         <after theme-children="/html/head" content="/html/head/style" />
         <after theme-children="/html/head" content="/html/head/script" />
 
+        <!-- set the html's css -->
+        <before theme-children="/html" method="raw">
+          <xsl:attribute name="class">
+              <xsl:value-of select="/html/@class" />
+              </xsl:attribute>
+        </before>
+
+        <!-- set the body's css -->
+        <before theme-children="/html/body" method="raw">
+          <xsl:attribute name="class">
+              <xsl:value-of select="/html/body/@class" />
+              </xsl:attribute>
+        </before>
+
+
         <!-- logo -->
         <replace css:content="#portal-logo" css:theme-children="#logo" />
         <!--drop css:theme="#logo" css:if-not-content="body.section-front-page"/-->
