@@ -99,6 +99,9 @@ $(document).ready(function(){
     window.jarn.i18n.loadCatalog("plone");
     var _ = window.jarn.i18n.MessageFactory("plone");
 
+    $('#portal-logo img')
+        .attr('width', '100px')
+        .attr('height', '25px');
     loadNavMenu();
     loadStyles();
     fixLayout();

@@ -102,7 +102,7 @@ div.constraint {
     height:100%;
 }
 #content-wrapper {
-    margin-top: 80px;
+    margin-top: 50px;
 }
 #content-wrapper div.column-left,
 #content-wrapper div.column-center,
@@ -288,10 +288,12 @@ div.show-column-left a:hover {
     transition: opacity 250ms ease-in-out;
 }
 #breadcrumbs {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #DCDCDC;
     color: #333333;
-    font-family:'Titillium Web','Open Sans', sans-serif, Helvetica, Arial;
+    font-family: 'Titillium Web','Open Sans',sans-serif,Helvetica,Arial;
     font-size: 0.9em;
-    padding: 8px 0px 8px 0px;
+    padding: 5px 0 8px;
 }
 
 #content h1 {
@@ -500,3 +502,18 @@ a.logo-naralabs span {
     visibility:hidden;
     display:none;
 }
+
+.filter-search-button {
+    display: inline-block;
+    font-family: "Ionicons";
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    text-rendering: auto;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.filter-search-button:before { content: "\f1d9"; }
