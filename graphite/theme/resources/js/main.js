@@ -96,7 +96,6 @@ $(document).ready(function(){
     var currsectionid = window.location.href.replace(window.portal_url, '');
 
     loadNavMenu();
-    loadWrappers();
     loadStyles();
     fixLayout();
     $(window).on("resize", fixLayout);
@@ -201,14 +200,12 @@ $(document).ready(function(){
                                   $(this).find('span').length ? $.trim($(this).find('span').html()) : $.trim($(this).html()),
                                   $(this).find('img').length ? $(this).find('img').attr('src') : ""];
             });
-            console.log(runtimenav);
             // Populate the nav-menu
             var activedetected = false;
             for (var section in navmenu) {
                 var items = navmenu[section]['items'];
                 $.each(items, function(i, item) {
                     if (item in runtimenav) {
-                        console.log(section+" - "+item+" - "+runtimenav[item]);
                         var sectionid = navmenu[section]['id']
                         var sectionul = null;
                         if ($('ul.navtree li.'+sectionid).length < 1) {
