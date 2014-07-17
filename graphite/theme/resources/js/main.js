@@ -160,6 +160,7 @@ $(document).ready(function(){
             e.preventDefault();
             var text = $(this).html();
             var url = $(this).attr('href');
+            setActiveNavItem(url);
             toggleLoading("Loading "+text+"...");
             $.ajax(url)
             .done(function(data) {
@@ -335,5 +336,18 @@ $(document).ready(function(){
             }
             $('#breadcrumbs').html(breadhtml);
         }
+    }
+
+    function setActiveNavItem(url) {
+        $('ul.navtree li.active').removeClass('active');
+        var parturl = url.replace(window.portal_url, '');
+        $('ul.navtree li a').each(function() {
+            var itemurl = $(this).attr('href');
+            itemurl = itemurl.replace(window.portal_url, '');
+            if (parturl.contains(itemurl)) {
+                $(this).closest('li').addClass('active');
+                return false;
+            }
+        });
     }
 });
