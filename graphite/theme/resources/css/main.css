@@ -423,6 +423,10 @@ input.action_button:hover {
     line-height:50px;
     font-weight:300;
 }
+#loading-pane img {
+    display:none;
+    visibility:hidden;
+}
 div.error-page {
     padding:30px;
 }
