@@ -95,6 +95,10 @@ $(document).ready(function(){
     var runtimenav = {};
     var currsectionid = window.location.href.replace(window.portal_url, '');
 
+    window.jarn.i18n.loadCatalog("bika");
+    window.jarn.i18n.loadCatalog("plone");
+    var _ = window.jarn.i18n.MessageFactory("plone");
+
     loadNavMenu();
     loadStyles();
     fixLayout();
@@ -161,6 +165,8 @@ $(document).ready(function(){
             .done(function(data) {
                 var htmldata = data;
                 htmldata = $(htmldata).find('div.column-center').html();
+                var breaddata = $(htmldata).find('#breadcrumbs').html();
+                $('#breadcrumbs').html(breaddata);
                 $('div.column-center').html(htmldata);
             })
             .fail(function(data) {
@@ -172,6 +178,7 @@ $(document).ready(function(){
             })
             .always(function() {
                 currsectionid = url.replace(window.portal_url, '');
+                loadBreadcrumbs();
                 toggleLoading();
                 fixLayout();
                 backToTop();
@@ -206,15 +213,6 @@ $(document).ready(function(){
                 var items = navmenu[section]['items'];
                 $.each(items, function(i, item) {
                     if (item in runtimenav) {
-                        var sectionid = navmenu[section]['id']
-                        var sectionul = null;
-                        if ($('ul.navtree li.'+sectionid).length < 1) {
-                            sectionli = '<li class="'+sectionid+'">'+section+'<ul></ul></li>';
-                            $('ul.navtree').append(sectionli);
-                            sectionul = $(sectionli).find('ul');
-                        } else {
-                            sectionul = $('ul.navtree li.'+sectionid+' ul');
-                        }
                         var runitem = runtimenav[item];
                         var active = !activedetected && currsectionid.indexOf('/'+item) > -1;
                         var cssclass = '';
@@ -222,12 +220,21 @@ $(document).ready(function(){
                             cssclass = ' class="active"';
                             activedetected = true;
                         }
-                        $(sectionul).append('<li'+cssclass+'><a href="'+runitem[0]+'"><img src="'+runitem[2]+'">'+runitem[1]+'</a></li>');
+                        var itemli = '<li'+cssclass+'><a href="'+runitem[0]+'"><img src="'+runitem[2]+'">'+runitem[1]+'</a></li>';
+                        var sectionid = navmenu[section]['id']
+                        var sectionul = null;
+                        if ($('ul.navtree li.'+sectionid).length < 1) {
+                            sectionli = '<li class="'+sectionid+'">'+section+'<ul>'+itemli+'</ul></li>';
+                            $('ul.navtree').append(sectionli);
+                        } else {
+                            $('ul.navtree li.'+sectionid+' ul').append(itemli);
+                        }
                     }
                 });
             }
         })
         .always(function() {
+            loadBreadcrumbs();
             loadNavMenuTransitions();
             loadNavMenuAnchorHandlers();
         });
@@ -268,5 +275,27 @@ $(document).ready(function(){
         }).css("background", "");
         $('.filter-search-button').addClass('ion-ios7-search');
         $('div.alert').prepend('<span class="ion-alert-circled"></span>');
+    }
+
+    function loadBreadcrumbs() {
+        if ($("#breadcrumbs").html() == '') {
+            var breadhtml =
+                '<span id="breadcrumbs-you-are-here">'+_("You are here")+': </span>' +
+                '<span class="breadcrumbs-home">' +
+                '<a href="'+window.portal_url+'">'+_("Home")+'</a>' +
+                '</span>';
+
+            if ($('ul.navtree li.active').length > 0) {
+                var currnode = $('ul.navtree li.active a').clone();
+                $(currnode).find('img').remove();
+                var currnodetext = $(currnode).find('span').length ? $.trim($(currnode).find('span').html()) : $.trim($(currnode).html());
+                breadhtml +=
+                    '<span class="breadcrumbSeparator"> › </span>' +
+                    '<span id="breadcrumbs-1" dir="ltr">' +
+                    '<a href="'+$(currnode).attr('href')+'">'+currnodetext+'</a>' +
+                    '</span>';
+            }
+            $('#breadcrumbs').html(breadhtml);
+        }
     }
 });
