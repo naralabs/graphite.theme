@@ -110,9 +110,10 @@ div.constraint {
     float:left;
 }
 #content-wrapper div.column-left {
-    width:160px;
-    background-color:#fff;
+    width:180px;
+    background-color:#efefef;
     height:100%;
+    margin-top: -5px;
 }
 #content-wrapper div.column-center {
     margin-left: 40px;
@@ -126,7 +127,7 @@ div.constraint {
     height: 0;
 }
 #logo {
-    background-color: #FFFFFF;
+    background-color: #efefef;
     border-bottom: 2px solid #DCDCDC;
     box-shadow: 0 0 10px 2px #CDCDCD;
     moz-box-shadow: 0 0 10px 2px #CDCDCD;
@@ -148,12 +149,11 @@ div.nav-container ul {
     font-family:'Titillium Web','Open Sans', sans-serif, Helvetica, Arial;
 }
 div.nav-container ul.navtree li {
-    background-color:#fff;
     font-size: 1.2em;
     font-weight: 300;
     list-style-type: none;
     margin: 0;
-    padding: 10px 10px 10px 10px;
+    padding: 10px 20px 10px 10px;
 }
 div.nav-container ul.navtree li a {
     color:#333;
@@ -162,8 +162,8 @@ div.nav-container ul.navtree li.active a,
 div.nav-container ul.navtree li a:hover {
     background-color:#0B486B;
     color:#fff;
-    margin:-10px;
-    padding:10px;
+    margin:-10px -20px -10px -10px;
+    padding:10px 20px 10px 10px;
     -webkit-transition: background 250ms ease-in;
     -moz-transition: background 250ms ease-in;
     -o-transition: background 250ms ease-in;
@@ -223,6 +223,7 @@ div.show-column-left {
     height: 100%;
     margin-left: 159px;
     padding-top: 50px;
+    padding-left:20px;
     position: absolute;
     display:none;
 }
