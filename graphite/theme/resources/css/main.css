@@ -365,9 +365,7 @@ td.state-invalid {
     color: #333;
     border-right: 1px solid #cdcdcd;
 }
-#content .bika-listing-table thead tr td.listing-filter-row a:link {
-}
-#content .bika-listing-table thead tr td.listing-filter-row a:link:hover {
+#content .bika-listing-table thead tr td.listing-filter-row a:hover {
     background-color: #3B8686;
     color: #fff;
     border-right: 1px solid #3B8686;
@@ -382,7 +380,7 @@ td.state-invalid {
     -o-transition: background 250ms ease-in;
     -ms-transition: background 250ms ease-in;
 }
-#content .bika-listing-table thead tr td.listing-filter-row a.selected:link {
+#content .bika-listing-table thead tr td.listing-filter-row a.selected {
     background-color: #3B8686;
     color: #fff;
     border-right: 1px solid #3B8686;
@@ -425,9 +423,9 @@ input.action_button {
     margin-right: 5px;
 }
 input.action_button:hover {
-    background-color: #DCDCDC !important;
+   /* background-color: #DCDCDC !important;
     border: 1px solid #000000;
-    color: #333333;
+    color: #333333;*/
     transition: all 0.25s ease-out 0s;
     -webkit-transition: all 0.25s ease-out 0s;
     -moz-transition: all 0.25s ease-out 0s;

@@ -189,6 +189,7 @@ $(document).ready(function(){
                 window.history.pushState(currsectionid, '', url);
                 loadBreadcrumbs();
                 loadContentAnchorHandlers();
+                loadStyles();
                 toggleLoading();
                 loadActiveNavSection();
                 fixLayout();
@@ -232,6 +233,7 @@ $(document).ready(function(){
                 window.history.pushState(currsectionid, '', url);
                 loadBreadcrumbs();
                 loadContentAnchorHandlers();
+                loadStyles();
                 toggleLoading();
                 loadActiveNavSection();
                 fixLayout();
