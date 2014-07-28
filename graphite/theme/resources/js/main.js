@@ -97,7 +97,8 @@ $(document).ready(function(){
 
     window.jarn.i18n.loadCatalog("bika");
     window.jarn.i18n.loadCatalog("plone");
-    var _ = window.jarn.i18n.MessageFactory("plone");
+    var _p = window.jarn.i18n.MessageFactory("plone");
+    var _b = window.jarn.i18n.MessageFactory("bika");
 
     $('#portal-logo img')
         .attr('width', '100px')
@@ -204,7 +205,7 @@ $(document).ready(function(){
             $(this).closest('li').addClass('active');
             var text = $(this).html();
             var url = $(this).attr('href');
-            toggleLoading("Loading "+text+"...");
+            toggleLoading(text+"...");
             $.ajax(url)
             .done(function(data) {
                 var htmldata = data;
@@ -277,7 +278,7 @@ $(document).ready(function(){
                         var sectionid = navmenu[section]['id']
                         var sectionul = null;
                         if ($('ul.navtree li.'+sectionid).length < 1) {
-                            sectionli = '<li class="navtree-item '+sectionid+'"><div class="nav-section-title">'+section+'</div><ul>'+itemli+'</ul></li>';
+                            sectionli = '<li class="navtree-item '+sectionid+'"><div class="nav-section-title">'+_b(section)+'</div><ul>'+itemli+'</ul></li>';
                             $('ul.navtree').append(sectionli);
                         } else {
                             $('ul.navtree li.'+sectionid+' ul').append(itemli);
@@ -331,14 +332,16 @@ $(document).ready(function(){
         }).css("background", "");
         $('.filter-search-button').addClass('ion-ios7-search');
         $('div.alert').prepend('<span class="ion-alert-circled"></span>');
+        $('h1 span.documentFirstHeading').css('top','');
+        $('h1 a.context_action_link').css('background', '');
     }
 
     function loadBreadcrumbs() {
         if ($("#breadcrumbs").html() == '') {
             var breadhtml =
-                '<span id="breadcrumbs-you-are-here">'+_("You are here")+': </span>' +
+                '<span id="breadcrumbs-you-are-here">'+_p("You are here")+': </span>' +
                 '<span class="breadcrumbs-home">' +
-                '<a href="'+window.portal_url+'">'+_("Home")+'</a>' +
+                '<a href="'+window.portal_url+'">'+_p("Home")+'</a>' +
                 '</span>';
 
             if ($('ul.navtree li.active').length > 0) {

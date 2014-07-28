@@ -295,7 +295,7 @@ div.show-column-left a:hover {
     color: #333333;
     font-family: 'Titillium Web','Open Sans',sans-serif,Helvetica,Arial;
     font-size: 0.9em;
-    padding: 5px 0 8px;
+    padding: 15px 0 8px;
 }
 
 #content h1 {
@@ -479,8 +479,9 @@ div.error-page {
     font-size:0.8em;
     width:100%;
     position: fixed;
-    bottom:10px;
+    bottom:0;
     background-color:#efefef;
+    padding-bottom:10px;
 }
 #footer br {
     display:none;
@@ -534,4 +535,28 @@ div.nav-section-title {
 li.child-active div.nav-section-title {
     background-color: #0B486B;
     color: #FFFFFF;
+}
+
+h1 a.context_action_link {
+    font-size: 0.5em;
+    margin-left: 20px;
+    background-color: #3B8686;
+    padding: 3px 15px 4px 15px;
+    color: #fff;
+    vertical-align: middle;
+}
+h1 a.context_action_link:hover {
+    background-color: #3B8686;
+    color: #fff;
+    border-right: 1px solid #3B8686;
+    opacity: 0.4;
+    moz-opacity:0.4;
+    filter:alpha(opacity=40);
+    -moz-opacity: 0.4;
+    -khtml-opacity: 0.4;
+    transition: background 250ms ease-in;
+    -webkit-transition: background 250ms ease-in;
+    -moz-transition: background 250ms ease-in;
+    -o-transition: background 250ms ease-in;
+    -ms-transition: background 250ms ease-in;
 }
