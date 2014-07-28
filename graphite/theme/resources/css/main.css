@@ -330,27 +330,125 @@ table.bika-listing-table .item-listing-tbody td {
 
 /* States
  * The order is important! */
-
-td.state-unassigned {
-    background-color: #FFF2DD;
+td.first-col {
+    border-left:0px solid transparent;
+    /*border-radius:7px 0 0 7px;*/
+    border-radius: 3px 0 3px 0;
+    border-bottom: 1px solid #fff;
+    opacity: 0.7;
+    moz-opacity:0.7;
+    filter:alpha(opacity=70);
+    -moz-opacity: 0.7;
+    -khtml-opacity: 0.7;
 }
-td.state-sample_due {
-    background-color: #FFFCA7;
+td.first-col.state-unassigned {
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        color-stop(0, #FFBE1B),
+        color-stop(0, #FF9D00),
+        color-stop(1, #FFFFFF)
+    );
+    background-image: -o-linear-gradient(right, #FFBE1B 0%, #FF9D00 0%, #FFFFFF 100%);
+    background-image: -moz-linear-gradient(right, #FFBE1B 0%, #FF9D00 0%, #FFFFFF 100%);
+    background-image: -webkit-linear-gradient(right, #FFBE1B 0%, #FF9D00 0%, #FFFFFF 100%);
+    background-image: -ms-linear-gradient(right, #FFBE1B 0%, #FF9D00 0%, #FFFFFF 100%);
+    background-image: linear-gradient(to right, #FFBE1B 0%, #FF9D00 0%, #FFFFFF 100%);
+    /*border-color: #ff9d00;/*#FFF2DD;*/
 }
-td.state-received {
-    background-color: #FFF2DD;
+td.first-col.state-sample_due {
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        color-stop(0, #FFBE1B),
+        color-stop(0, #FFF700),
+        color-stop(1, #FFFFFF)
+    );
+    background-image: -o-linear-gradient(right, #FFBE1B 0%, #FFF700 0%, #FFFFFF 100%);
+    background-image: -moz-linear-gradient(right, #FFBE1B 0%, #FFF700 0%, #FFFFFF 100%);
+    background-image: -webkit-linear-gradient(right, #FFBE1B 0%, #FFF700 0%, #FFFFFF 100%);
+    background-image: -ms-linear-gradient(right, #FFBE1B 0%, #FFF700 0%, #FFFFFF 100%);
+    background-image: linear-gradient(to right, #FFBE1B 0%, #FFF700 0%, #FFFFFF 100%);
+    /*border-color: #fff600;/*#FFFCA7;*/
 }
-td.state-to_be_verified {
-    background-color: #D4E2FC;
+td.first-col.state-sample_received {
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        color-stop(0, #EFEFEF),
+        color-stop(1, #FFFFFF)
+    );
+    background-image: -o-linear-gradient(right, #EFEFEF 0%, #FFFFFF 100%);
+    background-image: -moz-linear-gradient(right, #EFEFEF 0%, #FFFFFF 100%);
+    background-image: -webkit-linear-gradient(right, #EFEFEF 0%, #FFFFFF 100%);
+    background-image: -ms-linear-gradient(right, #EFEFEF 0%, #FFFFFF 100%);
+    background-image: linear-gradient(to right, #EFEFEF 0%, #FFFFFF 100%);
+    /*border-color: #ffffff;/*#FFF2DD;*/
 }
-td.state-verified {
-    background-color: #E5F8FF;
+td.first-col.state-to_be_verified {
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        color-stop(0, #0058FC),
+        color-stop(1, #FFFFFF)
+    );
+    background-image: -o-linear-gradient(right, #0058FC 0%, #FFFFFF 100%);
+    background-image: -moz-linear-gradient(right, #0058FC 0%, #FFFFFF 100%);
+    background-image: -webkit-linear-gradient(right, #0058FC 0%, #FFFFFF 100%);
+    background-image: -ms-linear-gradient(right, #0058FC 0%, #FFFFFF 100%);
+    background-image: linear-gradient(to right, #0058FC 0%, #FFFFFF 100%);
+    /*border-color: #0058fc;/*#D4E2FC;*/
 }
-td.state-published {
-    background-color: #E6FCE3;
+td.first-col.state-verified {
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        color-stop(0, #00BBFF),
+        color-stop(1, #FFFFFF)
+    );
+    background-image: -o-linear-gradient(right, #00BBFF 0%, #FFFFFF 100%);
+    background-image: -moz-linear-gradient(right, #00BBFF 0%, #FFFFFF 100%);
+    background-image: -webkit-linear-gradient(right, #00BBFF 0%, #FFFFFF 100%);
+    background-image: -ms-linear-gradient(right, #00BBFF 0%, #FFFFFF 100%);
+    background-image: linear-gradient(to right, #00BBFF 0%, #FFFFFF 100%);
+    /*border-color: #00baff;/*#E5F8FF;*/
+}
+td.first-col.state-published {
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        color-stop(0, #1DFC00),
+        color-stop(1, #FFFFFF)
+    );
+    background-image: -o-linear-gradient(right, #1DFC00 0%, #FFFFFF 100%);
+    background-image: -moz-linear-gradient(right, #1DFC00 0%, #FFFFFF 100%);
+    background-image: -webkit-linear-gradient(right, #1DFC00 0%, #FFFFFF 100%);
+    background-image: -ms-linear-gradient(right, #1DFC00 0%, #FFFFFF 100%);
+    background-image: linear-gradient(to right, #1DFC00 0%, #FFFFFF 100%);
+    /*border-color: #1efc00;/*#E6FCE3;*/
+}
+td.first-col.state-invalid {
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        color-stop(0, #8E8E8E),
+        color-stop(1, #FFFFFF)
+    );
+    background-image: -o-linear-gradient(right, #8E8E8E 0%, #FFFFFF 100%);
+    background-image: -moz-linear-gradient(right, #8E8E8E 0%, #FFFFFF 100%);
+    background-image: -webkit-linear-gradient(right, #8E8E8E 0%, #FFFFFF 100%);
+    background-image: -ms-linear-gradient(right, #8E8E8E 0%, #FFFFFF 100%);
+    background-image: linear-gradient(to right, #8E8E8E 0%, #FFFFFF 100%);
+   /* border-color: #8e8e8e;/*#E5E5E5;*/
 }
 td.state-invalid {
-    background-color: #E5E5E5;
     color:#8E8E8E;
 }
 
@@ -364,6 +462,10 @@ td.state-invalid {
     padding: 8px 10px 5px 10px;
     color: #333;
     border-right: 1px solid #cdcdcd;
+}
+#content .bika-listing-table thead tr td.listing-filter-row a.sample_due {
+    border-top: 3px solid #FFBE1B;
+    padding-top: 5px;
 }
 #content .bika-listing-table thead tr td.listing-filter-row a:hover {
     background-color: #3B8686;

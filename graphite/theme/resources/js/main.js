@@ -336,6 +336,9 @@ $(document).ready(function(){
         $('div.alert').prepend('<span class="ion-alert-circled"></span>');
         $('h1 span.documentFirstHeading').css('top','');
         $('h1 a.context_action_link').css('background', '');
+        $('table.bika-listing-table tbody.item-listing-tbody tr').each(function() {
+            $(this).find('td').first().addClass("first-col");
+        });
     }
 
     function loadBreadcrumbs() {
