@@ -131,8 +131,8 @@ $(document).ready(function(){
 
 
     $(window).scroll(function (e) {
-        $('div.column-left').css('margin-top', $(document).scrollTop()-5+"px");
-        $('#loading-pane').css('margin-top', $(document).scrollTop()-5+"px");
+        $('div.column-left').css('margin-top', $(document).scrollTop()+10+"px");
+        $('#loading-pane').css('margin-top', $(document).scrollTop()+"px");
     });
 
     $("a.back-to-top").click(function(e) {
@@ -189,6 +189,7 @@ $(document).ready(function(){
                 loadBreadcrumbs();
                 loadContentAnchorHandlers();
                 toggleLoading();
+                loadActiveNavSection();
                 fixLayout();
                 backToTop();
             });
@@ -231,6 +232,7 @@ $(document).ready(function(){
                 loadBreadcrumbs();
                 loadContentAnchorHandlers();
                 toggleLoading();
+                loadActiveNavSection();
                 fixLayout();
                 backToTop();
             });
@@ -275,7 +277,7 @@ $(document).ready(function(){
                         var sectionid = navmenu[section]['id']
                         var sectionul = null;
                         if ($('ul.navtree li.'+sectionid).length < 1) {
-                            sectionli = '<li class="'+sectionid+'">'+section+'<ul>'+itemli+'</ul></li>';
+                            sectionli = '<li class="navtree-item '+sectionid+'"><div class="nav-section-title">'+section+'</div><ul>'+itemli+'</ul></li>';
                             $('ul.navtree').append(sectionli);
                         } else {
                             $('ul.navtree li.'+sectionid+' ul').append(itemli);
@@ -285,6 +287,7 @@ $(document).ready(function(){
             }
         })
         .always(function() {
+            loadActiveNavSection();
             loadBreadcrumbs();
             loadNavMenuTransitions();
             loadNavMenuAnchorHandlers();
@@ -305,7 +308,7 @@ $(document).ready(function(){
         $('#loading-pane').css('height', $(window).outerHeight());
         $('#loading-pane').css('padding-top', (($(window).outerHeight()/2)-60)+"px");
         $('#loading-pane').css('margin-left', ($('div.column-left').outerWidth())+"px");
-        $('div.column-left').css('height', $(window).outerHeight());
+        //$('div.column-left').css('height', $(window).outerHeight());
     }
 
     function toggleLoading(message) {
@@ -354,14 +357,21 @@ $(document).ready(function(){
 
     function setActiveNavItem(url) {
         $('ul.navtree li.active').removeClass('active');
+        $('ul.navtree li.child-active').removeClass('child-active');
         var parturl = url.replace(window.portal_url, '');
         $('ul.navtree li a').each(function() {
             var itemurl = $(this).attr('href');
             itemurl = itemurl.replace(window.portal_url, '');
             if (parturl.contains(itemurl)) {
                 $(this).closest('li').addClass('active');
+                $(this).closest('li.nav-tree-item').addClass('child-active');
                 return false;
             }
         });
+    }
+
+    function loadActiveNavSection() {
+        $('ul.navtree li.child-active').removeClass('child-active');
+        $('ul.navtree li.active').closest('li.navtree-item').addClass('child-active');
     }
 });

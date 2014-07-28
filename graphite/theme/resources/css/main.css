@@ -103,6 +103,7 @@ div.constraint {
 }
 #content-wrapper {
     margin-top: 50px;
+    margin-bottom: 100px;
 }
 #content-wrapper div.column-left,
 #content-wrapper div.column-center,
@@ -113,7 +114,7 @@ div.constraint {
     width:180px;
     background-color:#efefef;
     height:100%;
-    margin-top: -5px;
+    margin-top: 10px;
 }
 #content-wrapper div.column-center {
     margin-left: 40px;
@@ -171,7 +172,7 @@ div.nav-container ul.navtree li a:hover {
     transition: background 250ms ease-in;
 }
 div.nav-container ul.navtree li ul {
-    border-top:1px solid #999;
+    /*border-top:1px solid #999;*/
     margin:5px 0 10px -15px;
     display:none;
     padding-top:5px;
@@ -473,13 +474,13 @@ div.error-page {
     padding:0;
 }
 #footer {
-    border-bottom: medium none;
-    border-top: 2px solid #DCDCDC;
-    box-shadow: 0 0 10px 2px #CDCDCD;
-    margin-bottom: 0;
-    margin-top: 60px;
-    padding-bottom: 20px;
     text-align: center;
+    line-height: 8px;
+    font-size:0.8em;
+    width:100%;
+    position: fixed;
+    bottom:10px;
+    background-color:#efefef;
 }
 #footer br {
     display:none;
@@ -488,8 +489,12 @@ div.error-page {
     list-style-type:none;
     display:inline;
 }
+#footer #portal-siteactions {
+    display:none;
+}
 div.themedby {
     color:#333;
+    padding-bottom:5px;
 }
 a.logo-naralabs{
     background:url('../images/logo-naralabs.png') left top no-repeat;
@@ -497,6 +502,7 @@ a.logo-naralabs{
     height:18px;
     padding-left:70px;
     margin-left:5px;
+    padding-bottom:5px;
 }
 a.logo-naralabs span {
     overflow: hidden;
@@ -518,3 +524,14 @@ a.logo-naralabs span {
     -moz-osx-font-smoothing: grayscale;
 }
 .filter-search-button:before { content: "\f1d9"; }
+
+div.nav-section-title {
+    /*background-color: #0B486B;*/
+    background-color:#dfdfdf;
+    margin: -10px -20px -5px -10px;
+    padding: 10px 20px 10px 10px;
+}
+li.child-active div.nav-section-title {
+    background-color: #0B486B;
+    color: #FFFFFF;
+}
