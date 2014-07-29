@@ -619,6 +619,25 @@ td.state-invalid a:hover {
     line-height: 160%;
     padding-left: 12px;
 }
+#content .bika-listing-table tfoot table {
+    margin: 20px 0 0;
+    padding: 10px;
+}
+#content .bika-listing-table tfoot table {
+    background-color:#dcdcdc;
+    padding: 10px 20px 10px 10px;
+}
+#content .bika-listing-table tfoot td.batching span.pagesize_selector {
+    float: left;
+    margin-top: -20px;
+    text-align: right;
+}
+
+#content .bika-listing-table tfoot td.batching a, .batching.span {
+    margin-left: 8px;
+    font-size: 1.1em;
+    font-weight: bold;
+}
 
 input.context_action_link,
 input[type="submit"] {
@@ -707,9 +726,8 @@ div.error-page {
     padding:30px;
 }
 .bika-listing-table tfoot {
-    background-color: #DCDCDC;
 }
-.bika-listing-table tfoot tr td {
+.bika-listing-table tfoot table tr td {
     padding:10px;
 }
 .bika-listing-table tfoot tr td table td {
