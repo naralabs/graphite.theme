@@ -164,6 +164,11 @@ $(document).ready(function(){
             e.preventDefault();
             var text = $(this).html();
             var url = $(this).attr('href');
+            if (url.indexOf('at_download') > 0) {
+                // Download file
+                window.location = url;
+                return;
+            }
             setActiveNavItem(url);
             toggleLoading("Loading "+text+"...");
             $.ajax(url)
@@ -172,7 +177,7 @@ $(document).ready(function(){
                 // Get the body class
                 var bodyregex = RegExp('body.+class="(.*?)"', 'g');
                 var matches = bodyregex.exec(data);
-                if (matches.length > 1) {
+                if (matches != null && matches.length > 1) {
                     $('body').attr('css', matches[1]);
                 }
                 htmldata = $(htmldata).find('div.column-center').html();
