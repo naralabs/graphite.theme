@@ -128,6 +128,12 @@
         <replace css:theme-children='#portletNavigationTree' css:content='.portletNavigationTree'/>
         <replace css:theme-children='#portal-globalnav' css:content='#portal-globalnav' />
 
+        <!-- Document Edit bar -->
+        <replace css:content="#edit-bar" css:theme="#edit-bar" />
+
+        <!-- Document Portal Message -->
+        <replace css:content=".portalMessage" css:theme=".portalMessage" />
+
         <!-- Document Content -->
         <replace css:content="#content" css:theme="#content" />
 
