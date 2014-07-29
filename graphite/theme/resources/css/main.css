@@ -1036,3 +1036,27 @@ input.saveRemarks:hover {
     height: 0;
     padding: 5px 0 0 5px;
 }
+.portalMessage dt {
+    font-size: 1.3em;
+    padding-bottom: 5px;
+}
+.portalMessage dd {
+    padding: 0;
+    margin: 0;
+    font-size: 1.1em;
+}
+.portalMessage.warning dt:before {
+    content: "\f1a0";
+    font-family: "Ionicons";
+    font-size: 1.4em;
+    padding-right: 8px;
+    vertical-align: bottom;
+}
+.portalMessage.warning dt {
+    color: #CC333F;
+}
+.portalMessage {
+    background-color: #F4EAD5;
+    padding: 10px 20px 20px;
+    margin-top: -10px;
+}

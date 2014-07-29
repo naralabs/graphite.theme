@@ -132,7 +132,7 @@
         <replace css:content="#edit-bar" css:theme="#edit-bar" />
 
         <!-- Document Portal Message -->
-        <replace css:content=".portalMessage" css:theme=".portalMessage" />
+        <after css:content=".portalMessage" css:theme-children="#portal-message-container" />
 
         <!-- Document Content -->
         <replace css:content="#content" css:theme="#content" />
