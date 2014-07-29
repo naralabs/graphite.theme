@@ -343,6 +343,15 @@ $(document).ready(function(){
         $('table.bika-listing-table tbody.item-listing-tbody tr').each(function() {
             $(this).find('td').first().addClass("first-col");
         });
+
+        // Split remarks
+        var armks = $('#archetypes-fieldname-Remarks fieldset span');
+        if ($(armks).length > 0) {
+            var rmks = $(armks).html();
+            var items = rmks.split('===');
+            $(armks).html(items.join('<hr>'));
+        }
+
         loadBikaTableBehavior();
         loadToolTips();
     }
