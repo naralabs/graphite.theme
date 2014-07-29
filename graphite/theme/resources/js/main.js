@@ -444,6 +444,11 @@ $(document).ready(function(){
                 $(this).find('tfoot td.workflow_actions').hide();
             }
         }
+
+        // If only on page hide page browser
+        if ($('#content .bika-listing-table tfoot td.batching a').length == 0) {
+            $('#content .bika-listing-table tfoot td.batching').hide();
+        }
     }
 
     function loadToolTips() {
