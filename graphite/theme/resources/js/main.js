@@ -392,21 +392,30 @@ $(document).ready(function(){
     function loadBikaTableBehavior() {
         // Show the actions pane when at least one checkbox is checked
         $('table.bika-listing-table tfoot td.workflow_actions').hide();
-        $('table.bika-listing-table tbody.item-listing-tbody tr td input[type="checkbox"]').click(function(e) {
-            if ($(this).closest('table.bika-listing-table').find('tbody.item-listing-tbody tr td input[type="checkbox"]:checked').length > 0) {
-                var numsels = $(this).closest('table.bika-listing-table').find('tbody.item-listing-tbody tr td input[type="checkbox"]:checked').length;
-                if ($(this).closest('table.bika-listing-table').find('tfoot td.workflow_actions div.selection-summary').length == 0) {
-                    $(this).closest('table.bika-listing-table').find('tfoot td.workflow_actions').prepend('<div class="selection-summary"><span class="num-selected">'+numsels+'</span> '+_p('Items selected')+'</div>');
+        $('table.bika-listing-table tbody.item-listing-tbody tr').each(function(e) {
+            $(this).find('td:first input[type="checkbox"]').click(function(e) {
+                if ($(this).is(':checked')) {
+                    $(this).closest('tr').addClass('selected');
                 } else {
-                    $(this).closest('table.bika-listing-table').find('tfoot td.workflow_actions div.selection-summary span.num-selected').html(numsels);
+                    $(this).closest('tr').removeClass('selected');
                 }
-                $(this).closest('table.bika-listing-table').find('tfoot td.workflow_actions').show();
+                updateSelectedItems($(this).closest('table.bika-listing-table'));
+            });
+        });
+        $('table.bika-listing-table thead th input[type="checkbox"]').click(function(e) {
+            if ($(this).is(':checked')) {
+                $(this).closest('table.bika-listing-table').find('tbody.item-listing-tbody tr').each(function(e) {
+                    if ($(this).find('td:first input[type="checkbox"]').length > 0) {
+                        $(this).addClass('selected');
+                    }
+                });
             } else {
-                $(this).closest('table.bika-listing-table').find('tfoot td.workflow_actions').hide();
+                $(this).closest('table.bika-listing-table').find('tbody.item-listing-tbody tr').removeClass('selected');
             }
+            updateSelectedItems($(this).closest('table.bika-listing-table'));
         });
         $('table.bika-listing-table tbody.item-listing-tbody tr').mousemove(function(e) {
-            var firstchk = $(this).find('td input[type="checkbox"]');
+            var firstchk = $(this).find('td:first input[type="checkbox"]');
             if (firstchk.length > 0) {
                 firstchk = firstchk.first();
                 var leftpos = $(firstchk).offset().left;
@@ -415,12 +424,26 @@ $(document).ready(function(){
                     left: leftpos + 20
                 });
             }
-            if ($(this).find('td input[type="checkbox"]:checked').length > 0) {
+            if ($(this).find('td:first input[type="checkbox"]:checked').length > 0) {
                 $(this).closest('table.bika-listing-table').find('tfoot td.workflow_actions').show();
             } else {
                 $(this).closest('table.bika-listing-table').find('tfoot td.workflow_actions').hide();
             }
         });
+
+        function updateSelectedItems(table) {
+            var numsels = $(table).find('tr.selected').length;
+            if (numsels > 0) {
+                if ($(table).find('tfoot td.workflow_actions div.selection-summary').length == 0) {
+                    $(table).find('tfoot td.workflow_actions').prepend('<div class="selection-summary"><span class="num-selected">'+numsels+'</span> '+_p('Items selected')+'</div>');
+                } else {
+                    $(table).find('tfoot td.workflow_actions div.selection-summary span.num-selected').html(numsels);
+                }
+                $(this).find('tfoot td.workflow_actions').show();
+            } else {
+                $(this).find('tfoot td.workflow_actions').hide();
+            }
+        }
     }
 
     function loadToolTips() {
