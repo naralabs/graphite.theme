@@ -346,14 +346,14 @@ td.first-col.state-assigned {
         linear,
         left top,
         right top,
-        color-stop(0, #ff9d00),
+        color-stop(0, #dcdcdc),
         color-stop(1, #FFFFFF)
     );
-    background-image: -o-linear-gradient(right, #ff9d00 0%, #FFFFFF 100%);
-    background-image: -moz-linear-gradient(right, #ff9d00 0%, #FFFFFF 100%);
-    background-image: -webkit-linear-gradient(right, #ff9d00 0%, #FFFFFF 100%);
-    background-image: -ms-linear-gradient(right, #ff9d00 0%, #FFFFFF 100%);
-    background-image: linear-gradient(to right, #ff9d00 0%, #FFFFFF 100%);
+    background-image: -o-linear-gradient(right, #dcdcdc 0%, #FFFFFF 100%);
+    background-image: -moz-linear-gradient(right, #dcdcdc 0%, #FFFFFF 100%);
+    background-image: -webkit-linear-gradient(right, #dcdcdc 0%, #FFFFFF 100%);
+    background-image: -ms-linear-gradient(right, #dcdcdc 0%, #FFFFFF 100%);
+    background-image: linear-gradient(to right, #dcdcdc 0%, #FFFFFF 100%);
     /*border-color: #ff9d00;/*#FFF2DD;*/
 }
 td.first-col.state-unassigned {
@@ -361,14 +361,14 @@ td.first-col.state-unassigned {
         linear,
         left top,
         right top,
-        color-stop(0, #ff9d00),
+        color-stop(0, #FA6900),
         color-stop(1, #FFFFFF)
     );
-    background-image: -o-linear-gradient(right, #ff9d00 0%, #FFFFFF 100%);
-    background-image: -moz-linear-gradient(right, #ff9d00 0%, #FFFFFF 100%);
-    background-image: -webkit-linear-gradient(right, #ff9d00 0%, #FFFFFF 100%);
-    background-image: -ms-linear-gradient(right, #ff9d00 0%, #FFFFFF 100%);
-    background-image: linear-gradient(to right, #ff9d00 0%, #FFFFFF 100%);
+    background-image: -o-linear-gradient(right, #FA6900 0%, #FFFFFF 100%);
+    background-image: -moz-linear-gradient(right, #FA6900 0%, #FFFFFF 100%);
+    background-image: -webkit-linear-gradient(right, #FA6900 0%, #FFFFFF 100%);
+    background-image: -ms-linear-gradient(right, #FA6900 0%, #FFFFFF 100%);
+    background-image: linear-gradient(to right, #FA6900 0%, #FFFFFF 100%);
     /*border-color: #ff9d00;/*#FFF2DD;*/
 }
 td.first-col.state-sample_due {
@@ -376,14 +376,14 @@ td.first-col.state-sample_due {
         linear,
         left top,
         right top,
-        color-stop(0, #FFBE1B),
+        color-stop(0, #F38630),
         color-stop(1, #FFFFFF)
     );
-    background-image: -o-linear-gradient(right, #FFBE1B 0%, #FFFFFF 100%);
-    background-image: -moz-linear-gradient(right, #FFBE1B 0%,  #FFFFFF 100%);
-    background-image: -webkit-linear-gradient(right, #FFBE1B 0%,  #FFFFFF 100%);
-    background-image: -ms-linear-gradient(right, #FFBE1B 0%, #FFFFFF 100%);
-    background-image: linear-gradient(to right, #FFBE1B 0%, #FFFFFF 100%);
+    background-image: -o-linear-gradient(right, #F38630 0%, #FFFFFF 100%);
+    background-image: -moz-linear-gradient(right, #F38630 0%,  #FFFFFF 100%);
+    background-image: -webkit-linear-gradient(right, #F38630 0%,  #FFFFFF 100%);
+    background-image: -ms-linear-gradient(right, #F38630 0%, #FFFFFF 100%);
+    background-image: linear-gradient(to right, #F38630 0%, #FFFFFF 100%);
     /*border-color: #fff600;/*#FFFCA7;*/
 }
 td.first-col.state-sample_received {
@@ -391,14 +391,14 @@ td.first-col.state-sample_received {
         linear,
         left top,
         right top,
-        color-stop(0, #EFEFEF),
+        color-stop(0, #E0E4CC),
         color-stop(1, #FFFFFF)
     );
-    background-image: -o-linear-gradient(right, #EFEFEF 0%, #FFFFFF 100%);
-    background-image: -moz-linear-gradient(right, #EFEFEF 0%, #FFFFFF 100%);
-    background-image: -webkit-linear-gradient(right, #EFEFEF 0%, #FFFFFF 100%);
-    background-image: -ms-linear-gradient(right, #EFEFEF 0%, #FFFFFF 100%);
-    background-image: linear-gradient(to right, #EFEFEF 0%, #FFFFFF 100%);
+    background-image: -o-linear-gradient(right, #E0E4CC 0%, #FFFFFF 100%);
+    background-image: -moz-linear-gradient(right, #E0E4CC 0%, #FFFFFF 100%);
+    background-image: -webkit-linear-gradient(right, #E0E4CC 0%, #FFFFFF 100%);
+    background-image: -ms-linear-gradient(right, #E0E4CC 0%, #FFFFFF 100%);
+    background-image: linear-gradient(to right, #E0E4CC 0%, #FFFFFF 100%);
     /*border-color: #ffffff;/*#FFF2DD;*/
 }
 td.first-col.state-to_be_verified {
@@ -406,14 +406,14 @@ td.first-col.state-to_be_verified {
         linear,
         left top,
         right top,
-        color-stop(0, #0058FC),
+        color-stop(0, #A7DBD8),
         color-stop(1, #FFFFFF)
     );
-    background-image: -o-linear-gradient(right, #0058FC 0%, #FFFFFF 100%);
-    background-image: -moz-linear-gradient(right, #0058FC 0%, #FFFFFF 100%);
-    background-image: -webkit-linear-gradient(right, #0058FC 0%, #FFFFFF 100%);
-    background-image: -ms-linear-gradient(right, #0058FC 0%, #FFFFFF 100%);
-    background-image: linear-gradient(to right, #0058FC 0%, #FFFFFF 100%);
+    background-image: -o-linear-gradient(right, #A7DBD8 0%, #FFFFFF 100%);
+    background-image: -moz-linear-gradient(right, #A7DBD8 0%, #FFFFFF 100%);
+    background-image: -webkit-linear-gradient(right, #A7DBD8 0%, #FFFFFF 100%);
+    background-image: -ms-linear-gradient(right, #A7DBD8 0%, #FFFFFF 100%);
+    background-image: linear-gradient(to right, #A7DBD8 0%, #FFFFFF 100%);
     /*border-color: #0058fc;/*#D4E2FC;*/
 }
 td.first-col.state-verified {
@@ -421,14 +421,14 @@ td.first-col.state-verified {
         linear,
         left top,
         right top,
-        color-stop(0, #00BBFF),
+        color-stop(0, #69D2E7),
         color-stop(1, #FFFFFF)
     );
-    background-image: -o-linear-gradient(right, #00BBFF 0%, #FFFFFF 100%);
-    background-image: -moz-linear-gradient(right, #00BBFF 0%, #FFFFFF 100%);
-    background-image: -webkit-linear-gradient(right, #00BBFF 0%, #FFFFFF 100%);
-    background-image: -ms-linear-gradient(right, #00BBFF 0%, #FFFFFF 100%);
-    background-image: linear-gradient(to right, #00BBFF 0%, #FFFFFF 100%);
+    background-image: -o-linear-gradient(right, #69D2E7 0%, #FFFFFF 100%);
+    background-image: -moz-linear-gradient(right, #69D2E7 0%, #FFFFFF 100%);
+    background-image: -webkit-linear-gradient(right, #69D2E7 0%, #FFFFFF 100%);
+    background-image: -ms-linear-gradient(right, #69D2E7 0%, #FFFFFF 100%);
+    background-image: linear-gradient(to right, #69D2E7 0%, #FFFFFF 100%);
     /*border-color: #00baff;/*#E5F8FF;*/
 }
 td.first-col.state-published {
@@ -436,14 +436,14 @@ td.first-col.state-published {
         linear,
         left top,
         right top,
-        color-stop(0, #1DFC00),
+        color-stop(0, #83AF9B),
         color-stop(1, #FFFFFF)
     );
-    background-image: -o-linear-gradient(right, #1DFC00 0%, #FFFFFF 100%);
-    background-image: -moz-linear-gradient(right, #1DFC00 0%, #FFFFFF 100%);
-    background-image: -webkit-linear-gradient(right, #1DFC00 0%, #FFFFFF 100%);
-    background-image: -ms-linear-gradient(right, #1DFC00 0%, #FFFFFF 100%);
-    background-image: linear-gradient(to right, #1DFC00 0%, #FFFFFF 100%);
+    background-image: -o-linear-gradient(right, #83AF9B 0%, #FFFFFF 100%);
+    background-image: -moz-linear-gradient(right, #83AF9B 0%, #FFFFFF 100%);
+    background-image: -webkit-linear-gradient(right, #83AF9B 0%, #FFFFFF 100%);
+    background-image: -ms-linear-gradient(right, #83AF9B 0%, #FFFFFF 100%);
+    background-image: linear-gradient(to right, #83AF9B 0%, #FFFFFF 100%);
     /*border-color: #1efc00;/*#E6FCE3;*/
 }
 td.first-col.state-cancelled {
@@ -466,14 +466,14 @@ td.first-col.state-invalid {
         linear,
         left top,
         right top,
-        color-stop(0, #eb0000),
+        color-stop(0, #C44D58),
         color-stop(1, #FFFFFF)
     );
-    background-image: -o-linear-gradient(right, #eb0000 0%, #FFFFFF 100%);
-    background-image: -moz-linear-gradient(right, #eb0000 0%, #FFFFFF 100%);
-    background-image: -webkit-linear-gradient(right, #eb0000 0%, #FFFFFF 100%);
-    background-image: -ms-linear-gradient(right, #eb0000 0%, #FFFFFF 100%);
-    background-image: linear-gradient(to right, #eb0000 0%, #FFFFFF 100%);
+    background-image: -o-linear-gradient(right, #C44D58 0%, #FFFFFF 100%);
+    background-image: -moz-linear-gradient(right, #C44D58 0%, #FFFFFF 100%);
+    background-image: -webkit-linear-gradient(right, #C44D58 0%, #FFFFFF 100%);
+    background-image: -ms-linear-gradient(right, #C44D58 0%, #FFFFFF 100%);
+    background-image: linear-gradient(to right, #C44D58 0%, #FFFFFF 100%);
    /* border-color: #8e8e8e;/*#E5E5E5;*/
 }
 td.state-cancelled,
@@ -489,7 +489,7 @@ td.state-invalid a:hover {
 
 
 #content .bika-listing-table td.review_state_selector {
-    padding-bottom: 7px;
+    padding-bottom: 8px;
 }
 #content .bika-listing-table thead tr td.listing-filter-row a {
     background-color: #efefef;
@@ -501,31 +501,31 @@ td.state-invalid a:hover {
     border-bottom: 3px solid #dcdcdc;
 }
 #content .bika-listing-table thead tr td.listing-filter-row a#sample_due {
-    border-bottom: 3px solid #FFBE1B;
+    border-bottom: 3px solid #F38630;
 }
 #content .bika-listing-table thead tr td.listing-filter-row a#sample_received {
-    border-bottom: 3px solid #dcdcdc;
+    border-bottom: 3px solid #E0E4CC;
 }
 #content .bika-listing-table thead tr td.listing-filter-row a#to_be_verified {
-    border-bottom: 3px solid #0058FC;
+    border-bottom: 3px solid #A7DBD8;
 }
 #content .bika-listing-table thead tr td.listing-filter-row a#verified {
-    border-bottom: 3px solid #00BBFF;
+    border-bottom: 3px solid #69D2E7;
 }
 #content .bika-listing-table thead tr td.listing-filter-row a#published {
-    border-bottom: 3px solid #1DFC00;
+    border-bottom: 3px solid #83AF9B;
 }
 #content .bika-listing-table thead tr td.listing-filter-row a#cancelled {
     border-bottom: 3px solid #8E8E8E;
 }
 #content .bika-listing-table thead tr td.listing-filter-row a#invalid {
-    border-bottom: 3px solid #eb0000;
+    border-bottom: 3px solid #C44D58;
 }
 #content .bika-listing-table thead tr td.listing-filter-row a#assigned {
-    border-bottom: 3px solid #FFBE1B;
+    border-bottom: 3px solid #dcdcdc;
 }
 #content .bika-listing-table thead tr td.listing-filter-row a#unassigned {
-    border-bottom: 3px solid #ff9d00;
+    border-bottom: 3px solid #dcdcdc;
 }
 #content .bika-listing-table thead tr td.listing-filter-row a:hover {
     /*background-color: #3B8686;
