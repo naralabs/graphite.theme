@@ -978,3 +978,14 @@ div.documentActions h1 {
 #content-core h3 img {
     padding-right: 10px;
 }
+div.table-empty-results span.ico {
+    padding-right: 10px;
+    font-size: 1.6em;
+    vertical-align: middle;
+}
+div.table-empty-results {
+    font-size: 1.3em;
+    color: #CC333F;
+    background-color: #efefef;
+    padding: 10px 20px;
+}

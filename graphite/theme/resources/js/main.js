@@ -445,10 +445,17 @@ $(document).ready(function(){
             }
         }
 
-        // If only on page hide page browser
-        if ($('#content .bika-listing-table tfoot td.batching a').length == 0) {
-            $('#content .bika-listing-table tfoot td.batching').hide();
-        }
+        $('#content .bika-listing-table').each(function(e) {
+            // If only on page of results, hide page browser
+            if ($(this).find('tfoot td.batching a').length == 0) {
+                $(this).find('tfoot td.batching').hide();
+            }
+            // If no results, show no results found
+            if ($(this).find('tbody.item-listing-tbody tr').length == 0) {
+                $(this).replaceWith('<div class="table-empty-results"><span class="ico ion-ios7-information-outline"></span>'+_p("No results found")+'</div>');
+            }
+        });
+
     }
 
     function loadToolTips() {
