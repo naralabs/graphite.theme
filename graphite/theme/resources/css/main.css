@@ -386,6 +386,21 @@ td.first-col.state-sample_due {
     background-image: linear-gradient(to right, #F38630 0%, #FFFFFF 100%);
     /*border-color: #fff600;/*#FFFCA7;*/
 }
+td.first-col.state-open {
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        color-stop(0, #E0E4CC),
+        color-stop(1, #FFFFFF)
+    );
+    background-image: -o-linear-gradient(right, #E0E4CC 0%, #FFFFFF 100%);
+    background-image: -moz-linear-gradient(right, #E0E4CC 0%, #FFFFFF 100%);
+    background-image: -webkit-linear-gradient(right, #E0E4CC 0%, #FFFFFF 100%);
+    background-image: -ms-linear-gradient(right, #E0E4CC 0%, #FFFFFF 100%);
+    background-image: linear-gradient(to right, #E0E4CC 0%, #FFFFFF 100%);
+    /*border-color: #ffffff;/*#FFF2DD;*/
+}
 td.first-col.state-sample_received {
     background-image: -webkit-gradient(
         linear,
@@ -399,6 +414,21 @@ td.first-col.state-sample_received {
     background-image: -webkit-linear-gradient(right, #E0E4CC 0%, #FFFFFF 100%);
     background-image: -ms-linear-gradient(right, #E0E4CC 0%, #FFFFFF 100%);
     background-image: linear-gradient(to right, #E0E4CC 0%, #FFFFFF 100%);
+    /*border-color: #ffffff;/*#FFF2DD;*/
+}
+td.first-col.state-mine {
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        color-stop(0, #C8C8A9),
+        color-stop(1, #FFFFFF)
+    );
+    background-image: -o-linear-gradient(right, #C8C8A9 0%, #FFFFFF 100%);
+    background-image: -moz-linear-gradient(right, #C8C8A9 0%, #FFFFFF 100%);
+    background-image: -webkit-linear-gradient(right, #C8C8A9 0%, #FFFFFF 100%);
+    background-image: -ms-linear-gradient(right, #C8C8A9 0%, #FFFFFF 100%);
+    background-image: linear-gradient(to right, #C8C8A9 0%, #FFFFFF 100%);
     /*border-color: #ffffff;/*#FFF2DD;*/
 }
 td.first-col.state-to_be_verified {
@@ -446,19 +476,35 @@ td.first-col.state-published {
     background-image: linear-gradient(to right, #83AF9B 0%, #FFFFFF 100%);
     /*border-color: #1efc00;/*#E6FCE3;*/
 }
-td.first-col.state-cancelled {
+td.first-col.state-cancelled,
+td.first-col.state-inactive {
     background-image: -webkit-gradient(
         linear,
         left top,
         right top,
-        color-stop(0, #8E8E8E),
+        color-stop(0, #FF6B6B),
         color-stop(1, #FFFFFF)
     );
-    background-image: -o-linear-gradient(right, #8E8E8E 0%, #FFFFFF 100%);
-    background-image: -moz-linear-gradient(right, #8E8E8E 0%, #FFFFFF 100%);
-    background-image: -webkit-linear-gradient(right, #8E8E8E 0%, #FFFFFF 100%);
-    background-image: -ms-linear-gradient(right, #8E8E8E 0%, #FFFFFF 100%);
-    background-image: linear-gradient(to right, #8E8E8E 0%, #FFFFFF 100%);
+    background-image: -o-linear-gradient(right, #FF6B6B 0%, #FFFFFF 100%);
+    background-image: -moz-linear-gradient(right, #FF6B6B 0%, #FFFFFF 100%);
+    background-image: -webkit-linear-gradient(right, #FF6B6B 0%, #FFFFFF 100%);
+    background-image: -ms-linear-gradient(right, #FF6B6B 0%, #FFFFFF 100%);
+    background-image: linear-gradient(to right, #FF6B6B 0%, #FFFFFF 100%);
+   /* border-color: #8e8e8e;/*#E5E5E5;*/
+}
+td.first-col.state-closed {
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        color-stop(0, #aaaaaa),
+        color-stop(1, #FFFFFF)
+    );
+    background-image: -o-linear-gradient(right, #aaaaaa 0%, #FFFFFF 100%);
+    background-image: -moz-linear-gradient(right, #aaaaaa 0%, #FFFFFF 100%);
+    background-image: -webkit-linear-gradient(right, #aaaaaa 0%, #FFFFFF 100%);
+    background-image: -ms-linear-gradient(right, #aaaaaa 0%, #FFFFFF 100%);
+    background-image: linear-gradient(to right, #aaaaaa 0%, #FFFFFF 100%);
    /* border-color: #8e8e8e;/*#E5E5E5;*/
 }
 td.first-col.state-invalid {
@@ -477,15 +523,17 @@ td.first-col.state-invalid {
    /* border-color: #8e8e8e;/*#E5E5E5;*/
 }
 td.state-cancelled,
+td.state-inactive,
 td.state-invalid,
 td.state-cancelled a,
+td.state-inactive a,
 td.state-invalid a,
 td.state-cancelled a:hover,
+td.state-inactive a:hover,
 td.state-invalid a:hover {
     text-decoration:none;
     color:#8E8E8E;
 }
-
 
 
 #content .bika-listing-table td.review_state_selector {
@@ -497,14 +545,21 @@ td.state-invalid a:hover {
     color: #333;
     border-radius:0 0 2px 2px;
 }
-#content .bika-listing-table thead tr td.listing-filter-row a#default {
+#content .bika-listing-table thead tr td.listing-filter-row a#default,
+#content .bika-listing-table thead tr td.listing-filter-row a#all {
     border-bottom: 3px solid #dcdcdc;
 }
 #content .bika-listing-table thead tr td.listing-filter-row a#sample_due {
     border-bottom: 3px solid #F38630;
 }
+#content .bika-listing-table thead tr td.listing-filter-row a#open {
+    border-bottom: 3px solid #E0E4CC;
+}
 #content .bika-listing-table thead tr td.listing-filter-row a#sample_received {
     border-bottom: 3px solid #E0E4CC;
+}
+#content .bika-listing-table thead tr td.listing-filter-row a#mine {
+    border-bottom: 3px solid #C8C8A9;
 }
 #content .bika-listing-table thead tr td.listing-filter-row a#to_be_verified {
     border-bottom: 3px solid #A7DBD8;
@@ -515,8 +570,12 @@ td.state-invalid a:hover {
 #content .bika-listing-table thead tr td.listing-filter-row a#published {
     border-bottom: 3px solid #83AF9B;
 }
-#content .bika-listing-table thead tr td.listing-filter-row a#cancelled {
-    border-bottom: 3px solid #8E8E8E;
+#content .bika-listing-table thead tr td.listing-filter-row a#cancelled,
+#content .bika-listing-table thead tr td.listing-filter-row a#inactive {
+    border-bottom: 3px solid #FF6B6B;
+}
+#content .bika-listing-table thead tr td.listing-filter-row a#closed {
+    border-bottom: 3px solid #aaaaaa;
 }
 #content .bika-listing-table thead tr td.listing-filter-row a#invalid {
     border-bottom: 3px solid #C44D58;
@@ -545,6 +604,9 @@ td.state-invalid a:hover {
 #content .bika-listing-table thead tr td.listing-filter-row a.selected {
     background-color: #DCDCDC;
     color: #000;
+}
+#content .bika-listing-table tbody.item-listing-tbody tr:hover {
+    background-color:#efefef;
 }
 
 input.context_action_link,
