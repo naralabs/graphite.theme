@@ -192,6 +192,7 @@ $(document).ready(function(){
                 loadStyles();
                 toggleLoading();
                 loadActiveNavSection();
+                loadBikaTableBehavior();
                 fixLayout();
                 backToTop();
             });
@@ -339,6 +340,7 @@ $(document).ready(function(){
         $('table.bika-listing-table tbody.item-listing-tbody tr').each(function() {
             $(this).find('td').first().addClass("first-col");
         });
+        loadBikaTableBehavior();
     }
 
     function loadBreadcrumbs() {
@@ -381,5 +383,35 @@ $(document).ready(function(){
     function loadActiveNavSection() {
         $('ul.navtree li.child-active').removeClass('child-active');
         $('ul.navtree li.active').closest('li.navtree-item').addClass('child-active');
+    }
+
+    function loadBikaTableBehavior() {
+        // Show the actions pane when at least one checkbox is checked
+        $('table.bika-listing-table tfoot td.workflow_actions').hide();
+        $('table.bika-listing-table tbody.item-listing-tbody tr td input[type="checkbox"]').click(function(e) {
+            if ($(this).closest('table.bika-listing-table').find('tbody.item-listing-tbody tr td input[type="checkbox"]:checked').length > 0) {
+                var numsels = $(this).closest('table.bika-listing-table').find('tbody.item-listing-tbody tr td input[type="checkbox"]:checked').length;
+                if ($(this).closest('table.bika-listing-table').find('tfoot td.workflow_actions div.selection-summary').length == 0) {
+                    $(this).closest('table.bika-listing-table').find('tfoot td.workflow_actions').prepend('<div class="selection-summary"><span class="num-selected">'+numsels+'</span> '+_p('Items selected')+'</div>');
+                } else {
+                    $(this).closest('table.bika-listing-table').find('tfoot td.workflow_actions div.selection-summary span.num-selected').html(numsels);
+                }
+                $(this).closest('table.bika-listing-table').find('tfoot td.workflow_actions').show();
+            } else {
+                $(this).closest('table.bika-listing-table').find('tfoot td.workflow_actions').hide();
+            }
+        });
+        $('table.bika-listing-table tbody.item-listing-tbody tr').mousemove(function(e) {
+            var leftpos = $(this).find('td input[type="checkbox"]').first().offset().left;
+            $(this).closest('table.bika-listing-table').find('tfoot td.workflow_actions').css({
+                top: e.pageY - 10,
+                left: leftpos + 20
+            });
+            if ($(this).find('td input[type="checkbox"]:checked').length > 0) {
+                $(this).closest('table.bika-listing-table').find('tfoot td.workflow_actions').show();
+            } else {
+                $(this).closest('table.bika-listing-table').find('tfoot td.workflow_actions').hide();
+            }
+        });
     }
 });

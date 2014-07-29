@@ -608,13 +608,24 @@ td.state-invalid a:hover {
 #content .bika-listing-table tbody.item-listing-tbody tr:hover {
     background-color:#efefef;
 }
+#content .bika-listing-table tfoot td.workflow_actions {
+    position:absolute;
+    display:none;
+}
+#content .bika-listing-table tfoot td.workflow_actions div.selection-summary {
+    color: #0B486B;
+    font-size: 1.1em;
+    font-weight: bold;
+    line-height: 160%;
+    padding-left: 12px;
+}
 
 input.context_action_link,
 input[type="submit"] {
-    background-color: #18456C;
+    background-color: #fff;
     border: medium none;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-    color: #FFFFFF;
+    /*box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    /*color: #FFFFFF;*/
     cursor: pointer;
     display: inline-block;
     font-family: 'Open Sans',sans-serif,Helvetica,Arial;
@@ -625,15 +636,16 @@ input[type="submit"] {
     position: relative;
     text-decoration: none;
     text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+    color:#000;
 }
 
 input.context_action_link:hover,
 input[type="submit"]:hover {
-    opacity:0.8;
-    moz-opacity:0.8;
-    filter:alpha(opacity=80);
-    -moz-opacity: 0.8;
-    -khtml-opacity: 0.8;
+    opacity:0.7;
+    moz-opacity:0.7;
+    filter:alpha(opacity=70);
+    -moz-opacity: 0.7;
+    -khtml-opacity: 0.7;
     -webkit-transition: opacity 250ms ease-in-out;
     -moz-transition: opacity 250ms ease-in-out;
     -o-transition: opacity 250ms ease-in-out;
@@ -658,6 +670,17 @@ input.action_button:hover {
     padding: 4px 10px 4px 0;
 }
 #content .bika-listing-table thead tr td.listing-filter-row a:first-child {
+}
+
+#content .bika-listing-table tfoot tr td.workflow_actions {
+    background-color: #FFFFFF;
+    border: 1px solid #AFAFAF;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 1px 2px 10px #dcdcdc;
+    display: table-cell;
+    left: 249px;
+    padding: 5px;
+    top: 590px;
 }
 
 
