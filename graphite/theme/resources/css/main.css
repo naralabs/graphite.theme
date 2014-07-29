@@ -837,3 +837,144 @@ h1 a.context_action_link:hover {
     border-radius: 5px;
     color: #ffffff;
 }
+
+#edit-bar {
+    border-bottom: 1px solid #DCDCDC;
+    margin-bottom: 10px;
+}
+
+#edit-bar ul#content-views {
+    margin: 0;
+    padding: 0;
+    margin-top: 15px;
+}
+#edit-bar ul#content-views li.selected a,
+#edit-bar ul#content-views li a:hover {
+    background-color: #0B486B;
+    color: #fff;
+    -webkit-transition: a 250ms ease-in;
+    -moz-transition: background 250ms ease-in;
+    -o-transition: background 250ms ease-in;
+    -ms-transition: background 250ms ease-in;
+    transition: background 250ms ease-in;
+}
+#edit-bar ul#content-views li a {
+    color: #333;
+    padding: 5px 10px;
+    background-color: #dfdfdf;
+    font-family: 'Titillium web',Arial,Helvetica,Sans;
+}
+#edit-bar ul#content-views li {
+    list-style-type: none;
+    display: inline;
+    margin: 0;
+    padding: 0;
+    margin-right: 5px;
+}
+#edit-bar div.contentActions {
+    margin-top: 20px;
+}/*
+dl.actionMenu.deactivated dd {
+    display: none;
+}*/
+#edit-bar ul#contentActionMenus {
+    margin: 0;
+    padding: 0;
+}
+#edit-bar ul#contentActionMenus li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: inline;
+}
+#plone-contentmenu-display {
+    display: none;
+}
+#plone-contentmenu-actions {
+    display: none;
+}
+
+dd.actionMenuContent ul {
+    margin: 0;
+    padding: 0;
+}
+dt.actionMenuHeader a span {
+    margin-right: 10px;
+}
+dt.actionMenuHeader a,dt.actionMenuHeader:hover {
+    color: #222;
+    font-weight: 400;
+}
+dt.actionMenuHeader {
+    font-size: 1.4em;
+    color: #333;
+    margin-bottom: 10px;
+    float:left;
+}
+dt.actionMenuHeader span.arrowDownAlternative {
+    display: none;
+}
+dd.actionMenuContent a {
+    margin-right: 10px;
+    background-color: #fff;
+}
+dd.actionMenuContent {
+    float: left;
+    margin: 0;
+    margin-left: 15px;
+    padding-top: 5px;
+}
+
+#edit-bar div.contentActions:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+div.documentActions h1 a, div.documentActions h1 a:hover {
+    color: #333;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+}
+div.documentActions h1 {
+    margin: 0;
+    padding: 0;
+}
+#viewlet-above-content-title {
+    float:right;
+}
+
+.collapsible {
+    margin:0;
+    padding:0;
+}
+.collapsible .collapsibleHeader {
+    cursor: pointer;
+    font-size: 1.1em;
+    color: #205C90;
+}
+.collapsible .collapsibleHeader img {
+    padding-right: 8px;
+}
+.collapsedOnLoad .collapsibleContent,
+.collapsedBlockCollapsible .collapsibleContent {
+    display:none;
+}
+
+.expandedBlockCollapsible .collapsibleContent {
+    display:block;
+}
+#content-core h3 {
+    margin-top:0;
+    padding:0;
+    font-size: 1.1em;
+    font-weight: 400;
+}
+#content-core h3 img {
+    padding-right: 10px;
+}

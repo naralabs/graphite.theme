@@ -406,11 +406,15 @@ $(document).ready(function(){
             }
         });
         $('table.bika-listing-table tbody.item-listing-tbody tr').mousemove(function(e) {
-            var leftpos = $(this).find('td input[type="checkbox"]').first().offset().left;
-            $(this).closest('table.bika-listing-table').find('tfoot td.workflow_actions').css({
-                top: e.pageY - 10,
-                left: leftpos + 20
-            });
+            var firstchk = $(this).find('td input[type="checkbox"]');
+            if (firstchk.length > 0) {
+                firstchk = firstchk.first();
+                var leftpos = $(firstchk).offset().left;
+                $(this).closest('table.bika-listing-table').find('tfoot td.workflow_actions').css({
+                    top: e.pageY - 10,
+                    left: leftpos + 20
+                });
+            }
             if ($(this).find('td input[type="checkbox"]:checked').length > 0) {
                 $(this).closest('table.bika-listing-table').find('tfoot td.workflow_actions').show();
             } else {
@@ -421,6 +425,9 @@ $(document).ready(function(){
 
     function loadToolTips() {
         /*$('img[title]').addClass('tooltip');*/
+        /*$('img[src$="/sticker_large.png"]').addClass('tooltip');
+        $('img[src$="/sticker_small.png"]').addClass('tooltip');*/
+
         $('.tooltip').each(function() {
             $(this).attr('data-title', $(this).attr('title'));
             $(this).attr('title','');
