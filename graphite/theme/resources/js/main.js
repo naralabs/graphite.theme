@@ -104,6 +104,7 @@ $(document).ready(function(){
         .attr('width', '100px')
         .attr('height', '25px');
     loadNavMenu();
+    loadContentAnchorHandlers();
     loadStyles();
     fixLayout();
     $(window).on("resize", fixLayout);
@@ -129,7 +130,6 @@ $(document).ready(function(){
             fixLayout();
         });
     });
-
 
     $(window).scroll(function (e) {
         $('div.column-left').css('margin-top', $(document).scrollTop()+10+"px");
