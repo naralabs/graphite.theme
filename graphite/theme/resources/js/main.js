@@ -141,6 +141,9 @@ $(document).ready(function(){
         backToTop();
     });
 
+    $('body').append('<div id="tooltip-box"></div>');
+    $('#tooltip-box').hide();
+
     function loadNavMenuTransitions() {
         $('ul.navtree li').not("ul.navtree li ul li").mouseenter(function() {
             $(this).addClass('open');
@@ -341,6 +344,7 @@ $(document).ready(function(){
             $(this).find('td').first().addClass("first-col");
         });
         loadBikaTableBehavior();
+        loadToolTips();
     }
 
     function loadBreadcrumbs() {
@@ -412,6 +416,30 @@ $(document).ready(function(){
             } else {
                 $(this).closest('table.bika-listing-table').find('tfoot td.workflow_actions').hide();
             }
+        });
+    }
+
+    function loadToolTips() {
+        /*$('img[title]').addClass('tooltip');*/
+        $('.tooltip').each(function() {
+            $(this).attr('data-title', $(this).attr('title'));
+            $(this).attr('title','');
+        });
+        $('.tooltip').hover(function() {
+            $('#tooltip-box').html($(this).attr('data-title')).fadeIn(100);
+        }, function() {
+            $('#tooltip-box').html("").hide();
+        });
+
+        $('.tooltip').mousemove(function(e) {
+            $('#tooltip-box').css({
+                top: e.pageY - 10,
+                left: e.pageX + 20
+            });
+        });
+
+        $('.tooltip').click(function(e) {
+            e.preventDefault();
         });
     }
 });

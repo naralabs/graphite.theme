@@ -327,7 +327,10 @@ table.bika-listing-table thead tr th {
 table.bika-listing-table .item-listing-tbody td {
     padding: 2px 5px 2px 5px;
 }
-
+table.bika-listing-table .item-listing-tbody td .graphite-late {
+    color: #CC333F;
+    font-size: 1.4em;
+}
 /* States
  * The order is important! */
 td.first-col {
@@ -819,4 +822,18 @@ h1 a.context_action_link:hover {
     -moz-transition: background 250ms ease-in;
     -o-transition: background 250ms ease-in;
     -ms-transition: background 250ms ease-in;
+}
+
+.tooltip {
+    cursor:pointer;
+}
+
+#tooltip-box {
+    background: none repeat scroll 0 0 #4E4E4E;
+    font-size: 12px;
+    padding: 5px 10px;
+    position: absolute;
+    z-index: 10;
+    border-radius: 5px;
+    color: #ffffff;
 }
