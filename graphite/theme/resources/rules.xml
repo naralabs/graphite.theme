@@ -34,6 +34,48 @@
         <after theme-children="/html/head" content="/html/head/style" />
         <after theme-children="/html/head" content="/html/head/script" />
 
+        <!-- include favicon -->
+        <after
+            content="/html/head/link[@type='image/x-icon']"
+            theme-children="/html/head"
+        />
+
+        <after theme-children="/html/head">
+            <xsl:for-each select="html/head/link">
+
+                <!-- include hide_editable_border.css -->
+                <xsl:if test="substring(@href, (string-length(@href) - string-length('hide_editable_border.css')) + 1) = 'hide_editable_border.css'">
+                    <link href="{@href}" type="text/css" rel="stylesheet" media="screen"/>
+                </xsl:if>
+
+                <!-- include hide_content_menu.css -->
+                <xsl:if test="substring(@href, (string-length(@href) - string-length('hide_editable_border.css')) + 1) = 'hide_contentmenu.css'">
+                    <link href="{@href}" type="text/css" rel="stylesheet" media="screen"/>
+                </xsl:if>
+
+                <!-- include collective.js.jqueryui.custom.min.css -->
+                <xsl:if test="substring(@href, (string-length(@href) - string-length('collective.js.jqueryui.custom.min.css')) + 1) = 'collective.js.jqueryui.custom.min.css'">
+                    <link href="{@href}" type="text/css" rel="stylesheet" media="screen"/>
+                </xsl:if>
+
+                <!-- include tinymce.css -->
+                <xsl:if test="substring(@href, (string-length(@href) - string-length('tinymce.css')) + 1) = 'tinymce.css'">
+                    <link href="{@href}" type="text/css" rel="stylesheet" media="screen"/>
+                </xsl:if>
+
+                <!-- include jquery.ui.combogrid.css -->
+                <xsl:if test="substring(@href, (string-length(@href) - string-length('jquery.ui.combogrid.css')) + 1) = 'jquery.ui.combogrid.css'">
+                    <link href="{@href}" type="text/css" rel="stylesheet" media="screen"/>
+                </xsl:if>
+
+                <!-- include jqueryui.css -->
+                <xsl:if test="substring(@href, (string-length(@href) - string-length('jqueryui.css')) + 1) = 'jqueryui.css'">
+                    <link href="{@href}" type="text/css" rel="stylesheet" media="screen"/>
+                </xsl:if>
+
+            </xsl:for-each>
+        </after>
+
         <!-- set the html's css -->
         <before theme-children="/html" method="raw">
           <xsl:attribute name="class">
