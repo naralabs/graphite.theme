@@ -360,7 +360,9 @@ $(document).ready(function(){
         $('h1 span.documentFirstHeading').css('top','');
         $('h1 a.context_action_link').css('background', '');
         $('table.bika-listing-table tbody.item-listing-tbody tr').each(function() {
-            $(this).find('td').first().addClass("first-col");
+            if ($(this).closest('table').hasClass('bika-listing-table')) {
+                $(this).find('td').first().addClass("first-col");
+            }
         });
 
         // Split remarks

@@ -1126,3 +1126,122 @@ input.saveRemarks:hover {
     vertical-align: middle;
     padding-right: 10px;
 }
+
+.template-manage_results .bika-listing-table td {
+    vertical-align: top;
+}
+
+dt.actionMenuHeader span.state-sample_due,
+dt.actionMenuHeader span.state-open,
+dt.actionMenuHeader span.state-sample_received,
+dt.actionMenuHeader span.state-to_be_verified,
+dt.actionMenuHeader span.state-verified,
+dt.actionMenuHeader span.state-published,
+dt.actionMenuHeader span.state-cancelled,
+dt.actionMenuHeader span.state-inactive,
+dt.actionMenuHeader span.state-closed,
+dt.actionMenuHeader span.state-invalid,
+dt.actionMenuHeader span.state-assigned,
+dt.actionMenuHeader span.state-unassigned {
+    border-radius: 5px 5px 5px 5px;
+    color: #FFFFFF;
+    padding: 2px 15px;
+}
+dt.actionMenuHeader span.state-sample_due {
+    background-color: #F38630;
+}
+dt.actionMenuHeader span.state-open {
+    background-color: #E0E4CC;
+}
+dt.actionMenuHeader span.state-sample_received {
+    background-color: #E0E4CC;
+}
+dt.actionMenuHeader span.state-to_be_verified {
+    background-color: #A7DBD8;
+}
+dt.actionMenuHeader span.state-verified {
+    background-color: #69D2E7;
+}
+dt.actionMenuHeader span.state-published {
+    background-color: #83AF9B;
+}
+dt.actionMenuHeader span.state-cancelled,
+dt.actionMenuHeader span.state-inactive {
+    background-color: #FF6B6B;
+}
+dt.actionMenuHeader span.state-closed {
+    background-color: #aaaaaa;
+}
+dt.actionMenuHeader span.state-invalid {
+    background-color: #C44D58;
+}
+dt.actionMenuHeader span.state-assigned {
+    background-color: #dcdcdc;
+}
+dt.actionMenuHeader span.state-unassigned {
+    background-color: #dcdcdc;
+}
+dd.actionMenuContent a#workflow-transition-sample,
+dd.actionMenuContent a#workflow-transition-receive,
+dd.actionMenuContent a#workflow-transition-republish,
+dd.actionMenuContent a#workflow-transition-publish,
+dd.actionMenuContent a#workflow-transition-submit,
+dd.actionMenuContent a#workflow-transition-verify,
+dd.actionMenuContent a#workflow-transition-cancel,
+dd.actionMenuContent a#workflow-transition-retract,
+dd.actionMenuContent a#workflow-transition-retract_ar,
+dd.actionMenuContent a#workflow-transition-reject {
+    color:#333;
+}
+dd.actionMenuContent a#workflow-transition-sample:before,
+dd.actionMenuContent a#workflow-transition-receive:before,
+dd.actionMenuContent a#workflow-transition-republish:before,
+dd.actionMenuContent a#workflow-transition-publish:before,
+dd.actionMenuContent a#workflow-transition-submit:before,
+dd.actionMenuContent a#workflow-transition-verify:before,
+dd.actionMenuContent a#workflow-transition-cancel:before,
+dd.actionMenuContent a#workflow-transition-retract:before,
+dd.actionMenuContent a#workflow-transition-retract_ar:before,
+dd.actionMenuContent a#workflow-transition-reject:before {
+    content: "\f13e";
+    font-family: "Ionicons";
+    font-size: 1.2em;
+    padding-right: 2px;
+}
+dd.actionMenuContent a#workflow-transition-sample:hover,
+dd.actionMenuContent a#workflow-transition-sample:before {
+    color:#F38630;
+}
+dd.actionMenuContent a#workflow-transition-receive:hover,
+dd.actionMenuContent a#workflow-transition-receive:before {
+    color:#E0E4CC;
+}
+dd.actionMenuContent a#workflow-transition-submit:hover,
+dd.actionMenuContent a#workflow-transition-submit:before {
+    color:#A7DBD8;
+}
+dd.actionMenuContent a#workflow-transition-verify:hover,
+dd.actionMenuContent a#workflow-transition-verify:before{
+    color: #69D2E7;
+}
+dd.actionMenuContent a#workflow-transition-republish:before,
+dd.actionMenuContent a#workflow-transition-publish:before,
+dd.actionMenuContent a#workflow-transition-republish:hover,
+dd.actionMenuContent a#workflow-transition-publish:hover {
+    color:#83AF9B;
+}
+dd.actionMenuContent a#workflow-transition-cancel:hover,
+dd.actionMenuContent a#workflow-transition-cancel:before,
+dd.actionMenuContent a#workflow-transition-reject:hover,
+dd.actionMenuContent a#workflow-transition-reject:before{
+    color: #FF6B6B;
+}
+dd.actionMenuContent a#workflow-transition-retract_ar:hover,
+dd.actionMenuContent a#workflow-transition-retract_ar:before,
+dd.actionMenuContent a#workflow-transition-retract:hover,
+dd.actionMenuContent a#workflow-transition-retract:before{
+    color: #dcdcdc;
+}
+dd.actionMenuContent a#workflow-transition-advanced {
+    display:none;
+}
