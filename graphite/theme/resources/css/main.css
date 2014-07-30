@@ -332,6 +332,24 @@ table.bika-listing-table .item-listing-tbody td .graphite-late {
     color: #CC333F;
     font-size: 1.4em;
 }
+#content .bika-listing-table tbody tr th.cat_header.expanded {
+}
+#content .bika-listing-table tbody tr th.cat_header.expanded:before {
+    content: "\f151";
+    font-family: "Ionicons";
+    padding-right: 5px;
+}
+#content .bika-listing-table tbody tr th.cat_header.collapsed:before {
+    content: "\f154";
+    font-family: "Ionicons";
+    padding-right: 5px;
+}
+#content .bika-listing-table tbody tr .cat_header {
+    padding: 5px;
+    background-color: #efefef;
+    border-top: 1px solid #dfdfdf;
+    cursor: pointer;
+}
 /* States
  * The order is important! */
 td.first-col {
@@ -1039,7 +1057,7 @@ input.saveRemarks:hover {
 .portalMessage {
     background-color: #F4EAD5;
     padding: 10px 20px 20px;
-    margin-top: -10px;
+    margin-top: 10px;
 }
 .portalMessage dt {
     font-size: 1.5em;

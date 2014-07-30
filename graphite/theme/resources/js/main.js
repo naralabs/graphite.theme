@@ -466,7 +466,7 @@ $(document).ready(function(){
             }
             // If no results, show no results found
             if ($(this).find('tbody.item-listing-tbody tr').length == 0) {
-                $(this).replaceWith('<div class="table-empty-results"><span class="ico ion-ios7-information-outline"></span>'+_p("No results found")+'</div>');
+                $(this).replaceWith('<div class="table-empty-results"><span class="ico ion-ios7-information-outline"></span>'+_p("No items found")+'</div>');
             }
         });
 
