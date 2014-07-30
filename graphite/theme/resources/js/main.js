@@ -174,7 +174,7 @@ $(document).ready(function(){
     }
 
     function loadContentAnchorHandlers() {
-        $('div.column-center a').click(function(e) {
+        $('div.column-center a[href!="#"]').not('[href^="mailto:"]').click(function(e) {
             e.preventDefault();
             var text = $(this).html();
             var url = $(this).attr('href');
@@ -218,7 +218,11 @@ $(document).ready(function(){
                 fixLayout();
                 backToTop();
             });
-
+        });
+        // Prevent from Action Menu header being clicked
+        $('dt.actionMenuHeader a').unbind("click");
+        $('dt.actionMenuHeader a').click(function(e) {
+            e.preventDefault();
         });
     }
 
@@ -428,7 +432,7 @@ $(document).ready(function(){
         // Show the actions pane when at least one checkbox is checked
         $('table.bika-listing-table tfoot td.workflow_actions').hide();
         $('table.bika-listing-table tbody.item-listing-tbody tr').each(function(e) {
-            $(this).find('td:first input[type="checkbox"]').click(function(e) {
+            $(this).find('td:first input[type="checkbox"]').on('click change keypress blur keyup',function(e) {
                 if ($(this).is(':checked')) {
                     $(this).closest('tr').addClass('selected');
                 } else {
@@ -450,21 +454,34 @@ $(document).ready(function(){
             updateSelectedItems($(this).closest('table.bika-listing-table'));
         });
         $('table.bika-listing-table tbody.item-listing-tbody tr').mousemove(function(e) {
-            var firstchk = $(this).find('td:first input[type="checkbox"]');
-            if (firstchk.length > 0) {
-                firstchk = firstchk.first();
+            if ($(this).find('td:first input[type="checkbox"]:checked').length > 0) {
+                var firstchk = $(this).find('td:first input[type="checkbox"]');
                 var leftpos = $(firstchk).offset().left;
                 $(this).closest('table.bika-listing-table').find('tfoot td.workflow_actions').css({
                     top: e.pageY - 10,
                     left: leftpos + 20
                 });
-            }
-            if ($(this).find('td:first input[type="checkbox"]:checked').length > 0) {
+                recalcSelectedItems($(this).closest('table.bika-listing-table'));
+                updateSelectedItems($(this).closest('table.bika-listing-table'));
+                firstchk = firstchk.first();
                 $(this).closest('table.bika-listing-table').find('tfoot td.workflow_actions').show();
             } else {
                 $(this).closest('table.bika-listing-table').find('tfoot td.workflow_actions').hide();
             }
         });
+
+        function recalcSelectedItems(table) {
+            $(table).find('tbody.item-listing-tbody tr').each(function(e) {
+                var fcheck = $(this).find('td:first input[type="checkbox"]');
+                if (fcheck.length > 0) {
+                    if (fcheck.is(':checked')) {
+                        $(this).addClass('selected');
+                    } else {
+                        $(this).removeClass('selected');
+                    }
+                }
+            });
+        }
 
         function updateSelectedItems(table) {
             var numsels = $(table).find('tr.selected').length;
@@ -486,8 +503,10 @@ $(document).ready(function(){
                 $(this).find('tfoot td.batching').hide();
             }
             // If no results, show no results found
-            if ($(this).find('tbody.item-listing-tbody tr').length == 0) {
-                $(this).replaceWith('<div class="table-empty-results"><span class="ico ion-ios7-information-outline"></span>'+_p("No items found")+'</div>');
+            if ($(this).find('tbody.item-listing-tbody').length == 0) {
+                var colnum = $(this).find('td.listing-filter-row').attr('colspan');
+                $(this).find('thead').after('<tbody class="item-listing-tbody"><tr><td colspan="'+colnum+'"><div class="table-empty-results"><span class="ico ion-ios7-information-outline"></span>'+_p("No items found")+'</div></td></tr></tbody>');
+                $(this).find('tfoot').remove();
             }
         });
 
@@ -497,13 +516,15 @@ $(document).ready(function(){
         /*$('img[title]').addClass('tooltip');*/
         /*$('img[src$="/sticker_large.png"]').addClass('tooltip');
         $('img[src$="/sticker_small.png"]').addClass('tooltip');*/
-
+        //$('#content .bika-listing-table img[title]').addClass('tooltip');
         $('.tooltip').each(function() {
             $(this).attr('data-title', $(this).attr('title'));
             $(this).attr('title','');
         });
         $('.tooltip').hover(function() {
-            $('#tooltip-box').html($(this).attr('data-title')).fadeIn(100);
+            if ($(this).attr('data-title') != '') {
+                $('#tooltip-box').html($(this).attr('data-title')).fadeIn(100);
+            }
         }, function() {
             $('#tooltip-box').html("").hide();
         });

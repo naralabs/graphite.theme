@@ -408,6 +408,7 @@ td.first-col.state-sample_due {
     background-image: linear-gradient(to right, #F38630 0%, #FFFFFF 100%);
     /*border-color: #fff600;/*#FFFCA7;*/
 }
+td.first-col.state-active,
 td.first-col.state-open {
     background-image: -webkit-gradient(
         linear,
@@ -574,6 +575,7 @@ td.state-invalid a:hover {
 #content .bika-listing-table thead tr td.listing-filter-row a#sample_due {
     border-bottom: 3px solid #F38630;
 }
+#content .bika-listing-table thead tr td.listing-filter-row a#active,
 #content .bika-listing-table thead tr td.listing-filter-row a#open {
     border-bottom: 3px solid #E0E4CC;
 }
@@ -1004,7 +1006,7 @@ div.table-empty-results span.ico {
 }
 div.table-empty-results {
     font-size: 1.3em;
-    color: #CC333F;
+    color: #0B486B;
     background-color: #efefef;
     padding: 10px 20px;
 }
@@ -1133,6 +1135,7 @@ input.saveRemarks:hover {
 
 dt.actionMenuHeader span.state-sample_due,
 dt.actionMenuHeader span.state-open,
+dt.actionMenuHeader span.state-active,
 dt.actionMenuHeader span.state-sample_received,
 dt.actionMenuHeader span.state-to_be_verified,
 dt.actionMenuHeader span.state-verified,
@@ -1150,6 +1153,7 @@ dt.actionMenuHeader span.state-unassigned {
 dt.actionMenuHeader span.state-sample_due {
     background-color: #F38630;
 }
+dt.actionMenuHeader span.state-active,
 dt.actionMenuHeader span.state-open {
     background-color: #E0E4CC;
 }
@@ -1187,6 +1191,7 @@ dd.actionMenuContent a#workflow-transition-republish,
 dd.actionMenuContent a#workflow-transition-publish,
 dd.actionMenuContent a#workflow-transition-submit,
 dd.actionMenuContent a#workflow-transition-verify,
+dd.actionMenuContent a#workflow-transition-deactivate,
 dd.actionMenuContent a#workflow-transition-cancel,
 dd.actionMenuContent a#workflow-transition-retract,
 dd.actionMenuContent a#workflow-transition-retract_ar,
@@ -1199,6 +1204,7 @@ dd.actionMenuContent a#workflow-transition-republish:before,
 dd.actionMenuContent a#workflow-transition-publish:before,
 dd.actionMenuContent a#workflow-transition-submit:before,
 dd.actionMenuContent a#workflow-transition-verify:before,
+dd.actionMenuContent a#workflow-transition-deactivate:before,
 dd.actionMenuContent a#workflow-transition-cancel:before,
 dd.actionMenuContent a#workflow-transition-retract:before,
 dd.actionMenuContent a#workflow-transition-retract_ar:before,
@@ -1230,6 +1236,8 @@ dd.actionMenuContent a#workflow-transition-republish:hover,
 dd.actionMenuContent a#workflow-transition-publish:hover {
     color:#83AF9B;
 }
+dd.actionMenuContent a#workflow-transition-deactivate:hover,
+dd.actionMenuContent a#workflow-transition-deactivate:before,
 dd.actionMenuContent a#workflow-transition-cancel:hover,
 dd.actionMenuContent a#workflow-transition-cancel:before,
 dd.actionMenuContent a#workflow-transition-reject:hover,
@@ -1273,4 +1281,14 @@ dt.attachments span:before {
     padding-right: 10px;
     font-size: 1.2em;
     padding-left: 3px;
+}
+table.manage_results_header tr td {
+    padding-right: 15px;
+}
+table.manage_results_header {
+    margin-bottom: 15px;
+}
+.fieldRequired:before {
+    content: '*';
+    color: #CC333F;
 }
