@@ -298,6 +298,10 @@ div.show-column-left a:hover {
     font-size: 0.9em;
     padding: 15px 0 8px;
 }
+#breadcrumbs-current {
+    font-size: 1.2em;
+    font-weight: bold;
+}
 
 #content h1 {
     font-family: 'Titillium web',Arial,Helvetica,Sans;

@@ -5,4 +5,8 @@
         id="++theme++graphite.theme/js/main.js"
         expression="request/HTTP_X_THEME_ENABLED | nothing" />
 
+    <javascript
+        id="++theme++graphite.theme/js/html2canvas.js"
+        expression="request/HTTP_X_THEME_ENABLED | nothing" />
+
 </object>

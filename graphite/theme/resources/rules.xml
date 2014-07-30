@@ -22,7 +22,7 @@
         <drop theme="/html/head/title" />
         <drop theme="/html/head/base" />
         <drop theme="/html/head/style" />
-        <drop theme="/html/head/script" />
+        <!--drop theme="/html/head/script" /-->
         <!--drop theme="/html/head/link" /-->
         <drop theme="/html/head/comment()" />
 
