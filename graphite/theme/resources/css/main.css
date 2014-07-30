@@ -1245,3 +1245,32 @@ dd.actionMenuContent a#workflow-transition-retract:before{
 dd.actionMenuContent a#workflow-transition-advanced {
     display:none;
 }
+
+dt.attachments {
+    margin-bottom: 20px;
+}
+dt.attachments span:hover {
+    opacity:0.6;
+    filter:alpha(opacity=60);
+    -moz-opacity: 0.6;
+    -khtml-opacity: 0.6;
+    -webkit-transition: opacity 250ms ease-in-out;
+    -moz-transition: opacity 250ms ease-in-out;
+    -o-transition: opacity 250ms ease-in-out;
+    -ms-transition: opacity 250ms ease-in-out;
+    transition: opacity 250ms ease-in-out;
+    color:#333;
+}
+dt.attachments span {
+    color: #333;
+}
+dt.attachments img {
+    display: none;
+}
+dt.attachments span:before {
+    content: "\f1c5";
+    font-family: "Ionicons";
+    padding-right: 10px;
+    font-size: 1.2em;
+    padding-left: 3px;
+}

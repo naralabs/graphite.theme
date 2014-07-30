@@ -373,6 +373,11 @@ $(document).ready(function(){
             $(armks).html(items.join('<hr>'));
         }
 
+        // Empty attachments?
+        if ($('.ar_attachments_list').length > 0 && $('.ar_attachments_list').html().trim() == '') {
+            $('table.attachments').replaceWith('<div class="attachments table-empty-results"><span class="ico ion-ios7-information-outline"></span>'+_p("No items found")+'</div>');
+        }
+
         loadBikaTableBehavior();
         loadToolTips();
     }
