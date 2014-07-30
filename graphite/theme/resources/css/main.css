@@ -357,11 +357,16 @@ td.first-col {
     /*border-radius:7px 0 0 7px;*/
     border-radius: 3px 0 3px 0;
     border-bottom: 1px solid #fff;
-    opacity: 0.7;
+    /*opacity: 0.7;
     moz-opacity:0.7;
     filter:alpha(opacity=70);
     -moz-opacity: 0.7;
-    -khtml-opacity: 0.7;
+    -khtml-opacity: 0.7;*/
+    color:#000;
+}
+td.first-col a,
+td.first-col a:hover {
+    color:#000;
 }
 td.first-col.state-assigned {
     background-image: -webkit-gradient(
@@ -393,6 +398,7 @@ td.first-col.state-unassigned {
     background-image: linear-gradient(to right, #FA6900 0%, #FFFFFF 100%);
     /*border-color: #ff9d00;/*#FFF2DD;*/
 }
+td.first-col.state-submitted,
 td.first-col.state-sample_due {
     background-image: -webkit-gradient(
         linear,
@@ -484,6 +490,7 @@ td.first-col.state-verified {
     background-image: linear-gradient(to right, #69D2E7 0%, #FFFFFF 100%);
     /*border-color: #00baff;/*#E5F8FF;*/
 }
+td.first-col.state-imported,
 td.first-col.state-published {
     background-image: -webkit-gradient(
         linear,
@@ -572,6 +579,7 @@ td.state-invalid a:hover {
 #content .bika-listing-table thead tr td.listing-filter-row a#all {
     border-bottom: 3px solid #dcdcdc;
 }
+#content .bika-listing-table thead tr td.listing-filter-row a#submitted,
 #content .bika-listing-table thead tr td.listing-filter-row a#sample_due {
     border-bottom: 3px solid #F38630;
 }
@@ -591,6 +599,7 @@ td.state-invalid a:hover {
 #content .bika-listing-table thead tr td.listing-filter-row a#verified {
     border-bottom: 3px solid #69D2E7;
 }
+#content .bika-listing-table thead tr td.listing-filter-row a#imported,
 #content .bika-listing-table thead tr td.listing-filter-row a#published {
     border-bottom: 3px solid #83AF9B;
 }
@@ -1136,6 +1145,8 @@ input.saveRemarks:hover {
 dt.actionMenuHeader span.state-sample_due,
 dt.actionMenuHeader span.state-open,
 dt.actionMenuHeader span.state-active,
+dt.actionMenuHeader span.state-submitted,
+dt.actionMenuHeader span.state-imported,
 dt.actionMenuHeader span.state-sample_received,
 dt.actionMenuHeader span.state-to_be_verified,
 dt.actionMenuHeader span.state-verified,
@@ -1150,6 +1161,7 @@ dt.actionMenuHeader span.state-unassigned {
     color: #FFFFFF;
     padding: 2px 15px;
 }
+dt.actionMenuHeader span.state-submitted,
 dt.actionMenuHeader span.state-sample_due {
     background-color: #F38630;
 }
@@ -1166,6 +1178,7 @@ dt.actionMenuHeader span.state-to_be_verified {
 dt.actionMenuHeader span.state-verified {
     background-color: #69D2E7;
 }
+dt.actionMenuHeader span.state-imported,
 dt.actionMenuHeader span.state-published {
     background-color: #83AF9B;
 }

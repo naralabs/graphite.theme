@@ -365,7 +365,10 @@ $(document).ready(function(){
         $('h1 a.context_action_link').css('background', '');
         $('table.bika-listing-table tbody.item-listing-tbody tr').each(function() {
             if ($(this).closest('table').hasClass('bika-listing-table')) {
-                $(this).find('td').first().addClass("first-col");
+                var td = $(this).find('td');
+                if ($(td).length > 0 && $(td).first().hasClass('notDraggable')) {
+                    $(td).first().addClass("first-col");
+                }
             }
         });
 
