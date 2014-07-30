@@ -132,8 +132,17 @@ $(document).ready(function(){
     });
 
     $(window).scroll(function (e) {
-        $('div.column-left').css('margin-top', $(document).scrollTop()+10+"px");
-        $('#loading-pane').css('margin-top', $(document).scrollTop()+"px");
+        var topoffset = $('#portal-alert').outerHeight();
+        $('div.column-left').css('margin-top', $(document).scrollTop()+topoffset+10+"px");
+        $('div.column-center').css('margin-top', topoffset+"px");
+        $('#loading-pane').css('margin-top', $(document).scrollTop()+topoffset+"px");
+        $('#portal-alert').css({
+            'position':'fixed',
+            'left':'0',
+            'right':'0',
+            'margin-bottom':'0',
+        });
+
     });
 
     $("a.back-to-top").click(function(e) {

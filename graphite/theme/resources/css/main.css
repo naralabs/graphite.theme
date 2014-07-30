@@ -1098,3 +1098,31 @@ input.saveRemarks:hover {
     padding-right: 8px;
     vertical-align: bottom;
 }
+
+
+#portal-alert {
+    margin-top: 45px;
+    padding: 20px 20px 30px;
+    background-color: #F4EAD5;
+    color: #CC333F;
+    margin-bottom:-50px;
+    z-index: 1990;
+}
+#portal-alert p {
+    padding: 0 0 0 40px;
+    margin: 0;
+    font-size: 1.1em;
+}
+#portal-alert p.title {
+    font-size: 1.2em;
+    padding-left: 0;
+    padding-bottom: 0;
+}
+#portal-alert p.title:before {
+    font-family: "Ionicons";
+    content: "\f1a0";
+    font-size: 2.1em;
+    color: #CC333F;
+    vertical-align: middle;
+    padding-right: 10px;
+}
