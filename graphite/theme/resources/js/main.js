@@ -164,8 +164,8 @@ $(document).ready(function(){
             e.preventDefault();
             var text = $(this).html();
             var url = $(this).attr('href');
-            if (url.indexOf('at_download') > 0) {
-                // Download file
+            if (url.indexOf('at_download') > 0
+                || url.indexOf('/sticker?') > 0) {
                 window.location = url;
                 return;
             }
