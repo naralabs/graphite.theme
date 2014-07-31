@@ -1,15 +1,27 @@
-Graphite Theme is a Diazo Theme for Bika Open Source LIMS Project
+Graphite Theme is a Diazo Theme for Bika Open Source LIMS
+The files contained in these directories are part of Graphite Theme.
 Copyright (C) 2014 Naralabs <info@naralabs.com>
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+This program is free software: you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the
+Free Software Foundation, either version 3 of the License, or (at your
+option) any later version.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+You should have received a copy of the GNU General Public License along
+with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+Graphite Theme includes:
+- Open Titillium Web typeface <https://www.google.com/fonts/specimen/Titillium+Web>
+- Open Sans typeface <https://www.google.com/fonts/specimen/Open+Sans>
+- Ion Icons <http://www.ionicons.com>
+
+Use and modifications of these libraries must comply with their
+respective licenses.
+
+Release notes for Graphite Theme are available at
+<https://github.com/naralabs/graphite.theme/releases>.
