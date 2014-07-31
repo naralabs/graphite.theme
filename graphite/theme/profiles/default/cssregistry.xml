@@ -1,14 +1,28 @@
 <?xml version="1.0"?>
 <object name="portal_css">
 
-    <stylesheet id="++theme++graphite.theme/css/main.css"
+    <stylesheet id="++theme++graphite.theme/css/graphite.theme.ionicons.css"
         expression="request/HTTP_X_THEME_ENABLED | nothing"
         applyPrefix="True" />
 
-    <stylesheet id="++theme++graphite.theme/css/iefixes.css"
+    <stylesheet id="++theme++graphite.theme/css/graphite.theme.main.css"
+        expression="request/HTTP_X_THEME_ENABLED | nothing"
+        applyPrefix="True" />
+
+    <stylesheet id="++theme++graphite.theme/css/graphite.theme.iefixes.css"
         expression="request/HTTP_X_THEME_ENABLED | nothing"
         conditionalcomment="IE"
         applyPrefix="True" />
 
+
+    <!-- Disable old css -->
+    <stylesheet id="++theme++graphite.theme/css/main.css"
+        enabled="False" />
+
+    <stylesheet id="++theme++graphite.theme/css/iefixes.css"
+        enabled="False" />
+
+    <stylesheet id="++theme++graphite.theme/css/ionicons.css"
+        enabled="False" />
 
 </object>

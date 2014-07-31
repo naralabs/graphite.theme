@@ -73,6 +73,16 @@
                     <link href="{@href}" type="text/css" rel="stylesheet" media="screen"/>
                 </xsl:if>
 
+                <!-- include bika.lims.graphics.css -->
+                <xsl:if test="substring(@href, (string-length(@href) - string-length('bika.lims.graphics.css')) + 1) = 'bika.lims.graphics.css'">
+                    <link href="{@href}" type="text/css" rel="stylesheet" media="screen"/>
+                </xsl:if>
+
+                <!-- include graphite.theme css theming -->
+                <xsl:if test="contains(@href, '++theme++graphite.theme')">
+                    <link href="{@href}" type="text/css" rel="stylesheet" media="screen"/>
+                </xsl:if>
+
             </xsl:for-each>
         </after>
 

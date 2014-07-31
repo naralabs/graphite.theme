@@ -1,0 +1,15 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="bika">
+
+ <genericsetup:upgradeStep
+        title="CSS and JS refactoring"
+        description="CSS and JS refactoring"
+        source="*"
+        destination="0.9.0.1"
+        handler="graphite.theme.upgrade.00090001.upgrade"
+        sortkey="1"
+        profile="graphite.theme:default"/>
+
+</configure>

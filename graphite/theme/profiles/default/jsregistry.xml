@@ -2,7 +2,12 @@
 <object name="portal_javascripts">
 
     <javascript
-        id="++theme++graphite.theme/js/main.js"
+        id="++theme++graphite.theme/js/graphite.theme.main.js"
         expression="request/HTTP_X_THEME_ENABLED | nothing" />
+
+    <!-- Disable old js -->
+    <javascript
+        id="++theme++graphite.theme/js/main.js"
+        enabled="False" />
 
 </object>

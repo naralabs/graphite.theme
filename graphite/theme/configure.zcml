@@ -18,9 +18,9 @@
 
   <genericsetup:registerProfile
       name="default"
-      title="Bika LIMS Graphite Theme"
+      title="Graphite Theme for Bika Open Source LIMS"
       directory="profiles/default"
-      description="Extension profile for the Bika LIMS Plone theme."
+      description="Graphite Theme is a Diazo smooth theme for Bika Open Source LIMS."
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
@@ -33,5 +33,7 @@
       class=".layout.GraphiteThemeLayoutPolicy"
       allowed_interface="plone.app.layout.globals.interfaces.ILayoutPolicy"
       />
+
+  <include package=".upgrade"/>
 
 </configure>
