@@ -212,7 +212,6 @@ $(document).ready(function(){
                 loadBreadcrumbs();
                 loadContentAnchorHandlers();
                 loadStyles();
-                saveCanvas();
                 toggleLoading();
                 loadActiveNavSection();
                 loadBikaTableBehavior();
@@ -262,7 +261,6 @@ $(document).ready(function(){
                 loadBreadcrumbs();
                 loadContentAnchorHandlers();
                 loadStyles();
-                saveCanvas();
                 toggleLoading();
                 loadActiveNavSection();
                 fixLayout();
@@ -543,21 +541,6 @@ $(document).ready(function(){
 
         $('.tooltip').click(function(e) {
             e.preventDefault();
-        });
-    }
-
-    function saveCanvas() {
-        var cwidth = $('#content').outerWidth();
-        var cheight= $('#content').outerHeight();
-        var width = 400;
-        var height = Math.floor((width * cheight)/cwidth);
-        console.log(width+'x'+height);
-        html2canvas($('#content'), {
-            onrendered: function(canvas) {
-                document.getElementById('nav-history').appendChild(canvas);
-            },
-         /*   width: width,
-            height: height*/
         });
     }
 });
