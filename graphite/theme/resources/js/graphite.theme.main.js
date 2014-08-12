@@ -216,7 +216,7 @@ $(document).ready(function(){
                 loadActiveNavSection();
                 loadBikaTableBehavior();
                 fixLayout();
-                initBikaLIMSControllers();
+                window.bika.lims.initialize();
                 backToTop();
             });
         });
@@ -265,7 +265,7 @@ $(document).ready(function(){
                 toggleLoading();
                 loadActiveNavSection();
                 fixLayout();
-                initBikaLIMSControllers();
+                window.bika.lims.initialize();
                 backToTop();
             });
         });
