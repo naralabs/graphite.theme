@@ -1316,22 +1316,36 @@ dl#plone-contentmenu-factories.actionMenu {
 }
 
 /* Form/View tabs */
-#content ul.formTabs {
-    background-color: #CCCCCC !important;
-    border-bottom: medium none;
-    border-left: 0.3em solid #CCCCCC !important;
-    border-right: 0.3em solid #CCCCCC !important;
-    border-top: 0.3em solid #CCCCCC !important;
-    color: #000000 !important;
-}
 #content ul.formTabs, #content-core ul.formTabs {
-    border-style: solid solid none;
-    border-top-left-radius: 0.5em;
-    border-top-right-radius: 0.5em;
     display: block;
-    margin-left: 0;
+    margin: 20px 0;
+    padding: 0;
+    padding: 5px 0px;
+}
+#content li.formTab a, #content-core li.formTab {
+    background-color: #DFDFDF;
+    padding: 5px 15px;
+    color: #333;
+    font-family: 'Titillium web',Arial,Helvetica,Sans-serif;
 }
 #content li.formTab, #content-core li.formTab {
     display: inline;
-    margin-right: 0.25em;
+    margin: 0;
+    padding: 5px 10px 5px 0;
+}
+#content li.formTab a.selected,
+#content-core li.formTab a.selected,
+#content li.formTab a:hover,
+#content-core li.formTab a:hover {
+    opacity:0.6;
+    filter:alpha(opacity=60);
+    -moz-opacity: 0.6;
+    -khtml-opacity: 0.6;
+    background-color: #0B486B;
+    color: #fff;
+    -webkit-transition: a 250ms ease-in;
+    -moz-transition: background 250ms ease-in;
+    -o-transition: background 250ms ease-in;
+    -ms-transition: background 250ms ease-in;
+    transition: background 250ms ease-in;
 }
