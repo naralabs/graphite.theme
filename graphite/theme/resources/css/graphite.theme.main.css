@@ -906,7 +906,7 @@ h1 a.context_action_link:hover {
     margin-right: 5px;
 }
 #edit-bar div.contentActions {
-    margin-top: 20px;
+    margin-top: 15px;
 }/*
 dl.actionMenu.deactivated dd {
     display: none;
@@ -1308,4 +1308,30 @@ table.manage_results_header {
 .fieldRequired:before {
     content: '*';
     color: #CC333F;
+}
+dl#plone-contentmenu-display.actionMenu,
+dl#plone-contentmenu-actions.actionMenu,
+dl#plone-contentmenu-factories.actionMenu {
+    display: none;
+}
+
+/* Form/View tabs */
+#content ul.formTabs {
+    background-color: #CCCCCC !important;
+    border-bottom: medium none;
+    border-left: 0.3em solid #CCCCCC !important;
+    border-right: 0.3em solid #CCCCCC !important;
+    border-top: 0.3em solid #CCCCCC !important;
+    color: #000000 !important;
+}
+#content ul.formTabs, #content-core ul.formTabs {
+    border-style: solid solid none;
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
+    display: block;
+    margin-left: 0;
+}
+#content li.formTab, #content-core li.formTab {
+    display: inline;
+    margin-right: 0.25em;
 }

@@ -188,6 +188,7 @@ $(document).ready(function(){
             $.ajax(url)
             .done(function(data) {
                 var htmldata = data;
+                loadCSS(data);
                 // Get the body class
                 var bodyregex = RegExp('body.+class="(.*?)"', 'g');
                 var matches = bodyregex.exec(data);
@@ -238,6 +239,7 @@ $(document).ready(function(){
             $.ajax(url)
             .done(function(data) {
                 var htmldata = data;
+                loadCSS(data);
                 // Get the body class
                 var bodyregex = RegExp('body.+class="(.*?)"', 'g');
                 var matches = bodyregex.exec(data);
@@ -543,6 +545,34 @@ $(document).ready(function(){
 
         $('.tooltip').click(function(e) {
             e.preventDefault();
+        });
+    }
+
+    /**
+     * Some CSS are loaded by Bika LIMS dynamically, i.e.
+     * hide_editable_border.css and hide_content_menu.css
+     * Since the page render the contents asyncronously using ajax
+     * requests, the css must be loaded dynamically too.
+     */
+    function loadCSS(htmlrawdata) {
+        var dyncss = ['hide_editable_border', 'hide_content_menu'];
+        $.each(dyncss, function(index, value){
+            // Already in current head?
+            var inhead = $('head link[href*="'+value+'"]').length > 0;
+
+            // In raw data?
+            var xml = $.parseXML(htmlrawdata)
+            var lnk = $(xml).find('link[href*="hide_editable_border"]');
+            var indata = lnk.length > 0;
+
+            if (inhead && !indata) {
+                // Remove from current head
+                $('head link[href*="'+value+'"]').remove();
+            } else if (!inhead && indata) {
+                // Add to current head
+                var lnk = $(lnk).clone().wrap('<p>').parent().html();
+                $('head').append(lnk);
+            }
         });
     }
 });
