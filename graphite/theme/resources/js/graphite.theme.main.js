@@ -217,7 +217,7 @@ $(document).ready(function(){
                 loadActiveNavSection();
                 loadBikaTableBehavior();
                 fixLayout();
-                window.bika.lims.initialize();
+                initializeJavascripts();
                 backToTop();
             });
         });
@@ -267,7 +267,7 @@ $(document).ready(function(){
                 toggleLoading();
                 loadActiveNavSection();
                 fixLayout();
-                window.bika.lims.initialize();
+                initializeJavascripts();
                 backToTop();
             });
         });
@@ -574,5 +574,21 @@ $(document).ready(function(){
                 $('head').append(lnk);
             }
         });
+    }
+
+    /**
+     * Since the page render the contents asyncronously using ajax
+     * requests, the original javascripts must reloaded dynamically
+     */
+    function initializeJavascripts() {
+
+        // Form tabbing
+        ploneFormTabbing.initialize()
+
+        // Tiny MCE
+        window.initTinyMCE(this.document);
+
+        // Bika LIMS
+        window.bika.lims.initialize();
     }
 });
