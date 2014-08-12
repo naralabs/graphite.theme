@@ -53,6 +53,8 @@ a:hover {
 
 fieldset {
     border:none;
+    margin:0;
+    padding:0;
 }
 input.filter-search-input,
 select {
@@ -64,6 +66,7 @@ select {
 
 textarea:focus,
 select:focus,
+input[type="text"]:focus,
 input.filter-search-input:focus {
     -webkit-box-shadow: 0 0 2px 1px #0B486B;
     -moz-box-shadow: 0 0 2px 1px #0B486B;
@@ -1344,6 +1347,69 @@ dl#plone-contentmenu-factories.actionMenu {
     background-color: #0B486B;
     color: #fff;
     -webkit-transition: a 250ms ease-in;
+    -moz-transition: background 250ms ease-in;
+    -o-transition: background 250ms ease-in;
+    -ms-transition: background 250ms ease-in;
+    transition: background 250ms ease-in;
+}
+
+/* Form fieldset */
+fieldset div.field input[type="text"] {
+    border: 1px solid #CDCDCD;
+    padding: 3px 6px;
+    margin-top: 5px;
+    color: #333;
+}
+fieldset div.field label {
+    padding-left: 2px;
+    font-weight: bold;
+}
+fieldset div.field label span.formHelp {
+    display: block;
+    font-weight: 400;
+    color: #666;
+    padding: 2px 0 2px 2px;
+}
+fieldset div.field {
+    margin: 0 0 15px;
+}
+fieldset div.field label span.required {
+    color: #FF0000;
+    line-height: 8px;
+    float: left;
+    background-color: #FF0000;
+    padding-left: 5px;
+    vertical-align: middle;
+    margin-top: 5px;
+    margin-right: 4px;
+}
+div.formControls {
+    margin:15px;
+}
+div.formControls input[type="submit"] {
+    background-color: #3B8686;
+    color: #FFFFFF;
+    font-family: 'Titillium web',Arial,Helvetica,Sans;
+    font-size: 1.1em;
+    font-weight: 300;
+    margin-right: 20px;
+    padding: 3px 15px 4px;
+    vertical-align: middle;
+}
+div.formControls input[type="submit"].standalone {
+    opacity:0.6;
+    filter:alpha(opacity=60);
+    -moz-opacity: 0.6;
+    -khtml-opacity: 0.6;
+}
+div.formControls input[type="submit"]:hover {
+    opacity:0.4;
+    filter:alpha(opacity=40);
+    -moz-opacity: 0.4;
+    -khtml-opacity: 0.4;
+    background-color: #3B8686;
+    color: #fff;
+    -webkit-transition: background 250ms ease-in;
     -moz-transition: background 250ms ease-in;
     -o-transition: background 250ms ease-in;
     -ms-transition: background 250ms ease-in;
