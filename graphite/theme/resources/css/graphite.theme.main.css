@@ -59,7 +59,7 @@ fieldset {
 input.filter-search-input,
 select {
     border: 1px solid #CCCCCC;
-    margin: 0 5px;
+    margin: 0 7px 0 0;
     padding: 3px;
     background-color:#fff;
 }
@@ -837,15 +837,20 @@ li.child-active div.nav-section-title {
     color: #FFFFFF;
 }
 
-h1 a.context_action_link {
-    font-size: 0.5em;
-    margin-left: 20px;
+a.context_action_link,
+input.context_action_link {
     background-color: #3B8686;
     padding: 3px 15px 4px 15px;
     color: #fff;
     vertical-align: middle;
 }
-h1 a.context_action_link:hover {
+
+h1 a.context_action_link {
+    font-size: 0.5em;
+    margin-left: 20px;
+}
+h1 a.context_action_link:hover,
+input.context_action_link:hover {
     background-color: #3B8686;
     color: #fff;
     border-right: 1px solid #3B8686;
@@ -1424,4 +1429,8 @@ fieldset div.field .ploneSkin table.mceLayout td.mceStatusbar {
 
 fieldset div.field.ArchetypesRichWidget .fieldUploadFile {
     margin:20px 0px;
+}
+
+div.worksheet_add_controls {
+    margin-bottom:10px;
 }
