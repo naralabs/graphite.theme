@@ -1337,55 +1337,38 @@ dl#plone-contentmenu-factories.actionMenu {
     padding: 0;
     padding: 5px 0px;
 }
-/*#content li.formTab a, #content-core li.formTab {
-    background-color: #DFDFDF;
-    padding: 5px 15px;
-    color: #333;
-    font-family: 'Titillium web',Arial,Helvetica,Sans-serif;
-}*/
 #content li.formTab, #content-core li.formTab {
     display: inline;
     margin: 0;
     padding: 5px 10px 5px 0;
 }
-/*#content li.formTab a.selected,
-#content-core li.formTab a.selected,
-#content li.formTab a:hover,
-#content-core li.formTab a:hover {
-    opacity:0.6;
-    filter:alpha(opacity=60);
-    -moz-opacity: 0.6;
-    -khtml-opacity: 0.6;
-    background-color: #0B486B;
-    color: #fff;
-    -webkit-transition: a 250ms ease-in;
-    -moz-transition: background 250ms ease-in;
-    -o-transition: background 250ms ease-in;
-    -ms-transition: background 250ms ease-in;
-    transition: background 250ms ease-in;
-}*/
 
 /* Form fieldset */
-fieldset div.field input[type="text"] {
+div.field input[type="text"],
+div.field textarea {
     border: 1px solid #CDCDCD;
     padding: 3px 6px;
     margin-top: 5px;
     color: #333;
 }
-fieldset div.field label {
+div.field textarea  {
+    min-width: 500px;
+    padding: 10px;
+}
+div.field label {
     padding-left: 2px;
     font-weight: bold;
 }
-fieldset div.field label span.formHelp {
+div.field label span.formHelp {
     display: block;
     font-weight: 400;
     color: #666;
     padding: 2px 0 2px 2px;
 }
-fieldset div.field {
+div.field {
     margin: 0 0 15px;
 }
-fieldset div.field label span.required {
+div.field span.required {
     color: #FF0000;
     line-height: 8px;
     float: left;
@@ -1396,7 +1379,7 @@ fieldset div.field label span.required {
     margin-right: 4px;
 }
 div.formControls {
-    margin:15px;
+    margin:30px 15px 15px;
 }
 div.formControls input[type="submit"] {
     background-color: #3B8686;
@@ -1426,4 +1409,19 @@ div.formControls input[type="submit"]:hover {
     -o-transition: background 250ms ease-in;
     -ms-transition: background 250ms ease-in;
     transition: background 250ms ease-in;
+}
+
+fieldset div.field .ploneSkin .mceIframeContainer  {
+    border: 1px solid #CDCDCD;
+    border-bottom:none;
+}
+
+fieldset div.field .ploneSkin table.mceLayout td.mceStatusbar {
+    background-color:#efefef;
+    border: 1px solid #CDCDCD;
+    border-top:none;
+}
+
+fieldset div.field.ArchetypesRichWidget .fieldUploadFile {
+    margin:20px 0px;
 }
