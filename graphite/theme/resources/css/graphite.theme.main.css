@@ -838,7 +838,9 @@ li.child-active div.nav-section-title {
 }
 
 a.context_action_link,
-input.context_action_link {
+a.ws-analyses-search-button,
+input.context_action_link,
+input.applytemplate {
     background-color: #3B8686;
     padding: 3px 15px 4px 15px;
     color: #fff;
@@ -850,7 +852,9 @@ h1 a.context_action_link {
     margin-left: 20px;
 }
 h1 a.context_action_link:hover,
-input.context_action_link:hover {
+input.context_action_link:hover,
+a.ws-analyses-search-button:hover,
+input.applytemplate:hover {
     background-color: #3B8686;
     color: #fff;
     border-right: 1px solid #3B8686;
@@ -1433,4 +1437,11 @@ fieldset div.field.ArchetypesRichWidget .fieldUploadFile {
 
 div.worksheet_add_controls {
     margin-bottom:10px;
+}
+fieldset.criteria {
+    margin-bottom: 15px;
+}
+
+fieldset.criteria label {
+    padding-right: 10px;
 }
