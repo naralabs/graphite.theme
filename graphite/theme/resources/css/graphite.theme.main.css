@@ -876,7 +876,6 @@ h1 a.context_action_link:hover {
 }
 
 #edit-bar {
-    border-bottom: 1px solid #DCDCDC;
     margin-bottom: 10px;
 }
 
@@ -885,31 +884,43 @@ h1 a.context_action_link:hover {
     padding: 0;
     margin-top: 15px;
 }
-#edit-bar ul#content-views li.selected a,
-#edit-bar ul#content-views li a:hover {
-    background-color: #0B486B;
-    color: #fff;
-    -webkit-transition: a 250ms ease-in;
-    -moz-transition: background 250ms ease-in;
-    -o-transition: background 250ms ease-in;
-    -ms-transition: background 250ms ease-in;
-    transition: background 250ms ease-in;
+#edit-bar ul#content-views li a:hover,
+#content li.formTab a:hover,
+#content-core li.formTab a:hover {
+    border-radius: 5px 5px 5px 5px;
+    background-color: #EBEBEB;
+    box-shadow: 1px 1px 1px #CECECE inset;
+    color: #555555;
+    text-shadow: 1px 1px 1px #ffffff;
 }
-#edit-bar ul#content-views li a {
-    color: #333;
-    padding: 5px 10px;
-    background-color: #dfdfdf;
+#edit-bar ul#content-views li.selected a,
+#content li.formTab a.selected,
+#content-core li.formTab a.selected,
+#edit-bar ul#content-views li a.selected:hover,
+#content li.formTab a.selected:hover,
+#content-core li.formTab a.selected:hover {
+    background-color: #E4E4E4;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 1px 1px 1px #ADADAD inset;
+    color: #333333;
+    text-shadow: 1px 1px 1px #EFEFEF;
+}
+#edit-bar ul#content-views li a,
+#content li.formTab a,
+#content-core li.formTab  {
     font-family: 'Titillium web',Arial,Helvetica,Sans;
+    padding: 5px 8px;
 }
 #edit-bar ul#content-views li {
     list-style-type: none;
     display: inline;
     margin: 0;
     padding: 0;
-    margin-right: 5px;
+    margin-right: 2px;
 }
 #edit-bar div.contentActions {
-    margin-top: 15px;
+font-family: "Titillium Web";
+    margin-top: 20px;
 }/*
 dl.actionMenu.deactivated dd {
     display: none;
@@ -937,6 +948,7 @@ dd.actionMenuContent ul {
 }
 dt.actionMenuHeader a span {
     margin-right: 10px;
+    font-weight: 300;
 }
 dt.actionMenuHeader a,dt.actionMenuHeader:hover {
     color: #222;
@@ -1325,18 +1337,18 @@ dl#plone-contentmenu-factories.actionMenu {
     padding: 0;
     padding: 5px 0px;
 }
-#content li.formTab a, #content-core li.formTab {
+/*#content li.formTab a, #content-core li.formTab {
     background-color: #DFDFDF;
     padding: 5px 15px;
     color: #333;
     font-family: 'Titillium web',Arial,Helvetica,Sans-serif;
-}
+}*/
 #content li.formTab, #content-core li.formTab {
     display: inline;
     margin: 0;
     padding: 5px 10px 5px 0;
 }
-#content li.formTab a.selected,
+/*#content li.formTab a.selected,
 #content-core li.formTab a.selected,
 #content li.formTab a:hover,
 #content-core li.formTab a:hover {
@@ -1351,7 +1363,7 @@ dl#plone-contentmenu-factories.actionMenu {
     -o-transition: background 250ms ease-in;
     -ms-transition: background 250ms ease-in;
     transition: background 250ms ease-in;
-}
+}*/
 
 /* Form fieldset */
 fieldset div.field input[type="text"] {
