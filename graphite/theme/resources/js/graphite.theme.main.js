@@ -1,4 +1,4 @@
-"use strict";
+
 
 function GraphiteTheme() {
 
@@ -188,7 +188,7 @@ function GraphiteTheme() {
         setTimeout(function() {
             $(window).scroll();
         },500);
-        //backToTop();
+        backToTop();
     }
 
     function loadNavMenuTransitions() {
@@ -550,7 +550,6 @@ function GraphiteTheme() {
 
         setActiveNavItem(url);
         showLoadingPanel(PMF("Loading")+" "+text+"...");
-
         $.ajax(url)
             .done(function(data) {
                 var htmldata = data;
@@ -576,12 +575,10 @@ function GraphiteTheme() {
                 var title = $(data).filter('title').text();
                 var pageInfo = { title: title, url: url };
                 history.pushState(pageInfo, pageInfo.title, pageInfo.url);
-
                 currsectionid = url.replace(window.portal_url, '');
-
+                loadPartial();
                 hideLoadingPanel();
                 bIsLoading = false;
-                loadPartial();
             });
     }
 
@@ -621,13 +618,17 @@ function GraphiteTheme() {
      */
     function loadDynJS(htmlrawdata) {
         var xml = $.parseXML(htmlrawdata)
-        var links = $('head script[src]').map(function() { return $(this).attr('src'); }).get();
+        var links = $('head script[src]').map(function() { return $(this).attr('src').split('?')[0]; }).get();
         $(xml).find('head script[src]').each(function() {
             var outsrc = $(this).attr('src');
             var arrpos = $.inArray(outsrc, links);
             if (arrpos==-1) {
-                console.log(outsrc);
-                $(this).detach().appendTo($('head'));
+                // Adding the script as a link in the head doesn't work.
+                // Must be added as an embedded script for being loaded
+                // at runtime
+                $.get($(this).attr("src"), function(data){
+                    $('head').append('<script type="text/javascript">'+data+'</script>');
+                });
             } else {
                 links.splice(arrpos, 1);
             }
@@ -642,6 +643,7 @@ function GraphiteTheme() {
     }
 
     function loadNonInitializableJS() {
+
         var js = ['popupforms.js',
                   'jquery.highlightsearchterms.js',
                   'accessibility.js',
@@ -653,24 +655,31 @@ function GraphiteTheme() {
                   'calendar_formfield.js',
                   'formUnload.js',
                   'formsubmithelpers.js',
-                  'jquery-timepicker.js'];
+                  'datetimewidget.js'
+                  //'jquery-timepicker.js'
+                  ];
 
-       /* $.each(js, function(index, value){
+        $.each(js, function(index, value){
             var sc = $('head script[src*="'+value+'"][type="text/javascript"]');
-            $.get($(sc).attr("src"), function(data){
+            if ($(sc).length > 0) {
+                $(sc).attr('src', $(sc).attr('src').split('?')[0]+"?_="+Date.now());
+            }
+            /*$.get($(sc).attr("src"), function(data){
                var script = $(data).text();
-            });
+            });*/
         });
-*/
+
         // ALL
-        $('head script[src][type="text/javascript"]').each(function(){
+        /*$('head script[src][type="text/javascript"]').each(function(){
+            $(this).attr('src', $(this).attr('src')+"?"+Date.now());
             $.get($(this).attr("src"), $(this).serialize(), function(data){
                 //eval($(data).text());
                //var nfunc = new Function(data).text();
                //nfunc();
                //var script = $(data).text();
             });
-        });
+        });*/
+
     }
 
     /**
@@ -681,8 +690,6 @@ function GraphiteTheme() {
 
         $('#portal-alert').html('').fadeOut();
 
-        loadNonInitializableJS();
-        return;
         // Drag and drop reordering of folder contents (ploneDnDReorder)
         initializeDnDReorder('#listing-table');
 
@@ -692,31 +699,18 @@ function GraphiteTheme() {
         // Form tabbing
         ploneFormTabbing.initialize()
 
-        // popupforms.js ??
-        // jquery.highlightsearchterms.js
-
         // Focus on error or first element in a form with class="enableAutoFocus"
         if ($("form div.error :input:first").focus().length) {return;}
         $("form.enableAutoFocus :input:not(.formTabs):visible:first").focus();
 
-        // accessibility.js
-        // styleswitcher.js
-
         // collapsibleformfields.js
         $('.field.collapsible').do_search_collapse();
-
-        // comments.js
 
         // dropdown.js
         initializeMenus();
 
-        // inline_validation.js
-        // kss-bbb.js
-
-        // table_sorter.js
-
         // calendar_formfield.js
-        $(plone.jscalendar.init);
+        /*$(plone.jscalendar.init);
         $('.plone-jscalendar-popup').each(function() {
             var jqt = $(this),
             widget_id = this.id.replace('_popup', ''),
@@ -731,13 +725,12 @@ function GraphiteTheme() {
             }
         });
 
-        // formUnload.js
-
         // formsubmithelpers.js
-        /*$('input:submit,input:image').each(function() {
+        $('input:submit,input:image').each(function() {
             if (!this.onclick)
             $(this).click(inputSubmitOnClick);
-        });*/
+        });
+        */
 
         // unlockOnFormUnload.js
         $(plone.UnlockHandler.init);
@@ -750,6 +743,11 @@ function GraphiteTheme() {
 
         // Bika LIMS
         window.bika.lims.initialize();
+
+        // Remove bika-spinner
+        $(document).unbind("ajaxStart");
+        $(document).unbind("ajaxStop");
+        $('#bika-spinner').remove();
 
     }
 }
@@ -766,6 +764,11 @@ $(document).ready(function(){
 
     // Initializes graphite.theme
     window.graphite.theme.initialize();
+
+    // Remove bika-spinner
+    $(document).unbind("ajaxStart");
+    $(document).unbind("ajaxStop");
+    $('#bika-spinner').remove();
 
 });
 }(jQuery));
