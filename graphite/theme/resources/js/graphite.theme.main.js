@@ -118,6 +118,8 @@ function GraphiteTheme() {
             .attr('height', '25px');
 
         loadNavMenu();
+
+        $('.column-center a').unbind("click");
         $('.column-center a').click(processLink);
         loadStyles();
         fixLayout();
@@ -176,6 +178,7 @@ function GraphiteTheme() {
 
     function loadPartial() {
         loadBreadcrumbs();
+        $('.column-center a').unbind("click");
         $('.column-center a').click(processLink);
         loadStyles();
         loadActiveNavSection();
@@ -254,6 +257,7 @@ function GraphiteTheme() {
             loadActiveNavSection();
             loadBreadcrumbs();
             loadNavMenuTransitions();
+            $('.nav-container a').unbind("click");
             $('.nav-container a').click(processLink);
         });
     }
@@ -551,6 +555,7 @@ function GraphiteTheme() {
             .done(function(data) {
                 var htmldata = data;
                 loadCSS(data);
+                loadDynJS(data);
                 // Get the body class
                 var bodyregex = RegExp('body.+class="(.*?)"', 'g');
                 var matches = bodyregex.exec(data);
@@ -609,6 +614,66 @@ function GraphiteTheme() {
     }
 
     /**
+     * Some JS are loaded by Plone/Bika LIMS dynamically, i.e.
+     * datetimewidget.js.
+     * Since the page renders the contents asyncronously using ajax
+     * requests, the scripts must be loaded dynamically too.
+     */
+    function loadDynJS(htmlrawdata) {
+        var xml = $.parseXML(htmlrawdata)
+        var links = $('head script[src]').map(function() { return $(this).attr('src'); }).get();
+        $(xml).find('head script[src]').each(function() {
+            var outsrc = $(this).attr('src');
+            var arrpos = $.inArray(outsrc, links);
+            if (arrpos==-1) {
+                console.log(outsrc);
+                $(this).detach().appendTo($('head'));
+            } else {
+                links.splice(arrpos, 1);
+            }
+        });
+        $.each(links, function(i, value) {
+            $('head script[src="'+value+'"]').remove();
+        });
+        $('head script').not('[src]').remove();
+        $(xml).find('head script').not('[src]').each(function() {
+            $(this).detach().appendTo($('head'));
+        });
+    }
+
+    function loadNonInitializableJS() {
+        var js = ['popupforms.js',
+                  'jquery.highlightsearchterms.js',
+                  'accessibility.js',
+                  'styleswitcher.js',
+                  'comments.js',
+                  'inline_validation.js',
+                  'kss-bbb.js',
+                  'table_sorter.js',
+                  'calendar_formfield.js',
+                  'formUnload.js',
+                  'formsubmithelpers.js',
+                  'jquery-timepicker.js'];
+
+       /* $.each(js, function(index, value){
+            var sc = $('head script[src*="'+value+'"][type="text/javascript"]');
+            $.get($(sc).attr("src"), function(data){
+               var script = $(data).text();
+            });
+        });
+*/
+        // ALL
+        $('head script[src][type="text/javascript"]').each(function(){
+            $.get($(this).attr("src"), $(this).serialize(), function(data){
+                //eval($(data).text());
+               //var nfunc = new Function(data).text();
+               //nfunc();
+               //var script = $(data).text();
+            });
+        });
+    }
+
+    /**
      * Since the page render the contents asyncronously using ajax
      * requests, the original javascripts must reloaded dynamically
      */
@@ -616,11 +681,72 @@ function GraphiteTheme() {
 
         $('#portal-alert').html('').fadeOut();
 
+        loadNonInitializableJS();
+        return;
+        // Drag and drop reordering of folder contents (ploneDnDReorder)
+        initializeDnDReorder('#listing-table');
+
+        // collapsiblesections.js
+        $(activateCollapsibles);
+
         // Form tabbing
         ploneFormTabbing.initialize()
 
+        // popupforms.js ??
+        // jquery.highlightsearchterms.js
+
+        // Focus on error or first element in a form with class="enableAutoFocus"
+        if ($("form div.error :input:first").focus().length) {return;}
+        $("form.enableAutoFocus :input:not(.formTabs):visible:first").focus();
+
+        // accessibility.js
+        // styleswitcher.js
+
+        // collapsibleformfields.js
+        $('.field.collapsible').do_search_collapse();
+
+        // comments.js
+
+        // dropdown.js
+        initializeMenus();
+
+        // inline_validation.js
+        // kss-bbb.js
+
+        // table_sorter.js
+
+        // calendar_formfield.js
+        $(plone.jscalendar.init);
+        $('.plone-jscalendar-popup').each(function() {
+            var jqt = $(this),
+            widget_id = this.id.replace('_popup', ''),
+            year_start = $('#' + widget_id + '_yearStart').val(),
+            year_end = $('#' + widget_id + '_yearEnd').val();
+            if (year_start && year_end) {
+                jqt.css('cursor', 'pointer')
+                .show()
+                .click(function(e) {
+                    return plone.jscalendar.show('#' + widget_id, year_start, year_end);
+                });
+            }
+        });
+
+        // formUnload.js
+
+        // formsubmithelpers.js
+        /*$('input:submit,input:image').each(function() {
+            if (!this.onclick)
+            $(this).click(inputSubmitOnClick);
+        });*/
+
+        // unlockOnFormUnload.js
+        $(plone.UnlockHandler.init);
+
         // Tiny MCE
         window.initTinyMCE(document);
+
+        // Reload other js by reheading
+        //loadNonInitializableJS();
 
         // Bika LIMS
         window.bika.lims.initialize();
