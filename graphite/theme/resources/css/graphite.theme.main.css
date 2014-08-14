@@ -306,7 +306,8 @@ div.show-column-left a:hover {
     font-weight: bold;
 }
 
-#content h1 {
+#content h1,
+#content h2 {
     font-family: 'Titillium web',Arial,Helvetica,Sans;
     font-weight: 300;
 }
@@ -314,6 +315,12 @@ div.show-column-left a:hover {
 #content h1 img {
     margin-right: 15px;
     vertical-align: middle;
+}
+
+#content h2 {
+    font-size: 1.6em;
+    margin-left: 47px;
+    margin-top: -15px;
 }
 
 .bika-listing-table-container {
@@ -848,10 +855,15 @@ input.applytemplate {
 }
 
 h1 a.context_action_link {
-    font-size: 0.5em;
+    font-size: 0.7em;
+    margin-left: 20px;
+}
+h2 a.context_action_link {
+    font-size: 0.65em;
     margin-left: 20px;
 }
 h1 a.context_action_link:hover,
+h2 a.context_action_link:hover,
 input.context_action_link:hover,
 a.ws-analyses-search-button:hover,
 input.applytemplate:hover {
@@ -1445,3 +1457,32 @@ fieldset.criteria {
 fieldset.criteria label {
     padding-right: 10px;
 }
+table.manage_results_header th {
+    padding-right: 10px;
+}
+
+/* edit-bar old-style?
+#edit-bar ul#content-views li a:hover,
+#edit-bar ul#content-views li.selected a {
+    background-color: #0B486B;
+    color: #fff;
+    -webkit-transition: a 250ms ease-in;
+    -moz-transition: background 250ms ease-in;
+    -o-transition: background 250ms ease-in;
+    -ms-transition: background 250ms ease-in;
+    transition: background 250ms ease-in;
+    border-radius:0px;
+    border:none;
+    text-shadow:none;
+    box-shadow:none;
+ }
+#edit-bar ul#content-views li a {
+    color: #333;
+    padding: 5px 10px;
+    background-color: #dfdfdf;
+    font-family: 'Titillium web',Arial,Helvetica,Sans;
+    padding: 5px 8px;
+    border-radius:0px;
+    border:none;
+    text-shadow:none;
+ }*/

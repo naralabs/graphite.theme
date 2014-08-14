@@ -1,4 +1,11 @@
-$(document).ready(function(){
+"use strict";
+
+function GraphiteTheme() {
+
+    window.jarn.i18n.loadCatalog("bika");
+    window.jarn.i18n.loadCatalog("plone");
+    var _p = window.jarn.i18n.MessageFactory("plone");
+    var _b = window.jarn.i18n.MessageFactory("bika");
 
     // Navigation menu sections
     var navmenu = {
@@ -92,71 +99,94 @@ $(document).ready(function(){
                                  ],
                         },
     };
+
+    // Omit ajax requests when href contains one of the tokens below
+    var omitajaxrequests = ['#',
+                            'at_download',
+                            '/sticker?',
+                            'mailto:'];
+
     var runtimenav = {};
+    var bIsLoading = false
     var currsectionid = window.location.href.replace(window.portal_url, '');
+    var that = this;
 
-    window.jarn.i18n.loadCatalog("bika");
-    window.jarn.i18n.loadCatalog("plone");
-    var _p = window.jarn.i18n.MessageFactory("plone");
-    var _b = window.jarn.i18n.MessageFactory("bika");
+    that.load = function() {
 
-    $('#portal-logo img')
-        .attr('width', '100px')
-        .attr('height', '25px');
-    loadNavMenu();
-    loadContentAnchorHandlers();
-    loadStyles();
-    fixLayout();
-    $(window).on("resize", fixLayout);
+        $('#portal-logo img')
+            .attr('width', '100px')
+            .attr('height', '25px');
 
-    $('a.hide-column-left').click(function(e) {
-        e.preventDefault();
-        var colwidth = $('div.column-left').outerWidth();
-        var centwidth = $('div.column-left').outerWidth()-5;
-        $('div.column-center').animate({'width': '+='+centwidth+'px'},'slow');
-        $('#loading-pane').animate({'margin-left': '-='+centwidth+'px'},'slow');
-        $('div.column-left').animate({'margin-left': '-'+colwidth+'px'},'slow', function() {
-            $('div.column-left div.column-content').hide();
-            $('div.show-column-left').fadeIn();
-            fixLayout();
+        loadNavMenu();
+        $('.column-center a').click(processLink);
+        loadStyles();
+        fixLayout();
+        $(window).on("resize", fixLayout);
+
+        $('a.hide-column-left').click(function(e) {
+            e.preventDefault();
+            var colwidth = $('div.column-left').outerWidth();
+            var centwidth = $('div.column-left').outerWidth()-5;
+            $('div.column-center').animate({'width': '+='+centwidth+'px'},'slow');
+            $('#loading-pane').animate({'margin-left': '-='+centwidth+'px'},'slow');
+            $('div.column-left').animate({'margin-left': '-'+colwidth+'px'},'slow', function() {
+                $('div.column-left div.column-content').hide();
+                $('div.show-column-left').fadeIn();
+                fixLayout();
+            });
         });
-    });
-    $('div.show-column-left a').click(function(e) {
-        e.preventDefault();
-        var left = -parseInt($('div.column-left').css('margin-left'))+5;
-        $('div.show-column-left').fadeOut('slow');
-        $('div.column-left div.column-content').show();
-        $('div.column-center').animate({'width': '-='+left+'px'},'slow');
-        $('#loading-pane').animate({'margin-left': '+='+left+'px'},'slow');
-        $('div.column-left').animate({'margin-left': '0px'}, 'slow', function() {
-            fixLayout();
+        $('div.show-column-left a').click(function(e) {
+            e.preventDefault();
+            var left = -parseInt($('div.column-left').css('margin-left'))+5;
+            $('div.show-column-left').fadeOut('slow');
+            $('div.column-left div.column-content').show();
+            $('div.column-center').animate({'width': '-='+left+'px'},'slow');
+            $('#loading-pane').animate({'margin-left': '+='+left+'px'},'slow');
+            $('div.column-left').animate({'margin-left': '0px'}, 'slow', function() {
+                fixLayout();
+            });
         });
-    });
 
-    $(window).scroll(function (e) {
-        var topoffset = $('#portal-alert').outerHeight();
-        $('div.column-left').css('margin-top', $(document).scrollTop()+topoffset+10+"px");
-        $('div.column-center').css('margin-top', topoffset+"px");
-        $('#loading-pane').css('margin-top', $(document).scrollTop()+topoffset+"px");
-        $('#portal-alert').css({
-            'position':'fixed',
-            'left':'0',
-            'right':'0',
-            'margin-bottom':'0',
+        $(window).scroll(function (e) {
+            var topoffset = $('#portal-alert').length > 0 && $('#portal-alert').is(':visible') ? $('#portal-alert').outerHeight() : 0;
+            $('div.column-left').css('margin-top', $(document).scrollTop()+topoffset+10+"px");
+            $('div.column-center').css('margin-top', topoffset+"px");
+            $('#loading-pane').css('margin-top', $(document).scrollTop()+topoffset+"px");
+            $('#portal-alert').css({
+                'position':'fixed',
+                'left':'0',
+                'right':'0',
+                'margin-bottom':'0',
+            });
         });
-    });
 
-    $("a.back-to-top").click(function(e) {
-        e.preventDefault();
-        backToTop();
-    });
+        $("a.back-to-top").click(function(e) {
+            e.preventDefault();
+            backToTop();
+        });
 
-    $('body').append('<div id="tooltip-box"></div>');
-    $('#tooltip-box').hide();
+        $('body').append('<div id="tooltip-box"></div>');
+        $('#tooltip-box').hide();
 
-    setTimeout(function() {
-        $(window).scroll();
-    },500);
+        setTimeout(function() {
+            $(window).scroll();
+        },500);
+
+    }
+
+    function loadPartial() {
+        loadBreadcrumbs();
+        $('.column-center a').click(processLink);
+        loadStyles();
+        loadActiveNavSection();
+        loadBikaTableBehavior();
+        fixLayout();
+        initializeJavascripts();
+        setTimeout(function() {
+            $(window).scroll();
+        },500);
+        //backToTop();
+    }
 
     function loadNavMenuTransitions() {
         $('ul.navtree li').not("ul.navtree li ul li").mouseenter(function() {
@@ -171,106 +201,6 @@ $(document).ready(function(){
         if ($('ul.navtree li.open').length == 0) {
             $('ul.navtree li.active').closest('li').mouseenter();
         }
-    }
-
-    function loadContentAnchorHandlers() {
-        $('div.column-center a[href!="#"]').not('[href^="mailto:"]').click(function(e) {
-            e.preventDefault();
-            var text = $(this).html();
-            var url = $(this).attr('href');
-            if (url.indexOf('at_download') > 0
-                || url.indexOf('/sticker?') > 0) {
-                window.location = url;
-                return;
-            }
-            setActiveNavItem(url);
-            toggleLoading("Loading "+text+"...");
-            $.ajax(url)
-            .done(function(data) {
-                var htmldata = data;
-                loadCSS(data);
-                // Get the body class
-                var bodyregex = RegExp('body.+class="(.*?)"', 'g');
-                var matches = bodyregex.exec(data);
-                if (matches != null && matches.length > 1) {
-                    $('body').attr('class', matches[1]);
-                }
-                htmldata = $(htmldata).find('div.column-center').html();
-                var breaddata = $(htmldata).find('#breadcrumbs').html();
-                $('#breadcrumbs').html(breaddata);
-                $('div.column-center').html(htmldata);
-            })
-            .fail(function(data) {
-                var htmldata = $('<div/>').html(data.responseText).text();
-                var htmldata = "<p>Request URL: <a href='"+url+"'>"+url+"</a></p>" + htmldata;
-                $('div.column-center').html("<div class='error-page'>"+htmldata+"</div>");
-                toggleLoading();
-                fixLayout();
-            })
-            .always(function() {
-                currsectionid = url.replace(window.portal_url, '');
-                window.history.pushState(currsectionid, '', url);
-                loadBreadcrumbs();
-                loadContentAnchorHandlers();
-                loadStyles();
-                toggleLoading();
-                loadActiveNavSection();
-                loadBikaTableBehavior();
-                fixLayout();
-                initializeJavascripts();
-                backToTop();
-            });
-        });
-        // Prevent from Action Menu header being clicked
-        $('dt.actionMenuHeader a').unbind("click");
-        $('dt.actionMenuHeader a').click(function(e) {
-            e.preventDefault();
-        });
-    }
-
-    function loadNavMenuAnchorHandlers() {
-        $('ul.navtree li a').click(function(e) {
-            e.preventDefault();
-            $('ul.navtree li.active').removeClass('active');
-            $(this).closest('li').addClass('active');
-            var text = $(this).html();
-            var url = $(this).attr('href');
-            toggleLoading(text+"...");
-            $.ajax(url)
-            .done(function(data) {
-                var htmldata = data;
-                loadCSS(data);
-                // Get the body class
-                var bodyregex = RegExp('body.+class="(.*?)"', 'g');
-                var matches = bodyregex.exec(data);
-                if (matches.length > 1) {
-                    $('body').attr('class', matches[1]);
-                }
-                htmldata = $(htmldata).find('div.column-center').html();
-                var breaddata = $(htmldata).find('#breadcrumbs').html();
-                $('#breadcrumbs').html(breaddata);
-                $('div.column-center').html(htmldata);
-            })
-            .fail(function(data) {
-                var htmldata = $('<div/>').html(data.responseText).text();
-                var htmldata = "<p>Request URL: <a href='"+url+"'>"+url+"</a></p>" + htmldata;
-                $('div.column-center').html("<div class='error-page'>"+htmldata+"</div>");
-                toggleLoading();
-                fixLayout();
-            })
-            .always(function() {
-                currsectionid = url.replace(window.portal_url, '');
-                window.history.pushState(currsectionid, '', url);
-                loadBreadcrumbs();
-                loadContentAnchorHandlers();
-                loadStyles();
-                toggleLoading();
-                loadActiveNavSection();
-                fixLayout();
-                initializeJavascripts();
-                backToTop();
-            });
-        });
     }
 
     function loadNavMenu() {
@@ -311,7 +241,7 @@ $(document).ready(function(){
                         var sectionid = navmenu[section]['id']
                         var sectionul = null;
                         if ($('ul.navtree li.'+sectionid).length < 1) {
-                            sectionli = '<li class="navtree-item '+sectionid+'"><div class="nav-section-title">'+_b(section)+'</div><ul>'+itemli+'</ul></li>';
+                            var sectionli = '<li class="navtree-item '+sectionid+'"><div class="nav-section-title">'+_b(section)+'</div><ul>'+itemli+'</ul></li>';
                             $('ul.navtree').append(sectionli);
                         } else {
                             $('ul.navtree li.'+sectionid+' ul').append(itemli);
@@ -324,8 +254,7 @@ $(document).ready(function(){
             loadActiveNavSection();
             loadBreadcrumbs();
             loadNavMenuTransitions();
-            loadNavMenuAnchorHandlers();
-            $(document.body).trigger('load');
+            $('.nav-container a').click(processLink);
         });
     }
 
@@ -339,19 +268,41 @@ $(document).ready(function(){
         //var margins = $("#columns").outerWidth - $("#columns").innerWidth();
         var contentw = Math.floor(winwidth - left);
         $('div.column-center').css('width', contentw);
-        $('#loading-pane').css('height', $(window).outerHeight());
+        var topoffset = $('#portal-alert').length > 0 && $('#portal-alert').is(':visible') ? $('#portal-alert').offset().top + $('#portal-alert').outerHeight() : 0;
+        $('#loading-pane').css('height', $(window).outerHeight()-topoffset);
         $('#loading-pane').css('padding-top', (($(window).outerHeight()/2)-60)+"px");
         $('#loading-pane').css('margin-left', (left-15)+"px");
+        $('#loading-pane').css('margin-top', topoffset);
         //$('div.column-left').css('height', $(window).outerHeight());
     }
 
-    function toggleLoading(message) {
-        if ($('#loading-pane').is(':visible')) {
-            $('#loading-pane').fadeOut('fast');
-        } else {
-            $('#loading-pane span.loading-text').html(message);
-            $('#loading-pane').fadeIn('fast');
-        }
+    var loadpanel = false;
+    function showLoadingPanel(message) {
+        var left = $("div.column-left").outerWidth();
+        left += parseInt($('div.column-center').css('margin-left'));
+        left += parseInt($('div.column-left').css('margin-left'));
+        left += 15;
+        var topoffset = $('#portal-alert').length > 0 && $('#portal-alert').is(':visible') ? $('#portal-alert').offset().top + $('#portal-alert').outerHeight() : 0;
+        $('#loading-pane').css('height', $(window).outerHeight()-topoffset);
+        $('#loading-pane').css('padding-top', ((($(window).outerHeight()-topoffset)/2)-60)+"px");
+        $('#loading-pane').css('margin-left', (left-15)+"px");
+        $('#loading-pane').css('margin-top', topoffset);
+        $('#loading-pane span.loading-text').html(message);
+        loadpanel = true;
+        setTimeout(function() {
+            if (loadpanel == true) {
+                $('#loading-pane').fadeIn('slow',function() {
+                    if (loadpanel == false) {
+                        hideLoadingPanel();
+                    }
+                });
+            }
+        },500);
+    }
+
+    function hideLoadingPanel() {
+        loadpanel = false;
+        $('#loading-pane').fadeOut(10);
     }
 
     function backToTop() {
@@ -416,13 +367,16 @@ $(document).ready(function(){
     }
 
     function setActiveNavItem(url) {
-        $('ul.navtree li.active').removeClass('active');
-        $('ul.navtree li.child-active').removeClass('child-active');
         var parturl = url.replace(window.portal_url, '');
         $('ul.navtree li a').each(function() {
             var itemurl = $(this).attr('href');
             itemurl = itemurl.replace(window.portal_url, '');
             if (parturl.contains(itemurl)) {
+                if ($(this).closest('li').hasClass('active')) {
+                    return false;
+                }
+                $('ul.navtree li.active').removeClass('active');
+                $('ul.navtree li.child-active').removeClass('child-active');
                 $(this).closest('li').addClass('active');
                 $(this).closest('li.nav-tree-item').addClass('child-active');
                 return false;
@@ -549,6 +503,84 @@ $(document).ready(function(){
     }
 
     /**
+     * If the link href is suitable, tries to fire the request via
+     * ajax using requestPage. Otherwise, doesn't remove the normal
+     * behavior of the link
+     */
+    function processLink () {
+        var url = $(this).attr('href');
+        var omit = false;
+        $.each(omitajaxrequests, function(i, item) {
+            if (url.indexOf(item) > -1) {
+                omit = true;
+                return;
+            }
+        });
+        if (!omit) {
+            requestPage(this.href, $(this).html());
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Requests a page. If ajax supported, the page will be loaded
+     * using an ajax request via getPage method. Otherwise, the page
+     * will be redirected as usual.
+     */
+    function requestPage(url, text) {
+        if (history.pushState) {
+            getPage(url, text);
+        } else {
+            /* Ajax navigation is not supported */
+            location.assign(url);
+        }
+    }
+
+    /**
+     * Gets a page via ajax call and replaces the current content
+     * section with the counterpart response.
+     */
+    function getPage(url, text) {
+        if (bIsLoading) { return; }
+
+        setActiveNavItem(url);
+        showLoadingPanel(PMF("Loading")+" "+text+"...");
+
+        $.ajax(url)
+            .done(function(data) {
+                var htmldata = data;
+                loadCSS(data);
+                // Get the body class
+                var bodyregex = RegExp('body.+class="(.*?)"', 'g');
+                var matches = bodyregex.exec(data);
+                if (matches != null && matches.length > 1) {
+                    $('body').attr('class', matches[1]);
+                }
+                htmldata = $(htmldata).find('div.column-center').html();
+                var breaddata = $(htmldata).find('#breadcrumbs').html();
+                $('#breadcrumbs').html(breaddata);
+                $('div.column-center').html(htmldata);
+            })
+            .fail(function(data) {
+                var htmldata = $('<div/>').html(data.responseText).text();
+                var htmldata = "<p>Request URL: <a href='"+url+"'>"+url+"</a></p>" + htmldata;
+                $('div.column-center').html("<div class='error-page'>"+htmldata+"</div>");
+            })
+            .always(function(data) {
+                var title = $(data).filter('title').text();
+                var pageInfo = { title: title, url: url };
+                history.pushState(pageInfo, pageInfo.title, pageInfo.url);
+
+                currsectionid = url.replace(window.portal_url, '');
+
+                hideLoadingPanel();
+                bIsLoading = false;
+                loadPartial();
+            });
+    }
+
+    /**
      * Some CSS are loaded by Bika LIMS dynamically, i.e.
      * hide_editable_border.css and hide_content_menu.css
      * Since the page render the contents asyncronously using ajax
@@ -582,13 +614,32 @@ $(document).ready(function(){
      */
     function initializeJavascripts() {
 
+        $('#portal-alert').html('').fadeOut();
+
         // Form tabbing
         ploneFormTabbing.initialize()
 
         // Tiny MCE
-        window.initTinyMCE(this.document);
+        window.initTinyMCE(document);
 
         // Bika LIMS
         window.bika.lims.initialize();
+
     }
+}
+
+
+window.graphite = window.graphite || { theme: {} };
+window.graphite.theme.initialize = function() {
+    new GraphiteTheme().load();
+};
+
+
+(function( $ ) {
+$(document).ready(function(){
+
+    // Initializes graphite.theme
+    window.graphite.theme.initialize();
+
 });
+}(jQuery));
