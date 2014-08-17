@@ -191,13 +191,11 @@ function GraphiteTheme() {
      * be triggered every timeout millisec.
      */
     function fixTopPosition(timeout) {
-        if (bIsLoading == false) {
-            //var offset = $('#content-wrapper').offset().top - parseInt($('#content-wrapper').css('margin-top'));
-            var offset =  $('#portal-alert').length > 0 && $('#portal-alert').is(':visible') ? $('#portal-alert').outerHeight() : 0;
-            if (offset != topoffset) {
-                topoffset = offset;
-                $(window).scroll();
-            }
+        //var offset = $('#content-wrapper').offset().top - parseInt($('#content-wrapper').css('margin-top'));
+        var offset =  $('#portal-alert').length > 0 && $('#portal-alert').is(':visible') ? $('#portal-alert').outerHeight() : 0;
+        if (offset != topoffset) {
+            topoffset = offset;
+            $(window).scroll();
         }
         if (timeout > 0) {    
             setTimeout(function() {
