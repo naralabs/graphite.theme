@@ -1,12 +1,23 @@
-
-
 function GraphiteTheme() {
 
-    window.jarn.i18n.loadCatalog("bika");
-    window.jarn.i18n.loadCatalog("plone");
-    var _p = window.jarn.i18n.MessageFactory("plone");
-    var _b = window.jarn.i18n.MessageFactory("bika");
+    /** CUSTOM VARS **/
+    // Portal Logo dimensions
+    // default: {'width': '100px', 'height': '25px'};
+    var portal_logo_dimensions = {'width': '100px',
+                                  'height': '25px'};
 
+    // Delay (in ms) before loading pane being shown.
+    // If <0, the loading panel will not never be shown when dynamic
+    // content being loaded.
+    // default: 500
+    var loading_panel_delay = 500;
+
+    // Enables/Disables the in-line behavior when items get selected in
+    // tables: a baloon with the actions available for the selected
+    // items appear and actions panel from the footer is hidded.
+    // default: true
+    var inline_table_actions_behavior = true;
+    
     // Navigation menu sections
     var navmenu = {
         'Quick access': {'id':'nav-quick',
@@ -100,60 +111,66 @@ function GraphiteTheme() {
                         },
     };
 
+
+    /** PRIVATE VARS **/    
+    window.jarn.i18n.loadCatalog("bika");
+    window.jarn.i18n.loadCatalog("plone");
+    var _p = window.jarn.i18n.MessageFactory("plone");
+    var _b = window.jarn.i18n.MessageFactory("bika");
+
+    // Caches the items to be loaded in the navmenu at runtime
+    var runtimenav = {};
+
+    // Controls if a page is being currently loaded dynamically
+    var bIsLoading = false
+
+    // Controls if the loading panel is displayed
+    var loadpanel = false;
+
+    // The current loaded 'section'.
+    var currsectionid = window.location.href.replace(window.portal_url, '');
+
+    // Top offset for positioning the contents
+    var topoffset = 0;
+
     // Omit ajax requests when href contains one of the tokens below
     var omitajaxrequests = ['#',
                             'at_download',
                             '/sticker?',
                             'mailto:'];
-
-    var runtimenav = {};
-    var bIsLoading = false
-    var currsectionid = window.location.href.replace(window.portal_url, '');
+    
     var that = this;
 
     that.load = function() {
 
         $('#portal-logo img')
-            .attr('width', '100px')
-            .attr('height', '25px');
+            .attr('width', portal_logo_dimensions['width'])
+            .attr('height', portal_logo_dimensions['height']);
 
+        // Loads left-navigation menu
         loadNavMenu();
 
+        // Dynamic page load behavior to links
         $('.column-center a').unbind("click");
         $('.column-center a').click(processLink);
+
+        // Loads additional JS styling 
         loadStyles();
+
+        // Fix layout in accordance to the window dimensions
         fixLayout();
         $(window).on("resize", fixLayout);
 
-        $('a.hide-column-left').click(function(e) {
-            e.preventDefault();
-            var colwidth = $('div.column-left').outerWidth();
-            var centwidth = $('div.column-left').outerWidth()-5;
-            $('div.column-center').animate({'width': '+='+centwidth+'px'},'slow');
-            $('#loading-pane').animate({'margin-left': '-='+centwidth+'px'},'slow');
-            $('div.column-left').animate({'margin-left': '-'+colwidth+'px'},'slow', function() {
-                $('div.column-left div.column-content').hide();
-                $('div.show-column-left').fadeIn();
-                fixLayout();
-            });
-        });
-        $('div.show-column-left a').click(function(e) {
-            e.preventDefault();
-            var left = -parseInt($('div.column-left').css('margin-left'))+5;
-            $('div.show-column-left').fadeOut('slow');
-            $('div.column-left div.column-content').show();
-            $('div.column-center').animate({'width': '-='+left+'px'},'slow');
-            $('#loading-pane').animate({'margin-left': '+='+left+'px'},'slow');
-            $('div.column-left').animate({'margin-left': '0px'}, 'slow', function() {
-                fixLayout();
-            });
-        });
-
+        // Set left's nav-menu fixed position when scrolling
         $(window).scroll(function (e) {
-            var topoffset = $('#portal-alert').length > 0 && $('#portal-alert').is(':visible') ? $('#portal-alert').outerHeight() : 0;
-            $('div.column-left').css('margin-top', $(document).scrollTop()+topoffset+10+"px");
-            $('div.column-center').css('margin-top', topoffset+"px");
-            $('#loading-pane').css('margin-top', $(document).scrollTop()+topoffset+"px");
+            var docst = $(document).scrollTop();
+            var topfixed = docst + topoffset;
+            var winheight = $(window).outerHeight();
+            $('div.column-left').css('margin-top', topfixed + 10);
+            $('div.column-center').css('margin-top', topoffset);
+            $('#loading-pane').css('height', winheight - topoffset);
+            $('#loading-pane').css('padding-top',((winheight - topoffset)/2)-60);
+            $('#loading-pane').css('margin-top', topfixed);
             $('#portal-alert').css({
                 'position':'fixed',
                 'left':'0',
@@ -161,21 +178,40 @@ function GraphiteTheme() {
                 'margin-bottom':'0',
             });
         });
-
-        $("a.back-to-top").click(function(e) {
-            e.preventDefault();
-            backToTop();
-        });
-
+    
         $('body').append('<div id="tooltip-box"></div>');
         $('#tooltip-box').hide();
 
-        setTimeout(function() {
-            $(window).scroll();
-        },500);
-
+        fixTopPosition(500);
     }
 
+    /**
+     * Adjusts the content's top position, as well as left and right
+     * columns. If a timeout greather than 0 is set, the function will
+     * be triggered every timeout millisec.
+     */
+    function fixTopPosition(timeout) {
+        if (bIsLoading == false) {
+            //var offset = $('#content-wrapper').offset().top - parseInt($('#content-wrapper').css('margin-top'));
+            var offset =  $('#portal-alert').length > 0 && $('#portal-alert').is(':visible') ? $('#portal-alert').outerHeight() : 0;
+            if (offset != topoffset) {
+                topoffset = offset;
+                $(window).scroll();
+            }
+        }
+        if (timeout > 0) {    
+            setTimeout(function() {
+                fixTopPosition(timeout);
+            },timeout);
+        }
+    }
+   
+    /**
+     * Loads the actions to be done after a new content being loaded
+     * dynamically inside the column-center: reload the breadcrumb bar,
+     * the dynamic page load behavoir for links, styling, layout and
+     * javascript purge and reload.
+     */
     function loadPartial() {
         loadBreadcrumbs();
         $('.column-center a').unbind("click");
@@ -185,27 +221,12 @@ function GraphiteTheme() {
         loadBikaTableBehavior();
         fixLayout();
         initializeJavascripts();
-        setTimeout(function() {
-            $(window).scroll();
-        },500);
-        backToTop();
     }
 
-    function loadNavMenuTransitions() {
-        $('ul.navtree li').not("ul.navtree li ul li").mouseenter(function() {
-            $(this).addClass('open');
-            $(this).find('ul').slideDown('fast', function() {
-                $('ul.navtree li').not(".open").find('ul').slideUp('fast');
-            });
-        });
-        $('ul.navtree li').not("ul.navtree li ul li").mouseleave(function() {
-            $(this).removeClass('open');
-        });
-        if ($('ul.navtree li.open').length == 0) {
-            $('ul.navtree li.active').closest('li').mouseenter();
-        }
-    }
-
+    /**
+     * Loads the left nav menu dynamically, grouping the items in
+     * accordance with the values assigned to the navmenu var
+     */
     function loadNavMenu() {
         var portal_url = window.portal_url;
         $('ul.navtree li a').each(function() {
@@ -260,8 +281,54 @@ function GraphiteTheme() {
             $('.nav-container a').unbind("click");
             $('.nav-container a').click(processLink);
         });
+
+        $('a.hide-column-left').click(function(e) {
+            e.preventDefault();
+            var colwidth = $('div.column-left').outerWidth();
+            var centwidth = $('div.column-left').outerWidth()-5;
+            $('div.column-center').animate({'width': '+='+centwidth+'px'},'slow');
+            $('#loading-pane').animate({'margin-left': '-='+centwidth+'px'},'slow');
+            $('div.column-left').animate({'margin-left': '-'+colwidth+'px'},'slow', function() {
+                $('div.column-left div.column-content').hide();
+                $('div.show-column-left').fadeIn();
+                fixLayout();
+            });
+        });
+        $('div.show-column-left a').click(function(e) {
+            e.preventDefault();
+            var left = -parseInt($('div.column-left').css('margin-left'))+5;
+            $('div.show-column-left').fadeOut('slow');
+            $('div.column-left div.column-content').show();
+            $('div.column-center').animate({'width': '-='+left+'px'},'slow');
+            $('#loading-pane').animate({'margin-left': '+='+left+'px'},'slow');
+            $('div.column-left').animate({'margin-left': '0px'}, 'slow', function() {
+                fixLayout();
+            });
+        });
     }
 
+    /**
+     * Transition effects (slide up and slide down) for the left
+     * nav-menu when links get hover and/or selected.
+     */
+    function loadNavMenuTransitions() {
+        $('ul.navtree li').not("ul.navtree li ul li").mouseenter(function() {
+            $(this).addClass('open');
+            $(this).find('ul').slideDown('fast', function() {
+                $('ul.navtree li').not(".open").find('ul').slideUp('fast');
+            });
+        });
+        $('ul.navtree li').not("ul.navtree li ul li").mouseleave(function() {
+            $(this).removeClass('open');
+        });
+        if ($('ul.navtree li.open').length == 0) {
+            $('ul.navtree li.active').closest('li').mouseenter();
+        }
+    }
+
+    /**
+     * Adjusts the current contents to the window's width
+     */
     function fixLayout() {
         var winwidth  = $("#content-wrapper").innerWidth();
         var left = $("div.column-left").outerWidth();
@@ -269,51 +336,48 @@ function GraphiteTheme() {
         left += parseInt($('div.column-left').css('margin-left'));
         left += 15;
         var col2width = $("div.column-right").outerWidth();
-        //var margins = $("#columns").outerWidth - $("#columns").innerWidth();
         var contentw = Math.floor(winwidth - left);
-        $('div.column-center').css('width', contentw);
-        var topoffset = $('#portal-alert').length > 0 && $('#portal-alert').is(':visible') ? $('#portal-alert').offset().top + $('#portal-alert').outerHeight() : 0;
-        $('#loading-pane').css('height', $(window).outerHeight()-topoffset);
-        $('#loading-pane').css('padding-top', (($(window).outerHeight()/2)-60)+"px");
+        $('div.column-center').css('width', contentw);        
         $('#loading-pane').css('margin-left', (left-15)+"px");
-        $('#loading-pane').css('margin-top', topoffset);
-        //$('div.column-left').css('height', $(window).outerHeight());
     }
 
-    var loadpanel = false;
+    /**
+     * Displays the loading pane
+     */
     function showLoadingPanel(message) {
-        var left = $("div.column-left").outerWidth();
-        left += parseInt($('div.column-center').css('margin-left'));
-        left += parseInt($('div.column-left').css('margin-left'));
-        left += 15;
-        var topoffset = $('#portal-alert').length > 0 && $('#portal-alert').is(':visible') ? $('#portal-alert').offset().top + $('#portal-alert').outerHeight() : 0;
-        $('#loading-pane').css('height', $(window).outerHeight()-topoffset);
-        $('#loading-pane').css('padding-top', ((($(window).outerHeight()-topoffset)/2)-60)+"px");
-        $('#loading-pane').css('margin-left', (left-15)+"px");
-        $('#loading-pane').css('margin-top', topoffset);
+        if (loading_panel_delay >= 0) {
         $('#loading-pane span.loading-text').html(message);
-        loadpanel = true;
-        setTimeout(function() {
-            if (loadpanel == true) {
-                $('#loading-pane').fadeIn('slow',function() {
-                    if (loadpanel == false) {
-                        hideLoadingPanel();
-                    }
-                });
-            }
-        },500);
+            loadpanel = true;
+            setTimeout(function() {
+                if (loadpanel == true) {
+                    $('#loading-pane').fadeIn('slow',function() {
+                        if (loadpanel == false) {
+                            hideLoadingPanel();
+                        }
+                    });
+                }
+            },loading_panel_delay);
+        }
     }
 
+    /**
+     * Hides the loading pane
+     */
     function hideLoadingPanel() {
         loadpanel = false;
         $('#loading-pane').fadeOut(10);
     }
 
+    /**
+     * Scrolls the content to the top
+     */
     function backToTop() {
-        var offset = $('#content-wrapper').offset().top - parseInt($('#content-wrapper').css('margin-top'));
-        $('html,body').animate({scrollTop: offset}, 'slow');
+        $('html,body').animate({scrollTop: topoffset}, 'slow');
     }
 
+    /**
+     * Loads additional js stylings
+     */
     function loadStyles() {
         $('input.context_action_link').filter(function() {
             return $(this).css('background-image') != '';
@@ -348,6 +412,9 @@ function GraphiteTheme() {
         loadToolTips();
     }
 
+    /**
+     * Loads the breadcrumbs bar for the current page
+     */
     function loadBreadcrumbs() {
         if ($("#breadcrumbs").html() == '') {
             var breadhtml =
@@ -370,6 +437,9 @@ function GraphiteTheme() {
         }
     }
 
+    /**
+     * Sets the left-nav item menu active for an url
+     */
     function setActiveNavItem(url) {
         var parturl = url.replace(window.portal_url, '');
         $('ul.navtree li a').each(function() {
@@ -393,72 +463,77 @@ function GraphiteTheme() {
         $('ul.navtree li.active').closest('li.navtree-item').addClass('child-active');
     }
 
+    /**
+     * Bika-table custom behaviors
+     */
     function loadBikaTableBehavior() {
-        // Show the actions pane when at least one checkbox is checked
-        $('table.bika-listing-table tfoot td.workflow_actions').hide();
-        $('table.bika-listing-table tbody.item-listing-tbody tr').each(function(e) {
-            $(this).find('td:first input[type="checkbox"]').on('click change keypress blur keyup',function(e) {
-                if ($(this).is(':checked')) {
-                    $(this).closest('tr').addClass('selected');
-                } else {
-                    $(this).closest('tr').removeClass('selected');
-                }
-                updateSelectedItems($(this).closest('table.bika-listing-table'));
-            });
-        });
-        $('table.bika-listing-table thead th input[type="checkbox"]').click(function(e) {
-            if ($(this).is(':checked')) {
-                $(this).closest('table.bika-listing-table').find('tbody.item-listing-tbody tr').each(function(e) {
-                    if ($(this).find('td:first input[type="checkbox"]').length > 0) {
-                        $(this).addClass('selected');
-                    }
-                });
-            } else {
-                $(this).closest('table.bika-listing-table').find('tbody.item-listing-tbody tr').removeClass('selected');
-            }
-            updateSelectedItems($(this).closest('table.bika-listing-table'));
-        });
-        $('table.bika-listing-table tbody.item-listing-tbody tr').mousemove(function(e) {
-            if ($(this).find('td:first input[type="checkbox"]:checked').length > 0) {
-                var firstchk = $(this).find('td:first input[type="checkbox"]');
-                var leftpos = $(firstchk).offset().left;
-                $(this).closest('table.bika-listing-table').find('tfoot td.workflow_actions').css({
-                    top: e.pageY - 10,
-                    left: leftpos + 20
-                });
-                recalcSelectedItems($(this).closest('table.bika-listing-table'));
-                updateSelectedItems($(this).closest('table.bika-listing-table'));
-                firstchk = firstchk.first();
-                $(this).closest('table.bika-listing-table').find('tfoot td.workflow_actions').show();
-            } else {
-                $(this).closest('table.bika-listing-table').find('tfoot td.workflow_actions').hide();
-            }
-        });
-
-        function recalcSelectedItems(table) {
-            $(table).find('tbody.item-listing-tbody tr').each(function(e) {
-                var fcheck = $(this).find('td:first input[type="checkbox"]');
-                if (fcheck.length > 0) {
-                    if (fcheck.is(':checked')) {
-                        $(this).addClass('selected');
+        if (inline_table_actions_behavior == true) {
+            // Show the actions pane when at least one checkbox is checked
+            $('table.bika-listing-table tfoot td.workflow_actions').hide();
+            $('table.bika-listing-table tbody.item-listing-tbody tr').each(function(e) {
+                $(this).find('td:first input[type="checkbox"]').on('click change keypress blur keyup',function(e) {
+                    if ($(this).is(':checked')) {
+                        $(this).closest('tr').addClass('selected');
                     } else {
-                        $(this).removeClass('selected');
+                        $(this).closest('tr').removeClass('selected');
                     }
+                    updateSelectedItems($(this).closest('table.bika-listing-table'));
+                });
+            });
+            $('table.bika-listing-table thead th input[type="checkbox"]').click(function(e) {
+                if ($(this).is(':checked')) {
+                    $(this).closest('table.bika-listing-table').find('tbody.item-listing-tbody tr').each(function(e) {
+                        if ($(this).find('td:first input[type="checkbox"]').length > 0) {
+                            $(this).addClass('selected');
+                        }
+                    });
+                } else {
+                    $(this).closest('table.bika-listing-table').find('tbody.item-listing-tbody tr').removeClass('selected');
+                }
+                updateSelectedItems($(this).closest('table.bika-listing-table'));
+            });
+            $('table.bika-listing-table tbody.item-listing-tbody tr').mousemove(function(e) {
+                if ($(this).find('td:first input[type="checkbox"]:checked').length > 0) {
+                    var firstchk = $(this).find('td:first input[type="checkbox"]');
+                    var leftpos = $(firstchk).offset().left;
+                    $(this).closest('table.bika-listing-table').find('tfoot td.workflow_actions').css({
+                        top: e.pageY - 10,
+                        left: leftpos + 20
+                    });
+                    recalcSelectedItems($(this).closest('table.bika-listing-table'));
+                    updateSelectedItems($(this).closest('table.bika-listing-table'));
+                    firstchk = firstchk.first();
+                    $(this).closest('table.bika-listing-table').find('tfoot td.workflow_actions').show();
+                } else {
+                    $(this).closest('table.bika-listing-table').find('tfoot td.workflow_actions').hide();
                 }
             });
-        }
 
-        function updateSelectedItems(table) {
-            var numsels = $(table).find('tr.selected').length;
-            if (numsels > 0) {
-                if ($(table).find('tfoot td.workflow_actions div.selection-summary').length == 0) {
-                    $(table).find('tfoot td.workflow_actions').prepend('<div class="selection-summary"><span class="num-selected">'+numsels+'</span> '+_p('Items selected')+'</div>');
+            function recalcSelectedItems(table) {
+                $(table).find('tbody.item-listing-tbody tr').each(function(e) {
+                    var fcheck = $(this).find('td:first input[type="checkbox"]');
+                    if (fcheck.length > 0) {
+                        if (fcheck.is(':checked')) {
+                            $(this).addClass('selected');
+                        } else {
+                            $(this).removeClass('selected');
+                        }
+                    }
+                });
+            }
+
+            function updateSelectedItems(table) {
+                var numsels = $(table).find('tr.selected').length;
+                if (numsels > 0) {
+                    if ($(table).find('tfoot td.workflow_actions div.selection-summary').length == 0) {
+                        $(table).find('tfoot td.workflow_actions').prepend('<div class="selection-summary"><span class="num-selected">'+numsels+'</span> '+_p('Items selected')+'</div>');
+                    } else {
+                        $(table).find('tfoot td.workflow_actions div.selection-summary span.num-selected').html(numsels);
+                    }
+                    $(this).find('tfoot td.workflow_actions').show();
                 } else {
-                    $(table).find('tfoot td.workflow_actions div.selection-summary span.num-selected').html(numsels);
+                    $(this).find('tfoot td.workflow_actions').hide();
                 }
-                $(this).find('tfoot td.workflow_actions').show();
-            } else {
-                $(this).find('tfoot td.workflow_actions').hide();
             }
         }
 
@@ -477,6 +552,9 @@ function GraphiteTheme() {
 
     }
 
+    /**
+     * Loads a fancy tooltip for every element with 'tooltip' class
+     */
     function loadToolTips() {
         /*$('img[title]').addClass('tooltip');*/
         /*$('img[src$="/sticker_large.png"]').addClass('tooltip');
@@ -688,8 +766,6 @@ function GraphiteTheme() {
      */
     function initializeJavascripts() {
 
-        $('#portal-alert').html('').fadeOut();
-
         // Drag and drop reordering of folder contents (ploneDnDReorder)
         initializeDnDReorder('#listing-table');
 
@@ -741,6 +817,10 @@ function GraphiteTheme() {
         // Reload other js by reheading
         //loadNonInitializableJS();
 
+        setTimeout(function() {
+            $('#portal-alert').html('').fadeOut('slow');
+        },500);
+        
         // Bika LIMS
         window.bika.lims.initialize();
 
@@ -748,6 +828,7 @@ function GraphiteTheme() {
         $(document).unbind("ajaxStart");
         $(document).unbind("ajaxStop");
         $('#bika-spinner').remove();
+
 
     }
 }
