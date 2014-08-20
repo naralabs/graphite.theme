@@ -220,6 +220,27 @@ input[type="submit"],
     transition: opacity 250ms ease-in-out;
 }
 
+/** Portlets **/
+#dashboard div#dashboard-portlets1,
+#dashboard div#dashboard-portlets2,
+#dashboard div#dashboard-portlets3,
+#dashboard div#dashboard-portlets4 {
+    float: left;
+    width: 23%;
+    padding: 0 20px 0 0;
+}
+dl.portlet dt.portletHeader {
+    font-size: 1.6em;
+    margin-bottom: 15px;
+}
+dl.portlet {
+    background-color: #efefef;
+    padding: 15px 20px;
+}
+dl.portlet dd {
+    margin: 0;
+    padding: 0 0 5px 0;
+}
 
 
 fieldset {

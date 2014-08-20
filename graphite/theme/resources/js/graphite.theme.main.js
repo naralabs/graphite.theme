@@ -407,6 +407,11 @@ function GraphiteTheme() {
             $('table.attachments').replaceWith('<div class="attachments table-empty-results"><span class="ico ion-ios7-information-outline"></span>'+_p("No items found")+'</div>');
         }
 
+        // Empty contentActions?
+        if ($('#edit-bar .contentActions').length > 0 && $('#edit-bar .contentActions').children().length == 0) {
+            $('#edit-bar .contentActions').hide();
+        }
+
         loadBikaTableBehavior();
         loadToolTips();
     }
