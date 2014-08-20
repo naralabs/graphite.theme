@@ -73,6 +73,10 @@ input[type="submit"],
     font-weight: 300;
 }
 
+body.userrole-anonymous #content-wrapper .column-left {
+    display:none;
+    margin:0;
+}
 
 /* Portal global nav */
 #portal-globalnav {
@@ -187,7 +191,8 @@ input[type="submit"],
 #portal-personaltools.deactivated dd {
     display: none;
 }
-#portal-personaltools .actionMenuHeader {
+#portal-personaltools .actionMenuHeader,
+#portal-personaltools li#anon-personalbar  {
     float: none;
     margin: 0;
     padding: 0;
@@ -202,12 +207,14 @@ input[type="submit"],
     padding: 20px;
     text-align: left;
 }
-#portal-personaltools .actionMenuHeader a {
+#portal-personaltools .actionMenuHeader a,
+#portal-personaltools li#anon-personalbar a {
     color: #FFFFFF;
     font-size: 0.8em;
     text-transform: capitalize;
 }
-#portal-personaltools .actionMenuHeader a:hover {
+#portal-personaltools .actionMenuHeader a:hover,
+#portal-personaltools li#anon-personalbar a:hover {
         opacity:0.7;
     moz-opacity:0.7;
     filter:alpha(opacity=70);
@@ -218,6 +225,13 @@ input[type="submit"],
     -o-transition: opacity 250ms ease-in-out;
     -ms-transition: opacity 250ms ease-in-out;
     transition: opacity 250ms ease-in-out;
+}
+
+li#anon-personalbar {
+    font-size: 1.35em;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 /** Portlets **/
@@ -242,6 +256,20 @@ dl.portlet dd {
     padding: 0 0 5px 0;
 }
 
+/** Overlay login **/
+.overlay-login {
+    background-color: #fff;
+    box-shadow: 1px 1px 5px #999;
+    padding: 50px;
+    font-size: 1.1em;
+    font-weight: normal;
+    margin-top: 80px;
+    line-height:180%;
+}
+.overlay-login #login-form .field label {
+    margin-right: 20px;
+}
+
 
 fieldset {
     border:none;
@@ -259,6 +287,7 @@ select {
 textarea:focus,
 select:focus,
 input[type="text"]:focus,
+input[type="password"]:focus,
 input.filter-search-input:focus {
     -webkit-box-shadow: 0 0 2px 1px #0B486B;
     -moz-box-shadow: 0 0 2px 1px #0B486B;
@@ -1554,6 +1583,7 @@ dl#plone-contentmenu-factories.actionMenu {
 
 /* Form fieldset */
 div.field input[type="text"],
+div.field input[type="password"],
 div.field textarea {
     border: 1px solid #CDCDCD;
     padding: 3px 6px;
@@ -1674,3 +1704,30 @@ table.manage_results_header th {
     border:none;
     text-shadow:none;
  }*/
+
+
+/** Misc **/
+.portaltype-document .documentDescription {
+    font-size: 1.6em;
+    margin-bottom: 40px;
+}
+.portaltype-document #content h2 {
+    margin-left: 0px;
+}
+.portaltype-document #content h2.Subheading {
+    margin-top: 30px;
+}
+.portaltype-document table tr td {
+    padding:20px;
+}
+
+#content .pullquote {
+    clear: right;
+    color: #444444;
+    float: right;
+    font-size: 1.6em;
+    letter-spacing: -0.08em !important;
+    line-height: 1.25em;
+    margin: 0 1em 0.5em 0.5em;
+    width: 35%;
+}

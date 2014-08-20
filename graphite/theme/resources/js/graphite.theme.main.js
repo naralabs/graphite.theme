@@ -329,7 +329,7 @@ function GraphiteTheme() {
      */
     function fixLayout() {
         var winwidth  = $("#content-wrapper").innerWidth();
-        var left = $("div.column-left").outerWidth();
+        var left = $("div.column-left").is(':visible') ? $("div.column-left").outerWidth() : 0;
         left += parseInt($('div.column-center').css('margin-left'));
         left += parseInt($('div.column-left').css('margin-left'));
         left += 15;
