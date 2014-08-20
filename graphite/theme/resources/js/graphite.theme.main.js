@@ -821,9 +821,7 @@ function GraphiteTheme() {
         // Reload other js by reheading
         //loadNonInitializableJS();
 
-        setTimeout(function() {
-            $('#portal-alert').html('').fadeOut('slow');
-        },500);
+        $('#portal-alert').html('').fadeOut();
 
         // Bika LIMS
         window.bika.lims.initialize();

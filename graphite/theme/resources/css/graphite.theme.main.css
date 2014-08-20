@@ -460,7 +460,6 @@ div.show-column-left {
 }
 
 a.hide-column-left {
-    background: url("../images/nav-toggle-ico.png") no-repeat scroll left center rgba(0, 0, 0, 0);
     color: rgba(0, 0, 0, 0);
     display: block;
     font-size: 0.9em;
@@ -470,9 +469,18 @@ a.hide-column-left {
     filter:alpha(opacity=50);
     -moz-opacity: 0.5;
     -khtml-opacity: 0.5;
+    padding: 7px 7px 7px 5px;
     text-align: left;
     text-decoration: none;
-    padding: 7px 7px 7px 25px;
+    vertical-align: top;
+}
+a.hide-column-left:before {
+    color: #333333;
+    content: "";
+    font-family: Ionicons;
+    font-size: 1.7em;
+    font-weight: bold;
+    padding-right: 5px;
 }
 a.hide-column-left:hover {
     opacity:1;
