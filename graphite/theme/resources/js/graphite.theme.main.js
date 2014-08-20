@@ -17,7 +17,7 @@ function GraphiteTheme() {
     // items appear and actions panel from the footer is hidded.
     // default: true
     var inline_table_actions_behavior = true;
-    
+
     // Navigation menu sections
     var navmenu = {
         'Quick access': {'id':'nav-quick',
@@ -112,7 +112,7 @@ function GraphiteTheme() {
     };
 
 
-    /** PRIVATE VARS **/    
+    /** PRIVATE VARS **/
     window.jarn.i18n.loadCatalog("bika");
     window.jarn.i18n.loadCatalog("plone");
     var _p = window.jarn.i18n.MessageFactory("plone");
@@ -138,7 +138,7 @@ function GraphiteTheme() {
                             'at_download',
                             '/sticker?',
                             'mailto:'];
-    
+
     var that = this;
 
     that.load = function() {
@@ -154,7 +154,7 @@ function GraphiteTheme() {
         $('.column-center a').unbind("click");
         $('.column-center a').click(processLink);
 
-        // Loads additional JS styling 
+        // Loads additional JS styling
         loadStyles();
 
         // Fix layout in accordance to the window dimensions
@@ -178,7 +178,7 @@ function GraphiteTheme() {
                 'margin-bottom':'0',
             });
         });
-    
+
         $('body').append('<div id="tooltip-box"></div>');
         $('#tooltip-box').hide();
 
@@ -197,13 +197,13 @@ function GraphiteTheme() {
             topoffset = offset;
             $(window).scroll();
         }
-        if (timeout > 0) {    
+        if (timeout > 0) {
             setTimeout(function() {
                 fixTopPosition(timeout);
             },timeout);
         }
     }
-   
+
     /**
      * Loads the actions to be done after a new content being loaded
      * dynamically inside the column-center: reload the breadcrumb bar,
@@ -335,7 +335,7 @@ function GraphiteTheme() {
         left += 15;
         var col2width = $("div.column-right").outerWidth();
         var contentw = Math.floor(winwidth - left);
-        $('div.column-center').css('width', contentw);        
+        $('div.column-center').css('width', contentw);
         $('#loading-pane').css('margin-left', (left-15)+"px");
     }
 
@@ -818,7 +818,7 @@ function GraphiteTheme() {
         setTimeout(function() {
             $('#portal-alert').html('').fadeOut('slow');
         },500);
-        
+
         // Bika LIMS
         window.bika.lims.initialize();
 
@@ -827,6 +827,17 @@ function GraphiteTheme() {
         $(document).unbind("ajaxStop");
         $('#bika-spinner').remove();
 
+        // personal-tools
+        $('#portal-personaltools #user-name').unbind('click');
+        $('#portal-personaltools #user-name').click(function(e) {
+            e.preventDefault();
+            var pt = $(this).closest('#portal-personaltools');
+            if (pt.hasClass('deactivated')) {
+                pt.removeClass('deactivated');
+            } else {
+                pt.addClass('deactivated');
+            }
+        });
 
     }
 }

@@ -73,10 +73,51 @@ input[type="submit"],
     font-weight: 300;
 }
 
+
+/* Portal global nav */
+#portal-globalnav {
+    float: left;
+    margin: 0;
+    padding: 0;
+    font-size: 1.1em;
+    margin-top: 5px;
+    text-align: left;
+}
+#portal-globalnav li a:hover {
+    opacity:0.8;
+    moz-opacity:0.8;
+    filter:alpha(opacity=80);
+    -moz-opacity: 0.8;
+    -khtml-opacity: 0.8;
+    -webkit-transition: all 250ms ease-in-out;
+    -moz-transition: all 250ms ease-in-out;
+    -o-transition: all 250ms ease-in-out;
+    -ms-transition: all 250ms ease-in-out;
+    transition: all 250ms ease-in-out;
+}
+#portal-globalnav li.selected a,
+#portal-globalnav li a:hover {
+    background-color: #333;
+    box-shadow: 0px 1px 10px #666;
+}
+#portal-globalnav li a {
+    color: #fff;
+    padding: 16px 20px;
+    background-color: #333;
+}
+#portal-globalnav li {
+    list-style-type: none;
+    display: inline;
+    margin: 0;
+    padding: 0;
+    padding: 15px 1px;
+}
+
 /* portal-tools-wrapper */
 #portal-tools-wrapper {
     position: fixed;
     right: 20px;
+    left: 218px;
     top: 8px;
     z-index: 2100;
 }
@@ -84,7 +125,7 @@ input[type="submit"],
 /* portal-searchbox */
 #portal-searchbox {
     font-size: 0.9em;
-    float: left;
+    float: right;
 }
 #portal-searchbox div.searchSection {
     border: 1px solid red;
@@ -112,7 +153,7 @@ input[type="submit"],
 #LSResult {
     background-color: #FFFFFF;
     border-radius: 5px 5px 5px 5px;
-    box-shadow: 1px 1px 5px #666666;
+    box-shadow: 1px 1px 5px #999;
     margin-right: 20px;
     padding: 20px;
     text-align: left;
@@ -138,7 +179,7 @@ input[type="submit"],
     color: #FFFFFF;
     margin: 0;
     padding: 0;
-    float: left;
+    float: right;
 }
 #portal-personaltools {
     margin: 0;
@@ -156,7 +197,7 @@ input[type="submit"],
 #portal-personaltools .actionMenuContent {
     background-color: #FFFFFF;
     border-radius: 5px 5px 5px 5px;
-    box-shadow: 1px 1px 5px #666666;
+    box-shadow: 1px 1px 5px #999;
     font-size: 1.1em;
     padding: 20px;
     text-align: left;
@@ -274,11 +315,8 @@ div.constraint {
 }
 a#portal-logo {
     background-color: #EFEFEF;
-    border-bottom: 1px solid #BBBBBB;
-    border-radius: 0 0 20px 0;
-    border-top: 1px solid #CDCDCD;
     margin: -10px 0 0 -10px;
-    padding: 20px 70px 11px 10px;
+    padding: 21px 109px 10px 10px;
 }
 .backgrey {
     background-color:#f5f5f5;
@@ -978,14 +1016,20 @@ a.context_action_link,
 a.ws-analyses-search-button,
 input.context_action_link,
 input.applytemplate {
-    background-color: #3B8686;
+    /*background-color: #3B8686;
     padding: 3px 15px 4px 15px;
     color: #fff;
+    vertical-align: middle;*/
+    background-color: #EFEFEF;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px 5px 5px 5px;
+    color: #333333;
+    padding: 3px 15px 4px;
     vertical-align: middle;
 }
 
 h1 a.context_action_link {
-    font-size: 0.7em;
+    font-size: 0.5em;
     margin-left: 20px;
 }
 h2 a.context_action_link {
@@ -997,14 +1041,9 @@ h2 a.context_action_link:hover,
 input.context_action_link:hover,
 a.ws-analyses-search-button:hover,
 input.applytemplate:hover {
-    background-color: #3B8686;
-    color: #fff;
-    border-right: 1px solid #3B8686;
-    opacity: 0.4;
-    moz-opacity:0.4;
-    filter:alpha(opacity=40);
-    -moz-opacity: 0.4;
-    -khtml-opacity: 0.4;
+    background-color: #EAEAEA;
+    border: 1px solid #DDDDDD;
+    transition: background 250ms ease-in 0s;
     transition: background 250ms ease-in;
     -webkit-transition: background 250ms ease-in;
     -moz-transition: background 250ms ease-in;

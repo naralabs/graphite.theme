@@ -108,6 +108,9 @@
         <!-- Breadcrumbs -->
         <replace css:content-children='#portal-breadcrumbs' css:theme-children='#breadcrumbs' />
 
+        <!-- Portal global nav -->
+        <replace css:content-children='#portal-globalnav' css:theme-children='#portal-globalnav' />
+
         <!-- Portal Search box -->
         <replace css:content-children='#portal-searchbox' css:theme-children='#portal-searchbox' />
 
@@ -184,7 +187,6 @@
         </after>
 
         <replace css:theme-children='#portletNavigationTree' css:content='.portletNavigationTree'/>
-        <replace css:theme-children='#portal-globalnav' css:content='#portal-globalnav' />
 
         <!-- Document Edit bar -->
         <replace css:content="#edit-bar" css:theme="#edit-bar" />
