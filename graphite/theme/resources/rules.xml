@@ -108,6 +108,9 @@
         <!-- Breadcrumbs -->
         <replace css:content-children='#portal-breadcrumbs' css:theme-children='#breadcrumbs' />
 
+        <!-- Portal Search box -->
+        <replace css:content-children='#portal-searchbox' css:theme-children='#portal-searchbox' />
+
         <!-- Navigation menu
              We add the content navmenu into a hidden div.
              The themed menu is built using javascript. This way we can

@@ -73,6 +73,61 @@ input[type="submit"],
     font-weight: 300;
 }
 
+/* portal-searchbox */
+#portal-searchbox {
+    z-index: 2100;
+    top: 8px;
+    position: fixed;
+    right: 10px;
+    font-size: 0.9em;
+}
+#portal-searchbox div.searchSection {
+    border: 1px solid red;
+    float: left;
+    display: none;
+}
+#portal-searchbox input[type="submit"] {
+    margin-left: 5px;
+    color: #fff;
+    background-color: transparent;
+    font-size: 1.3em;
+    font-family: 'Open Sans';
+    border: none;
+}
+#portal-searchbox input[type="text"] {
+    border: 1px solid #cdcdcd;
+    box-shadow: 0 0 2px 1px #333;
+    padding: 3px;
+    background-color: #ddd;
+    border-radius: 3px;
+}
+.LSBox {
+    text-align: right;
+}
+#LSResult {
+    background-color: #FFFFFF;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 1px 1px 5px #666666;
+    margin-right: 20px;
+    padding: 20px;
+    text-align: left;
+    font-size: 1.1em;
+    width: 400px;
+    display:none;
+}
+#LSResult #livesearchLegend {
+    font-weight: 600;
+    font-size: 1.1em;
+}
+#LSResult li {
+    margin: 0;
+    padding: 0 0 5px 0;
+    line-height: 130%;
+}
+#LSResult ul {
+    padding: 0 0 0 20px;
+}
+
 
 
 fieldset {
