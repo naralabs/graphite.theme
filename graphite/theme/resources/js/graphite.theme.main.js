@@ -348,6 +348,7 @@ function GraphiteTheme() {
             loadpanel = true;
             setTimeout(function() {
                 if (loadpanel == true) {
+                    $(window).scroll();
                     $('#loading-pane').fadeIn('slow',function() {
                         if (loadpanel == false) {
                             hideLoadingPanel();
