@@ -73,13 +73,18 @@ input[type="submit"],
     font-weight: 300;
 }
 
+/* portal-tools-wrapper */
+#portal-tools-wrapper {
+    position: fixed;
+    right: 20px;
+    top: 8px;
+    z-index: 2100;
+}
+
 /* portal-searchbox */
 #portal-searchbox {
-    z-index: 2100;
-    top: 8px;
-    position: fixed;
-    right: 10px;
     font-size: 0.9em;
+    float: left;
 }
 #portal-searchbox div.searchSection {
     border: 1px solid red;
@@ -126,6 +131,52 @@ input[type="submit"],
 }
 #LSResult ul {
     padding: 0 0 0 20px;
+}
+
+/* portal personal tools */
+#portal-personaltools-wrapper {
+    color: #FFFFFF;
+    margin: 0;
+    padding: 0;
+    float: left;
+}
+#portal-personaltools {
+    margin: 0;
+}
+#portal-personaltools.deactivated dd {
+    display: none;
+}
+#portal-personaltools .actionMenuHeader {
+    float: none;
+    margin: 0;
+    padding: 0;
+    text-align: right;
+    padding: 1px 0;
+}
+#portal-personaltools .actionMenuContent {
+    background-color: #FFFFFF;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 1px 1px 5px #666666;
+    font-size: 1.1em;
+    padding: 20px;
+    text-align: left;
+}
+#portal-personaltools .actionMenuHeader a {
+    color: #FFFFFF;
+    font-size: 0.8em;
+    text-transform: capitalize;
+}
+#portal-personaltools .actionMenuHeader a:hover {
+        opacity:0.7;
+    moz-opacity:0.7;
+    filter:alpha(opacity=70);
+    -moz-opacity: 0.7;
+    -khtml-opacity: 0.7;
+    -webkit-transition: opacity 250ms ease-in-out;
+    -moz-transition: opacity 250ms ease-in-out;
+    -o-transition: opacity 250ms ease-in-out;
+    -ms-transition: opacity 250ms ease-in-out;
+    transition: opacity 250ms ease-in-out;
 }
 
 
