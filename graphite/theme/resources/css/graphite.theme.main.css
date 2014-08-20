@@ -34,7 +34,6 @@
 
 html, body {
     color:#333;
-    font-family:"Open Sans", Helvetica, Arial, sans-serif;
     font-size:0.90em;
     margin:0px auto;
     padding-top:0px;
@@ -50,6 +49,31 @@ a {
 a:hover {
     color:#2b7bc1;
 }
+
+/* Fonts */
+html, body {
+    font-family:"Open Sans", Helvetica, Arial, sans-serif;
+}
+#breadcrumbs,
+
+div.nav-container ul,
+#content h1,
+#content h2,
+input.context_action_link,
+input[type="submit"],
+#edit-bar ul#content-views li a,
+#content li.formTab a,
+#content-core li.formTab,
+#edit-bar div.contentActions {
+    /*font-family:'Titillium Web','Open Sans', sans-serif, Helvetica, Arial;*/
+}
+
+#content h1,
+#content h2 {
+    font-weight: 300;
+}
+
+
 
 fieldset {
     border:none;
@@ -132,10 +156,9 @@ div.constraint {
     height: 0;
 }
 #logo {
-    background-color: #efefef;
-    border-bottom: 2px solid #DCDCDC;
-    box-shadow: 0 0 10px 2px #CDCDCD;
-    moz-box-shadow: 0 0 10px 2px #CDCDCD;
+    background-color: #454545;
+    border-bottom: 1px solid #CCCCCC;
+    box-shadow: 0 0 10px 2px #999999;
     left: 0;
     top: 0;
     padding: 10px;
@@ -143,15 +166,24 @@ div.constraint {
     right: 0;
     z-index: 2000;
 }
+a#portal-logo {
+    background-color: #EFEFEF;
+    border-bottom: 1px solid #BBBBBB;
+    border-radius: 0 0 20px 0;
+    border-top: 1px solid #CDCDCD;
+    margin: -10px 0 0 -10px;
+    padding: 20px 70px 11px 10px;
+}
 .backgrey {
     background-color:#f5f5f5;
 }
+
+
 
 /* Nav menu */
 div.nav-container ul {
     margin: 0;
     padding: 0;
-    font-family:'Titillium Web','Open Sans', sans-serif, Helvetica, Arial;
 }
 div.nav-container ul.navtree li {
     font-size: 1.2em;
@@ -297,19 +329,12 @@ div.show-column-left a:hover {
     background-color: #FFFFFF;
     border-bottom: 1px solid #DCDCDC;
     color: #333333;
-    font-family: 'Titillium Web','Open Sans',sans-serif,Helvetica,Arial;
     font-size: 0.9em;
     padding: 15px 0 8px;
 }
 #breadcrumbs-current {
     font-size: 1.2em;
     font-weight: bold;
-}
-
-#content h1,
-#content h2 {
-    font-family: 'Titillium web',Arial,Helvetica,Sans;
-    font-weight: 300;
 }
 
 #content h1 img {
@@ -694,7 +719,6 @@ input[type="submit"] {
     /*color: #FFFFFF;*/
     cursor: pointer;
     display: inline-block;
-    font-family: 'Open Sans',sans-serif,Helvetica,Arial;
     font-size: 0.9em;
     line-height: 1;
     margin-right: 10px;
@@ -929,7 +953,6 @@ input.applytemplate:hover {
 #edit-bar ul#content-views li a,
 #content li.formTab a,
 #content-core li.formTab  {
-    font-family: 'Titillium web',Arial,Helvetica,Sans;
     padding: 5px 8px;
 }
 #edit-bar ul#content-views li {
@@ -940,7 +963,6 @@ input.applytemplate:hover {
     margin-right: 2px;
 }
 #edit-bar div.contentActions {
-font-family: "Titillium Web";
     margin-top: 20px;
 }/*
 dl.actionMenu.deactivated dd {
