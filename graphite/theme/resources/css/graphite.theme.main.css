@@ -1866,3 +1866,61 @@ table.manage_results_header th {
 .template-ar_add #content table.listing.analysisrequest.add th.topborder {
     padding: 10px 0 5px 20px;
 }
+
+/** Import view **/
+.template-import #content h3 {
+    font-size: 1.4em;
+    margin: 20px 0 20px 0;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+.template-import #content input[type="submit"] {
+    background-color: #3B8686;
+    color: #FFFFFF;
+    font-family: 'Titillium web',Arial,Helvetica,Sans;
+    font-size: 1.1em;
+    font-weight: 300;
+    margin-right: 20px;
+    padding: 3px 15px 4px;
+    vertical-align: middle;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.template-import #content input[type="submit"]:hover {
+    opacity:0.4;
+    filter:alpha(opacity=40);
+    -moz-opacity: 0.4;
+    -khtml-opacity: 0.4;
+    background-color: #3B8686;
+    color: #fff;
+    -webkit-transition: background 250ms ease-in;
+    -moz-transition: background 250ms ease-in;
+    -o-transition: background 250ms ease-in;
+    -ms-transition: background 250ms ease-in;
+    transition: background 250ms ease-in;
+}
+
+.template-import .errorbox,
+.template-import .warnbox,
+.template-import .logbox {
+    padding-top: 15px;
+}
+.template-import .errorbox ul,
+.template-import .warnbox ul,
+.template-import .logbox ul {
+    font-family: "Monospace";
+    list-style-type: square;
+    padding-left: 20px;
+    line-height: 160%;
+}
+
+.template-import .errorbox {
+    color: #CC333F;
+}
+.template-import .warnbox {
+    color: #EB6841;
+}
+.template-import table tr td {
+    padding: 3px 0 3px 0;
+    min-width: 150px;
+}
