@@ -1739,3 +1739,130 @@ table.manage_results_header th {
     margin: 0 1em 0.5em 0.5em;
     width: 35%;
 }
+
+/** Analysis Request Add view **/
+.template-ar_add #parent-fieldname-description {
+    font-size: 1.6em;
+    font-weight: 400;
+    margin-bottom: 20px;
+    background-color: #efefef;
+    padding: 10px 10px 10px 15px;
+    border-left: 5px solid #ddd;
+    border-radius: 2px 0 0 2px;
+    color: #0B486B;
+    font-weight: 300;
+}
+
+.template-ar_add table.listing.analysisrequest.add {
+    text-align: left;
+}
+.template-ar_add table.listing.analysisrequest.add td {
+    padding-right: 15px;
+    vertical-align: middle;
+}
+.template-ar_add table.listing.analysisrequest.add td img.copyButton {
+    cursor: pointer;
+    background-color: #efefef;
+    padding: 3px;
+    margin-top: 4px;
+    border-radius: 10px;
+}
+.template-ar_add table.listing.analysisrequest.add td img.copyButton:hover {
+    background-color:#ccc;
+    -webkit-transition: background 250ms ease-in;
+    -moz-transition: background 250ms ease-in;
+    -o-transition: background 250ms ease-in;
+    -ms-transition: background 250ms ease-in;
+    transition: background 250ms ease-in;
+}
+.template-ar_add table.listing.analysisrequest.add th {
+    padding: 0;
+    vertical-align: middle;
+}
+.template-ar_add table.listing.analysisrequest.add th label {
+    background-color: #efefef;
+    display: block;
+    font-weight: 400;
+    margin: 4px 8px 0 0;
+    padding: 3px 0 3px 10px;
+    border-left: 4px solid #ddd;
+}
+.template-ar_add table.listing.analysisrequest.add th label em {
+    font-size: 0.9em;
+    font-weight: 300;
+    font-style: normal;
+}
+.template-ar_add table.listing.analysisrequest.add td div.field {
+    margin: 0;
+}
+.template-ar_add table.listing.analysisrequest.add thead.pointofcapture th {
+    padding-top: 30px;
+}
+.template-ar_add table.listing.analysisrequest.add thead.pointofcapture th span {
+    font-size: 1.4em;
+    font-weight: 300;
+    padding-left: 5px;
+}
+
+.template-ar_add table.listing.analysisrequest.add th.analysiscategory {
+    border-bottom: 1px solid #CDCDCD;
+    font-size: 1.1em;
+    font-weight: 400;
+    margin: 5px;
+    padding: 15px 0 5px 22px;
+    cursor:pointer;
+}
+.template-ar_add table.listing.analysisrequest.add tbody.analysisservices.expanded tr td.service {
+    padding-left: 0;
+}
+.template-ar_add table.listing.analysisrequest.add tbody.analysisservices.expanded tr td {
+    padding-left: 22px;
+}
+.template-ar_add table.listing.analysisrequest.add th.analysiscategory:hover,
+.template-ar_add table.listing.analysisrequest.add th.analysiscategory.expanded {
+    background-color:#eee;
+    -webkit-transition: background 250ms ease-in;
+    -moz-transition: background 250ms ease-in;
+    -o-transition: background 250ms ease-in;
+    -ms-transition: background 250ms ease-in;
+    transition: background 250ms ease-in;
+    color: #0B486B;
+    font-weight: bold;
+}
+
+.template-ar_add input[type="submit"] {
+    background-color: #3B8686;
+    color: #FFFFFF;
+    font-family: 'Titillium web',Arial,Helvetica,Sans;
+    font-size: 1.1em;
+    font-weight: 300;
+    margin-right: 20px;
+    padding: 3px 15px 4px;
+    vertical-align: middle;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.template-ar_add input[type="submit"]:hover {
+    opacity:0.4;
+    filter:alpha(opacity=40);
+    -moz-opacity: 0.4;
+    -khtml-opacity: 0.4;
+    background-color: #3B8686;
+    color: #fff;
+    -webkit-transition: background 250ms ease-in;
+    -moz-transition: background 250ms ease-in;
+    -o-transition: background 250ms ease-in;
+    -ms-transition: background 250ms ease-in;
+    transition: background 250ms ease-in;
+}
+.template-ar_add table.listing.analysisrequest.add th.topborder {
+    padding: 10px 0 5px 20px;
+}
+.template-ar_add table.listing.analysisrequest.add .topborder {
+    font-weight: normal;
+    background-color: #efefef;
+    padding: 5px;
+}
+.template-ar_add table.listing.analysisrequest.add th.topborder {
+    padding: 10px 0 5px 20px;
+}

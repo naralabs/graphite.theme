@@ -646,6 +646,7 @@ function GraphiteTheme() {
                 htmldata = $(htmldata).find('div.column-center').html();
                 var breaddata = $(htmldata).find('#breadcrumbs').html();
                 $('#breadcrumbs').html(breaddata);
+                $('#viewlet-above-content').html('');
                 $('div.column-center').html(htmldata);
             })
             .fail(function(data) {
