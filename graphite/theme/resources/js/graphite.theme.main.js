@@ -440,6 +440,14 @@ function GraphiteTheme() {
                     '<span id="breadcrumbs-1" dir="ltr">' +
                     '<a href="'+$(currnode).attr('href')+'">'+currnodetext+'</a>' +
                     '</span>';
+            } else if ($('#portal-globalnav li.selected').length > 0) {
+                var currnode = $('#portal-globalnav li.selected a');
+                var currnodetext = $(currnode).find('span').length ? $.trim($(currnode).find('span').html()) : $.trim($(currnode).html());
+                breadhtml +=
+                    '<span class="breadcrumbSeparator"> › </span>' +
+                    '<span id="breadcrumbs-1" dir="ltr">' +
+                    '<a href="'+$(currnode).attr('href')+'">'+currnodetext+'</a>' +
+                    '</span>';
             }
             $('#breadcrumbs').html(breadhtml);
         }
