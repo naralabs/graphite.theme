@@ -3,5 +3,9 @@ Changelog
 
 1.0dev (unreleased)
 -------------------
+- GRTH-AR Imports icon not found
+- GRTH-15 Import/LoadSetup data is not working
+- GRTH-10 The save icon should be something more than simple txt
+- GRTH-9 No good construction in Add AR Form
 
 - Initial release
