@@ -678,10 +678,39 @@ function GraphiteTheme() {
                 var pageInfo = { title: title, url: url };
                 history.pushState(pageInfo, pageInfo.title, pageInfo.url);
                 currsectionid = url.replace(window.portal_url, '');
+                fixUrls(pageInfo.url);
                 loadPartial();
                 hideLoadingPanel();
                 bIsLoading = false;
             });
+    }
+
+    function fixUrls(url) {
+        var urlspl = url.split("?")[0].split("#")[0];
+        $('form').each(function() {
+            var action = $(this).attr('action');
+            if (action == undefined || action == null) {
+                action = '';
+            }
+            if (action.lastIndexOf("/", 0) === 0
+                || action.lastIndexOf("http", 0) == 0) {
+                // Do nothing
+            } else {
+                $(this).attr('action', urlspl+"/"+action)
+            }
+        });
+        $('#content a').each(function() {
+            var href = $(this).attr('href');
+            if (href == undefined || href == null) {
+                href = '';
+            }
+            if (href.lastIndexOf("/", 0) === 0
+                || href.lastIndexOf("http", 0) == 0) {
+                // Do nothing
+            } else {
+                $(this).attr('href', urlspl+"/"+href);
+            }
+        });
     }
 
     /**
