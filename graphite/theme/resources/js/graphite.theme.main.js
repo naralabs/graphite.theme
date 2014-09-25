@@ -137,7 +137,8 @@ function GraphiteTheme() {
     var omitajaxrequests = ['#',
                             'at_download',
                             '/sticker?',
-                            'mailto:'];
+                            'mailto:',
+                            'error_log/getLogEntryAsText'];
 
     var that = this;
 
