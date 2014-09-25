@@ -1929,3 +1929,14 @@ table.manage_results_header th {
     padding: 3px 0 3px 0;
     min-width: 150px;
 }
+
+/* Setup Data Import view */
+.template-import #fieldset-setupdata h2 {
+    margin-left:0px;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+.template-import #content #fieldset-setupdata input[type="submit"] {
+    margin-top:0px;
+    margin-left:15px;
+}

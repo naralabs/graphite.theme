@@ -151,6 +151,8 @@ function GraphiteTheme() {
         loadNavMenu();
 
         // Dynamic page load behavior to links
+        $('#portal-globalnav li a').unbind("click");
+        $('#portal-globalnav li a').click(processLink);
         $('.column-center a').unbind("click");
         $('.column-center a').click(processLink);
 
@@ -604,6 +606,13 @@ function GraphiteTheme() {
             }
         });
         if (!omit) {
+            $('#portal-globalnav li a').each(function() {
+                if (url.lastIndexOf($(this).attr('href'), 0) === 0) {
+                    $(this).parent('li').removeClass('plain').addClass('selected');
+                } else {
+                    $(this).parent('li').removeClass('selected').addClass('plain');
+                }
+            });
             requestPage(this.href, $(this).html());
             return false;
         }
