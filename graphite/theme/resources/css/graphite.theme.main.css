@@ -447,6 +447,11 @@ div.nav-container ul.navtree li ul li:last-child {
     margin-bottom: -20px;
     padding-bottom: 10px;
 }
+div.nav-container ul.navtree li ul li.arimports img {
+    background:url('../images/arimport.png') no-repeat left center transparent;
+    padding-left:16px;
+    height:16px;
+}
 
 
 

@@ -254,11 +254,12 @@ function GraphiteTheme() {
                     if (item in runtimenav) {
                         var runitem = runtimenav[item];
                         var active = !activedetected && currsectionid.indexOf('/'+item) > -1;
-                        var cssclass = '';
+                        var cssclass = ' class="'+item;
                         if (active) {
-                            cssclass = ' class="active"';
+                            cssclass += " active";
                             activedetected = true;
                         }
+                        cssclass += '"';
                         var itemli = '<li'+cssclass+'><a href="'+runitem[0]+'"><img src="'+runitem[2]+'">'+runitem[1]+'</a></li>';
                         var sectionid = navmenu[section]['id']
                         var sectionul = null;
