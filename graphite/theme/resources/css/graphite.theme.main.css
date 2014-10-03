@@ -1955,3 +1955,9 @@ table.manage_results_header th {
     margin-top:0px;
     margin-left:15px;
 }
+
+/* Plone's built-in ajax-overlay */
+.overlay.overlay-ajax {
+    display:none;
+    visibility:hidden;
+}
