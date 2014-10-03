@@ -937,6 +937,7 @@ input[type="submit"] {
 }
 
 input.context_action_link:hover,
+a.button:hover,
 input[type="submit"]:hover {
     opacity:0.7;
     moz-opacity:0.7;
@@ -1928,6 +1929,20 @@ table.manage_results_header th {
 .template-import table tr td {
     padding: 3px 0 3px 0;
     min-width: 150px;
+}
+
+/* Portal alert */
+#portal-alert input, #portal-alert a.button {
+    background-color: #CC333F;
+    color: #FFFFFF;
+    font-family: 'Open Sans';
+    margin: 0 5px;
+    padding: 3px 10px;
+    text-shadow: none;
+    text-transform: uppercase;
+}
+#portal-alert a.button {
+    padding: 3px 10px 4px;
 }
 
 /* Setup Data Import view */
