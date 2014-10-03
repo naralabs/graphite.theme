@@ -140,6 +140,24 @@ function GraphiteTheme() {
                             'mailto:',
                             'error_log/getLogEntryAsText'];
 
+    // After every request, unbind events with a 'live' handler attached
+    // which don't follow the recommended behavior and their 'live'
+    // event is still triggered after new requests loaded dynamically.
+    // Mostly related with BikaListingTable
+    var unbindelements = ["th.sortable",
+                          "input[id*='select_all']",
+                          "input[id*='_cb_']",
+                          ".listing_string_entry,.listing_select_entry",
+                          "select.pagesize",
+                          ".bika-listing-table th.collapsed",
+                          ".bika-listing-table th.expanded",
+                          ".listing_select_entry",
+                          ".filter-search-input",
+                          ".filter-search-button",
+                          ".workflow_action_button",
+                          "th[id^='foldercontents-']",
+                          ".contextmenu tr"];
+
     var that = this;
 
     that.load = function() {
@@ -651,7 +669,40 @@ function GraphiteTheme() {
 
         setActiveNavItem(url);
         showLoadingPanel(PMF("Loading")+" "+text+"...");
-        $.ajax(url)
+
+        // Unbind unrecommended live handlers
+        // http://api.jquery.com/die/
+        unbind();
+
+        // Call the page, but wait until unbinding gets finished
+        setTimeout(function() {
+            delayGetPage(500, url, text);
+        }, 200);
+
+    }
+
+    var _unbinding = false;
+    /**
+     *  After every request, unbind events with a 'live' handler attached
+     * which don't follow the recommended behavior and their 'live'
+     * event is still triggered after new requests loaded dynamically.
+     * Uses the unbindelements array values
+     */
+    function unbind() {
+        $.each(unbindelements, function(index, value){
+            $(value).die();
+            _unbinding = true;
+        });
+        _unbinding = false;
+    }
+
+    function delayGetPage(timeout, url, text) {
+        if (_unbinding == true) {
+            setTimeout(function() {
+                delayGetPage(timeout, url, text);
+            }, timeout);
+        } else {
+            $.ajax(url)
             .done(function(data) {
                 var htmldata = data;
                 loadCSS(data);
@@ -683,6 +734,7 @@ function GraphiteTheme() {
                 hideLoadingPanel();
                 bIsLoading = false;
             });
+        }
     }
 
     function fixUrls(url) {
