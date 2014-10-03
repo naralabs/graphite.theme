@@ -162,6 +162,20 @@ function GraphiteTheme() {
 
     that.load = function() {
 
+        // Graphite Theme control bar
+        $('#portal-theme a').click(function(e) {
+            e.preventDefault();
+            // TODO To be improved using cookie instead of GET param
+            var currurl = window.location.pathname;
+            if (currurl.indexOf('?') > -1) {
+                currurl += '&diazo.off=1';
+            } else {
+                currurl += '?diazo.off=1';
+            }
+            window.location.href = currurl;
+        });
+
+
         $('#portal-logo img')
             .attr('width', portal_logo_dimensions['width'])
             .attr('height', portal_logo_dimensions['height']);

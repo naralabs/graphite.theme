@@ -1961,3 +1961,34 @@ table.manage_results_header th {
     display:none;
     visibility:hidden;
 }
+
+/* Graphite Theme Status */
+#portal-theme {
+    color: #FFFFFF;
+    float: right;
+    padding: 7px 20px;
+}
+#portal-theme a {
+    color:#fff;
+}
+#portal-theme #graphite-theme-status {
+    background-color: #777777;
+    border-radius: 5px 5px 5px 5px;
+    margin-left: 6px;
+    padding: 1px;
+}
+#portal-theme #graphite-theme-status span {
+    padding:0 6px;
+}
+#portal-theme #graphite-theme-status span.on {
+    background-color: #008000;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 0 1px #999999;
+    color: #FFFFFF;
+    font-size: 1em;
+    font-weight: bold;
+    text-shadow: 1px 0 10px #FFFFFF;
+}
+#portal-theme #graphite-theme-status span.off {
+    color: #CCCCCC;
+}
