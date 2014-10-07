@@ -1961,6 +1961,10 @@ table.manage_results_header th {
     display:none;
     visibility:hidden;
 }
+.overlay.overlay-ajax.overlay-login {
+    visibility:visible;
+    display:block;
+}
 
 /* Graphite Theme Status */
 #portal-theme {
