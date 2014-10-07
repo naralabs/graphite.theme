@@ -165,13 +165,7 @@ function GraphiteTheme() {
         // Graphite Theme control bar
         $('#portal-theme a').click(function(e) {
             e.preventDefault();
-            var currurl = window.location.pathname;
-            if (currurl.indexOf('?') > -1) {
-                currurl += '&diazo.off=1';
-            } else {
-                currurl += '?diazo.off=1';
-            }
-            window.location.href = currurl;
+            deactivateTheme();
         });
 
 
@@ -963,7 +957,18 @@ function GraphiteTheme() {
                 pt.addClass('deactivated');
             }
         });
+    }
 
+    function deactivateTheme() {
+        var url = portal_url+"/@@theming-controlpanel";
+        var auth = $('input[name="_authenticator"]').val();
+        $.post(url, {
+            _authenticator: auth,
+            themeName: 'graphite.theme',
+            "form.button.Disable": "Deactivate"})
+        .done(function( data ) {
+            window.location.href=window.document.URL;
+        });
     }
 }
 
