@@ -165,7 +165,6 @@ function GraphiteTheme() {
         // Graphite Theme control bar
         $('#portal-theme a').click(function(e) {
             e.preventDefault();
-            // TODO To be improved using cookie instead of GET param
             var currurl = window.location.pathname;
             if (currurl.indexOf('?') > -1) {
                 currurl += '&diazo.off=1';
@@ -719,24 +718,31 @@ function GraphiteTheme() {
             $.ajax(url)
             .done(function(data) {
                 var htmldata = data;
-                loadCSS(data);
-                loadDynJS(data);
-                // Get the body class
-                var bodyregex = RegExp('body.+class="(.*?)"', 'g');
-                var matches = bodyregex.exec(data);
-                if (matches != null && matches.length > 1) {
-                    $('body').attr('class', matches[1]);
+                try {
+                    loadCSS(data);
+                    loadDynJS(data);
+                    // Get the body class
+                    var bodyregex = RegExp('body.+class="(.*?)"', 'g');
+                    var matches = bodyregex.exec(data);
+                    if (matches != null && matches.length > 1) {
+                        $('body').attr('class', matches[1]);
+                    }
+                    htmldata = $(htmldata).find('div.column-center').html();
+                    var breaddata = $(htmldata).find('#breadcrumbs').html();
+                    $('#breadcrumbs').html(breaddata);
+                    $('#viewlet-above-content').html('');
+                    $('div.column-center').html(htmldata);
+                } catch (e) {
+                    // Fallback to the failed url
+                    window.location.href = url;
                 }
-                htmldata = $(htmldata).find('div.column-center').html();
-                var breaddata = $(htmldata).find('#breadcrumbs').html();
-                $('#breadcrumbs').html(breaddata);
-                $('#viewlet-above-content').html('');
-                $('div.column-center').html(htmldata);
             })
             .fail(function(data) {
-                var htmldata = $('<div/>').html(data.responseText).text();
+                // Fallback to the failed url
+                window.location.href = url;
+               /* var htmldata = $('<div/>').html(data.responseText).text();
                 var htmldata = "<p>Request URL: <a href='"+url+"'>"+url+"</a></p>" + htmldata;
-                $('div.column-center').html("<div class='error-page'>"+htmldata+"</div>");
+                $('div.column-center').html("<div class='error-page'>"+htmldata+"</div>");*/
             })
             .always(function(data) {
                 var title = $(data).filter('title').text();
