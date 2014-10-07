@@ -718,7 +718,12 @@ function GraphiteTheme() {
     }
 
     function delayGetPage(timeout, url, text) {
-        if (_unbinding == true) {
+        // Theme enabled?
+        var disabled = readCookie("bika.graphite.disabled");
+        var disabled = disabled == '1';
+        if (disabled) {
+            window.location.href = url;
+        } else if (_unbinding == true) {
             setTimeout(function() {
                 delayGetPage(timeout, url, text);
             }, timeout);
