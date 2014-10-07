@@ -1936,10 +1936,11 @@ table.manage_results_header th {
     background-color: #CC333F;
     color: #FFFFFF;
     font-family: 'Open Sans';
-    margin: 0 5px;
+    margin: 5px 5px;
     padding: 3px 10px;
     text-shadow: none;
     text-transform: uppercase;
+    border:none;
 }
 #portal-alert a.button {
     padding: 3px 10px 4px;
