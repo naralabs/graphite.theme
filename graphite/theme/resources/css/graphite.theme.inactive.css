@@ -1,0 +1,33 @@
+@CHARSET "UTF-8";
+
+#portal-theme {
+    color: #FFFFFF;
+    float: right;
+    padding: 7px 20px;
+    font-size: 0.80em;
+}
+#portal-theme a {
+    color: #333;
+}
+#portal-theme #graphite-theme-status {
+    background-color: #777777;
+    border-radius: 5px 5px 5px 5px;
+    margin-left: 6px;
+}
+#portal-theme #graphite-theme-status span {
+    padding: 0 4px;
+    font-size: 0.85em;
+}
+#portal-theme #graphite-theme-status span.on {
+    border-radius: 5px 5px 5px 5px;
+    color: #CCC;
+    padding-right: 5px;
+}
+#portal-theme #graphite-theme-status span.off {
+    color: #fff;
+    background-color: red;
+    border-radius: 5px;
+    text-shadow: 1px 0 10px #fff;
+    font-weight: bold;
+    padding: 1px 2px 0px 4px;
+}

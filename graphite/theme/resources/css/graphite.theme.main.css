@@ -1997,6 +1997,30 @@ table.manage_results_header th {
     padding-left: 2px;
 }
 
+
+/* Header table (i.e. AR Details view) */
+.header_table {
+    width: 100%;
+    margin-bottom:20px;
+}
+.header_table tr td.value {
+    padding: 0 10px;
+}
+.header_table tr td.key {
+    font-weight: bold;
+    margin-right: 20px;
+    background-color: #DCDCDC;
+    padding: 7px 10px;
+}
+#header_form input[type='submit'] {
+    background-color: #3B8686;
+    color: #FFFFFF;
+    font-family: 'Titillium web',Arial,Helvetica,Sans;
+    font-size: 1.1em;
+    padding: 3px 15px 4px;
+    vertical-align: middle;
+}
+
 /* Overview Panel */
 .template-overview-controlpanel #content h2 {
     margin-left:0;

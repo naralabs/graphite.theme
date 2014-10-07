@@ -162,11 +162,25 @@ function GraphiteTheme() {
 
     that.load = function() {
 
+        // Theme enabled?
+        var disabled = readCookie("bika.graphite.disabled");
+        var disabled = disabled == '1';
+
         // Graphite Theme control bar
         $('#portal-theme a').click(function(e) {
             e.preventDefault();
-            deactivateTheme();
+            if (disabled) {
+                createCookie("bika.graphite.disabled", "0");
+            } else {
+                createCookie("bika.graphite.disabled", "1");
+            }
+            window.location.href=window.document.URL;
         });
+
+        if (disabled) {
+            // No theme. Do nothing!
+            return;
+        }
 
 
         $('#portal-logo img')
