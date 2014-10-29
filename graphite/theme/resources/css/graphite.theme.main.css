@@ -1138,6 +1138,7 @@ input.applytemplate:hover {
     padding: 0;
     margin-top: 15px;
 }
+
 #edit-bar ul#content-views li a:hover,
 #content li.formTab a:hover,
 #content-core li.formTab a:hover {
@@ -1479,7 +1480,8 @@ dd.actionMenuContent a#workflow-transition-deactivate,
 dd.actionMenuContent a#workflow-transition-cancel,
 dd.actionMenuContent a#workflow-transition-retract,
 dd.actionMenuContent a#workflow-transition-retract_ar,
-dd.actionMenuContent a#workflow-transition-reject {
+dd.actionMenuContent a#workflow-transition-reject,
+dd.actionMenuContent a#workflow-transition-assign {
     color:#333;
 }
 dd.actionMenuContent a#workflow-transition-sample:before,
@@ -1497,6 +1499,16 @@ dd.actionMenuContent a#workflow-transition-reject:before {
     font-family: "Ionicons";
     font-size: 1.2em;
     padding-right: 2px;
+}
+dd.actionMenuContent a#workflow-transition-assign:before {
+    content: "\f211";
+    font-family: "Ionicons";
+    font-size: 1.2em;
+    padding-right: 2px;
+}
+dd.actionMenuContent a#workflow-transition-assign:hover,
+dd.actionMenuContent a#workflow-transition-assign:before {
+    color:#333;
 }
 dd.actionMenuContent a#workflow-transition-sample:hover,
 dd.actionMenuContent a#workflow-transition-sample:before {
