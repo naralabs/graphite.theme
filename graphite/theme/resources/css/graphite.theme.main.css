@@ -1381,6 +1381,20 @@ input.saveRemarks:hover {
     padding-right: 8px;
     vertical-align: bottom;
 }
+.fieldErrorBox:not(:empty):before {
+    content: "\f2bb";
+    font-family: Ionicons;
+    padding-right: 8px;
+    font-size: 1.4em;
+    vertical-align: bottom;
+}
+.fieldErrorBox:not(:empty) {
+    padding: 10px 20px 20px;
+    color: #CC333F;
+    background-color: #F4EAD5;
+    font-size: 1.1em;
+    margin: 10px 0;
+}
 
 
 #portal-alert {
