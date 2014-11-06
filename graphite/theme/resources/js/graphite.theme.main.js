@@ -774,16 +774,30 @@ function GraphiteTheme() {
 
     function fixUrls(url) {
         var basehref = $('head base').attr('href');
+        basehref = basehref.trim();
+        if (basehref.lastIndexOf("/") == basehref.length -1) {
+            basehref = basehref.slice(0,-1);
+        }
+        var baseaction = basehref.split('/');
+        if (baseaction.length > 0) {
+            baseaction = baseaction[baseaction.length-1];
+        }
         $('form').each(function() {
             var action = $(this).attr('action');
             if (action == undefined || action == null) {
-                action = '';
+                action = url.split("?")[0].split("#")[0].split("/@")[0];
+                action = action.split('/');
+                if (action.length > 0) {
+                    action = action[action.length-1];
+                    action = (baseaction != action) ? action : '';
+                } else {
+                    action = '';
+                }
             }
-            if (action.lastIndexOf("/", 0) === 0
-                || action.lastIndexOf("http", 0) == 0) {
-                // Do nothing
+            if (action != '') {
+                $(this).attr('action', basehref+"/"+action);
             } else {
-                $(this).attr('action', basehref+"/"+action)
+                $(this).attr('action', basehref);
             }
         });
         $('#content a').each(function() {
