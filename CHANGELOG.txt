@@ -1,11 +1,18 @@
 Changelog
 =========
 
-1.0dev (unreleased)
--------------------
-- GRTH-AR Imports icon not found
+1.0 (2014-11-06)
+----------------
+- GRTH-23 Add Contact to Client throws error
+- GRTH-19 Error after trying to add an Attachment Type, Batch Labels or Sub-groups
+- GRTH-22 When you deactivate the theme by Add-ons, the pages doesn't render well
+- GRTH-20 Unable to save a new Invoice
+- GRTH-17 Sometimes activate/deactivate on bikasetup/Instrument doesn't work
+- GRTH-5 Site Setup becomes strange
+- GRTH-2 AR Imports icon not found
 - GRTH-15 Import/LoadSetup data is not working
 - GRTH-10 The save icon should be something more than simple txt
 - GRTH-9 No good construction in Add AR Form
 
-- Initial release
+- ON/OFF button to deactivate/activate Grpahite Theme
+
