@@ -1,7 +1,5 @@
 ##Graphite Theme##
 
-**UNDER DEVELOPMENT - NOT FOR PRODUCTION USE**
-
 Graphite Theme is a Diazo Theme for Bika LIMS https://github.com/bikalabs/Bika-LIMS
 
 This product may contain traces of nuts.
@@ -19,17 +17,10 @@ To install Graphite Theme, you can do this:
         graphite.theme
     ```
 
-2. Add ``src/graphite.theme`` to the develop section from buildout:
-
-    ```
-    develop = 
-        src/graphite.theme
-    ```
-
-3. Re-run buildout, e.g. with:
+2. Re-run buildout, e.g. with:
 
     ```sh
-    $ ./bin/buildout
+    $ bin/buildout
     ```
 
 ***
