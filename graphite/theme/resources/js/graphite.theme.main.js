@@ -794,7 +794,9 @@ function GraphiteTheme() {
                     action = '';
                 }
             }
-            if (action != '') {
+            if (action.lastIndexOf("http", 0) == 0) {
+                $(this).attr('action', action);
+            } else if (action != '') {
                 $(this).attr('action', basehref+"/"+action);
             } else {
                 $(this).attr('action', basehref);
