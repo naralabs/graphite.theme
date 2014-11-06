@@ -732,6 +732,8 @@ function GraphiteTheme() {
             .done(function(data) {
                 var htmldata = data;
                 try {
+                    var xml = $.parseXML(data);
+                    $('head base').attr('href', xml.baseURI);
                     loadCSS(data);
                     loadDynJS(data);
                     // Get the body class
@@ -771,7 +773,7 @@ function GraphiteTheme() {
     }
 
     function fixUrls(url) {
-        var urlspl = url.split("?")[0].split("#")[0];
+        var basehref = $('head base').attr('href');
         $('form').each(function() {
             var action = $(this).attr('action');
             if (action == undefined || action == null) {
@@ -781,7 +783,7 @@ function GraphiteTheme() {
                 || action.lastIndexOf("http", 0) == 0) {
                 // Do nothing
             } else {
-                $(this).attr('action', urlspl+"/"+action)
+                $(this).attr('action', basehref+"/"+action)
             }
         });
         $('#content a').each(function() {
@@ -793,7 +795,7 @@ function GraphiteTheme() {
                 || href.lastIndexOf("http", 0) == 0) {
                 // Do nothing
             } else {
-                $(this).attr('href', urlspl+"/"+href);
+                $(this).attr('href', basehref+"/"+href);
             }
         });
     }
