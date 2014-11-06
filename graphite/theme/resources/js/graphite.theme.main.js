@@ -137,11 +137,51 @@ function GraphiteTheme() {
     var omitajaxrequests = ['#',
                             'at_download',
                             '/sticker?',
-                            'mailto:'];
+                            'mailto:',
+                            'error_log/getLogEntryAsText'];
+
+    // After every request, unbind events with a 'live' handler attached
+    // which don't follow the recommended behavior and their 'live'
+    // event is still triggered after new requests loaded dynamically.
+    // Mostly related with BikaListingTable
+    var unbindelements = ["th.sortable",
+                          "input[id*='select_all']",
+                          "input[id*='_cb_']",
+                          ".listing_string_entry,.listing_select_entry",
+                          "select.pagesize",
+                          ".bika-listing-table th.collapsed",
+                          ".bika-listing-table th.expanded",
+                          ".listing_select_entry",
+                          ".filter-search-input",
+                          ".filter-search-button",
+                          ".workflow_action_button",
+                          "th[id^='foldercontents-']",
+                          ".contextmenu tr"];
 
     var that = this;
 
     that.load = function() {
+
+        // Theme enabled?
+        var disabled = readCookie("bika.graphite.disabled");
+        var disabled = disabled == '1';
+
+        // Graphite Theme control bar
+        $('#portal-theme a').click(function(e) {
+            e.preventDefault();
+            if (disabled) {
+                createCookie("bika.graphite.disabled", "0");
+            } else {
+                createCookie("bika.graphite.disabled", "1");
+            }
+            window.location.href=window.document.URL;
+        });
+
+        if (disabled) {
+            // No theme. Do nothing!
+            return;
+        }
+
 
         $('#portal-logo img')
             .attr('width', portal_logo_dimensions['width'])
@@ -151,6 +191,8 @@ function GraphiteTheme() {
         loadNavMenu();
 
         // Dynamic page load behavior to links
+        $('#portal-globalnav li a').unbind("click");
+        $('#portal-globalnav li a').click(processLink);
         $('.column-center a').unbind("click");
         $('.column-center a').click(processLink);
 
@@ -254,11 +296,12 @@ function GraphiteTheme() {
                     if (item in runtimenav) {
                         var runitem = runtimenav[item];
                         var active = !activedetected && currsectionid.indexOf('/'+item) > -1;
-                        var cssclass = '';
+                        var cssclass = ' class="'+item;
                         if (active) {
-                            cssclass = ' class="active"';
+                            cssclass += " active";
                             activedetected = true;
                         }
+                        cssclass += '"';
                         var itemli = '<li'+cssclass+'><a href="'+runitem[0]+'"><img src="'+runitem[2]+'">'+runitem[1]+'</a></li>';
                         var sectionid = navmenu[section]['id']
                         var sectionul = null;
@@ -436,6 +479,14 @@ function GraphiteTheme() {
                     '<span id="breadcrumbs-1" dir="ltr">' +
                     '<a href="'+$(currnode).attr('href')+'">'+currnodetext+'</a>' +
                     '</span>';
+            } else if ($('#portal-globalnav li.selected').length > 0) {
+                var currnode = $('#portal-globalnav li.selected a');
+                var currnodetext = $(currnode).find('span').length ? $.trim($(currnode).find('span').html()) : $.trim($(currnode).html());
+                breadhtml +=
+                    '<span class="breadcrumbSeparator"> › </span>' +
+                    '<span id="breadcrumbs-1" dir="ltr">' +
+                    '<a href="'+$(currnode).attr('href')+'">'+currnodetext+'</a>' +
+                    '</span>';
             }
             $('#breadcrumbs').html(breadhtml);
         }
@@ -603,6 +654,13 @@ function GraphiteTheme() {
             }
         });
         if (!omit) {
+            $('#portal-globalnav li a').each(function() {
+                if (url.lastIndexOf($(this).attr('href'), 0) === 0) {
+                    $(this).parent('li').removeClass('plain').addClass('selected');
+                } else {
+                    $(this).parent('li').removeClass('selected').addClass('plain');
+                }
+            });
             requestPage(this.href, $(this).html());
             return false;
         }
@@ -632,36 +690,130 @@ function GraphiteTheme() {
 
         setActiveNavItem(url);
         showLoadingPanel(PMF("Loading")+" "+text+"...");
-        $.ajax(url)
+
+        // Unbind unrecommended live handlers
+        // http://api.jquery.com/die/
+        unbind();
+
+        // Call the page, but wait until unbinding gets finished
+        setTimeout(function() {
+            delayGetPage(500, url, text);
+        }, 200);
+
+    }
+
+    var _unbinding = false;
+    /**
+     *  After every request, unbind events with a 'live' handler attached
+     * which don't follow the recommended behavior and their 'live'
+     * event is still triggered after new requests loaded dynamically.
+     * Uses the unbindelements array values
+     */
+    function unbind() {
+        $.each(unbindelements, function(index, value){
+            $(value).die();
+            _unbinding = true;
+        });
+        _unbinding = false;
+    }
+
+    function delayGetPage(timeout, url, text) {
+        // Theme enabled?
+        var disabled = readCookie("bika.graphite.disabled");
+        var disabled = disabled == '1';
+        if (disabled) {
+            window.location.href = url;
+        } else if (_unbinding == true) {
+            setTimeout(function() {
+                delayGetPage(timeout, url, text);
+            }, timeout);
+        } else {
+            $.ajax(url)
             .done(function(data) {
                 var htmldata = data;
-                loadCSS(data);
-                loadDynJS(data);
-                // Get the body class
-                var bodyregex = RegExp('body.+class="(.*?)"', 'g');
-                var matches = bodyregex.exec(data);
-                if (matches != null && matches.length > 1) {
-                    $('body').attr('class', matches[1]);
+                try {
+                    var xml = $.parseXML(data);
+                    $('head base').attr('href', xml.baseURI);
+                    loadCSS(data);
+                    loadDynJS(data);
+                    // Get the body class
+                    var bodyregex = RegExp('body.+class="(.*?)"', 'g');
+                    var matches = bodyregex.exec(data);
+                    if (matches != null && matches.length > 1) {
+                        $('body').attr('class', matches[1]);
+                    }
+                    htmldata = $(htmldata).find('div.column-center').html();
+                    var breaddata = $(htmldata).find('#breadcrumbs').html();
+                    $('#breadcrumbs').html(breaddata);
+                    $('#viewlet-above-content').html('');
+                    $('div.column-center').html(htmldata);
+                } catch (e) {
+                    // Fallback to the failed url
+                    window.location.href = url;
                 }
-                htmldata = $(htmldata).find('div.column-center').html();
-                var breaddata = $(htmldata).find('#breadcrumbs').html();
-                $('#breadcrumbs').html(breaddata);
-                $('div.column-center').html(htmldata);
             })
             .fail(function(data) {
-                var htmldata = $('<div/>').html(data.responseText).text();
+                // Fallback to the failed url
+                window.location.href = url;
+               /* var htmldata = $('<div/>').html(data.responseText).text();
                 var htmldata = "<p>Request URL: <a href='"+url+"'>"+url+"</a></p>" + htmldata;
-                $('div.column-center').html("<div class='error-page'>"+htmldata+"</div>");
+                $('div.column-center').html("<div class='error-page'>"+htmldata+"</div>");*/
             })
             .always(function(data) {
                 var title = $(data).filter('title').text();
                 var pageInfo = { title: title, url: url };
                 history.pushState(pageInfo, pageInfo.title, pageInfo.url);
                 currsectionid = url.replace(window.portal_url, '');
+                fixUrls(pageInfo.url);
                 loadPartial();
                 hideLoadingPanel();
                 bIsLoading = false;
             });
+        }
+    }
+
+    function fixUrls(url) {
+        var basehref = $('head base').attr('href');
+        basehref = basehref.trim();
+        if (basehref.lastIndexOf("/") == basehref.length -1) {
+            basehref = basehref.slice(0,-1);
+        }
+        var baseaction = basehref.split('/');
+        if (baseaction.length > 0) {
+            baseaction = baseaction[baseaction.length-1];
+        }
+        $('form').each(function() {
+            var action = $(this).attr('action');
+            if (action == undefined || action == null) {
+                action = url.split("?")[0].split("#")[0].split("/@")[0];
+                action = action.split('/');
+                if (action.length > 0) {
+                    action = action[action.length-1];
+                    action = (baseaction != action) ? action : '';
+                } else {
+                    action = '';
+                }
+            }
+            if (action.lastIndexOf("http", 0) == 0) {
+                $(this).attr('action', action);
+            } else if (action != '') {
+                $(this).attr('action', basehref+"/"+action);
+            } else {
+                $(this).attr('action', basehref);
+            }
+        });
+        $('#content a').each(function() {
+            var href = $(this).attr('href');
+            if (href == undefined || href == null) {
+                href = '';
+            }
+            if (href.lastIndexOf("/", 0) === 0
+                || href.lastIndexOf("http", 0) == 0) {
+                // Do nothing
+            } else {
+                $(this).attr('href', basehref+"/"+href);
+            }
+        });
     }
 
     /**
@@ -842,7 +994,18 @@ function GraphiteTheme() {
                 pt.addClass('deactivated');
             }
         });
+    }
 
+    function deactivateTheme() {
+        var url = portal_url+"/@@theming-controlpanel";
+        var auth = $('input[name="_authenticator"]').val();
+        $.post(url, {
+            _authenticator: auth,
+            themeName: 'graphite.theme',
+            "form.button.Disable": "Deactivate"})
+        .done(function( data ) {
+            window.location.href=window.document.URL;
+        });
     }
 }
 

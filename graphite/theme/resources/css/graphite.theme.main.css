@@ -447,6 +447,11 @@ div.nav-container ul.navtree li ul li:last-child {
     margin-bottom: -20px;
     padding-bottom: 10px;
 }
+div.nav-container ul.navtree li ul li.arimports img {
+    background:url('../images/arimport.png') no-repeat left center transparent;
+    padding-left:16px;
+    height:16px;
+}
 
 
 
@@ -932,6 +937,7 @@ input[type="submit"] {
 }
 
 input.context_action_link:hover,
+a.button:hover,
 input[type="submit"]:hover {
     opacity:0.7;
     moz-opacity:0.7;
@@ -1132,6 +1138,7 @@ input.applytemplate:hover {
     padding: 0;
     margin-top: 15px;
 }
+
 #edit-bar ul#content-views li a:hover,
 #content li.formTab a:hover,
 #content-core li.formTab a:hover {
@@ -1374,6 +1381,20 @@ input.saveRemarks:hover {
     padding-right: 8px;
     vertical-align: bottom;
 }
+.fieldErrorBox:not(:empty):before {
+    content: "\f2bb";
+    font-family: Ionicons;
+    padding-right: 8px;
+    font-size: 1.4em;
+    vertical-align: bottom;
+}
+.fieldErrorBox:not(:empty) {
+    padding: 10px 20px 20px;
+    color: #CC333F;
+    background-color: #F4EAD5;
+    font-size: 1.1em;
+    margin: 10px 0;
+}
 
 
 #portal-alert {
@@ -1473,7 +1494,8 @@ dd.actionMenuContent a#workflow-transition-deactivate,
 dd.actionMenuContent a#workflow-transition-cancel,
 dd.actionMenuContent a#workflow-transition-retract,
 dd.actionMenuContent a#workflow-transition-retract_ar,
-dd.actionMenuContent a#workflow-transition-reject {
+dd.actionMenuContent a#workflow-transition-reject,
+dd.actionMenuContent a#workflow-transition-assign {
     color:#333;
 }
 dd.actionMenuContent a#workflow-transition-sample:before,
@@ -1491,6 +1513,16 @@ dd.actionMenuContent a#workflow-transition-reject:before {
     font-family: "Ionicons";
     font-size: 1.2em;
     padding-right: 2px;
+}
+dd.actionMenuContent a#workflow-transition-assign:before {
+    content: "\f211";
+    font-family: "Ionicons";
+    font-size: 1.2em;
+    padding-right: 2px;
+}
+dd.actionMenuContent a#workflow-transition-assign:hover,
+dd.actionMenuContent a#workflow-transition-assign:before {
+    color:#333;
 }
 dd.actionMenuContent a#workflow-transition-sample:hover,
 dd.actionMenuContent a#workflow-transition-sample:before {
@@ -1738,4 +1770,300 @@ table.manage_results_header th {
     line-height: 1.25em;
     margin: 0 1em 0.5em 0.5em;
     width: 35%;
+}
+
+/** Analysis Request Add view **/
+.template-ar_add #content #parent-fieldname-description {
+    font-size: 1.6em;
+    font-weight: 400;
+    margin-bottom: 20px;
+    background-color: #efefef;
+    padding: 10px 10px 10px 15px;
+    border-left: 5px solid #ddd;
+    border-radius: 2px 0 0 2px;
+    color: #0B486B;
+    font-weight: 300;
+}
+
+.template-ar_add #content table.listing.analysisrequest.add {
+    text-align: left;
+}
+.template-ar_add #content table.listing.analysisrequest.add td {
+    padding-right: 15px;
+    vertical-align: middle;
+}
+.template-ar_add #content table.listing.analysisrequest.add td img.copyButton {
+    cursor: pointer;
+    background-color: #efefef;
+    padding: 3px;
+    margin-top: 4px;
+    border-radius: 10px;
+}
+.template-ar_add #content table.listing.analysisrequest.add td img.copyButton:hover {
+    background-color:#ccc;
+    -webkit-transition: background 250ms ease-in;
+    -moz-transition: background 250ms ease-in;
+    -o-transition: background 250ms ease-in;
+    -ms-transition: background 250ms ease-in;
+    transition: background 250ms ease-in;
+}
+.template-ar_add #content table.listing.analysisrequest.add th {
+    padding: 0;
+    vertical-align: middle;
+}
+.template-ar_add #content table.listing.analysisrequest.add th label {
+    background-color: #efefef;
+    display: block;
+    font-weight: 400;
+    margin: 4px 8px 0 0;
+    padding: 3px 0 3px 10px;
+    border-left: 4px solid #ddd;
+}
+.template-ar_add #content table.listing.analysisrequest.add th label em {
+    font-size: 0.9em;
+    font-weight: 300;
+    font-style: normal;
+}
+.template-ar_add #content table.listing.analysisrequest.add td div.field {
+    margin: 0;
+}
+.template-ar_add #content table.listing.analysisrequest.add thead.pointofcapture th {
+    padding-top: 30px;
+}
+.template-ar_add #content table.listing.analysisrequest.add thead.pointofcapture th span {
+    font-size: 1.4em;
+    font-weight: 300;
+    padding-left: 5px;
+}
+
+.template-ar_add #content table.listing.analysisrequest.add th.analysiscategory {
+    border-bottom: 1px solid #CDCDCD;
+    font-size: 1.1em;
+    font-weight: 400;
+    margin: 5px;
+    padding: 15px 0 5px 22px;
+    cursor:pointer;
+}
+.template-ar_add #content table.listing.analysisrequest.add tbody.analysisservices.expanded tr td.service {
+    padding-left: 0;
+}
+.template-ar_add #content table.listing.analysisrequest.add tbody.analysisservices.expanded tr td {
+    padding-left: 22px;
+}
+.template-ar_add #content table.listing.analysisrequest.add th.analysiscategory:hover,
+.template-ar_add #content table.listing.analysisrequest.add th.analysiscategory.expanded {
+    background-color:#eee;
+    -webkit-transition: background 250ms ease-in;
+    -moz-transition: background 250ms ease-in;
+    -o-transition: background 250ms ease-in;
+    -ms-transition: background 250ms ease-in;
+    transition: background 250ms ease-in;
+    color: #0B486B;
+    font-weight: bold;
+}
+
+.template-ar_add #content input[type="submit"] {
+    background-color: #3B8686;
+    color: #FFFFFF;
+    font-family: 'Titillium web',Arial,Helvetica,Sans;
+    font-size: 1.1em;
+    font-weight: 300;
+    margin-right: 20px;
+    padding: 3px 15px 4px;
+    vertical-align: middle;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.template-ar_add #content input[type="submit"]:hover {
+    opacity:0.4;
+    filter:alpha(opacity=40);
+    -moz-opacity: 0.4;
+    -khtml-opacity: 0.4;
+    background-color: #3B8686;
+    color: #fff;
+    -webkit-transition: background 250ms ease-in;
+    -moz-transition: background 250ms ease-in;
+    -o-transition: background 250ms ease-in;
+    -ms-transition: background 250ms ease-in;
+    transition: background 250ms ease-in;
+}
+.template-ar_add #content table.listing.analysisrequest.add th.topborder {
+    padding: 10px 0 5px 20px;
+}
+.template-ar_add #content table.listing.analysisrequest.add .topborder {
+    font-weight: normal;
+    background-color: #efefef;
+    padding: 5px;
+}
+.template-ar_add #content table.listing.analysisrequest.add th.topborder {
+    padding: 10px 0 5px 20px;
+}
+
+/** Import view **/
+.template-import #content h3 {
+    font-size: 1.4em;
+    margin: 20px 0 20px 0;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+.template-import #content input[type="submit"] {
+    background-color: #3B8686;
+    color: #FFFFFF;
+    font-family: 'Titillium web',Arial,Helvetica,Sans;
+    font-size: 1.1em;
+    font-weight: 300;
+    margin-right: 20px;
+    padding: 3px 15px 4px;
+    vertical-align: middle;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.template-import #content input[type="submit"]:hover {
+    opacity:0.4;
+    filter:alpha(opacity=40);
+    -moz-opacity: 0.4;
+    -khtml-opacity: 0.4;
+    background-color: #3B8686;
+    color: #fff;
+    -webkit-transition: background 250ms ease-in;
+    -moz-transition: background 250ms ease-in;
+    -o-transition: background 250ms ease-in;
+    -ms-transition: background 250ms ease-in;
+    transition: background 250ms ease-in;
+}
+
+.template-import .errorbox,
+.template-import .warnbox,
+.template-import .logbox {
+    padding-top: 15px;
+}
+.template-import .errorbox ul,
+.template-import .warnbox ul,
+.template-import .logbox ul {
+    font-family: "Monospace";
+    list-style-type: square;
+    padding-left: 20px;
+    line-height: 160%;
+}
+
+.template-import .errorbox {
+    color: #CC333F;
+}
+.template-import .warnbox {
+    color: #EB6841;
+}
+.template-import table tr td {
+    padding: 3px 0 3px 0;
+    min-width: 150px;
+}
+
+/* Portal alert */
+#portal-alert input, #portal-alert a.button {
+    background-color: #CC333F;
+    color: #FFFFFF;
+    font-family: 'Open Sans';
+    margin: 5px 5px;
+    padding: 3px 10px;
+    text-shadow: none;
+    text-transform: uppercase;
+    border:none;
+}
+#portal-alert a.button {
+    padding: 3px 10px 4px;
+}
+
+/* Setup Data Import view */
+.template-import #fieldset-setupdata h2 {
+    margin-left:0px;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+.template-import #content #fieldset-setupdata input[type="submit"] {
+    margin-top:0px;
+    margin-left:15px;
+}
+
+/* Plone's built-in ajax-overlay */
+.overlay.overlay-ajax {
+    display:none;
+    visibility:hidden;
+}
+.overlay.overlay-ajax.overlay-login {
+    visibility:visible;
+    display:block;
+}
+
+/* Graphite Theme Status */
+#portal-theme {
+    color: #FFFFFF;
+    float: right;
+    padding: 7px 20px;
+}
+#portal-theme a {
+    color:#fff;
+}
+#portal-theme #graphite-theme-status {
+    background-color: #777777;
+    border-radius: 5px 5px 5px 5px;
+    margin-left: 6px;
+}
+#portal-theme #graphite-theme-status span {
+    padding:0 6px;
+}
+#portal-theme #graphite-theme-status span.on {
+    background-color: #008000;
+    border-radius: 5px 5px 5px 5px;
+    color: #FFFFFF;
+    font-size: 1em;
+    font-weight: bold;
+    text-shadow: 1px 0 10px #FFFFFF;
+}
+#portal-theme #graphite-theme-status span.off {
+    color: #CCCCCC;
+    padding-left: 2px;
+}
+
+
+/* Header table (i.e. AR Details view) */
+.header_table {
+    width: 100%;
+    margin-bottom:20px;
+}
+.header_table tr td.value {
+    padding: 0 10px;
+}
+.header_table tr td.key {
+    font-weight: bold;
+    margin-right: 20px;
+    background-color: #DCDCDC;
+    padding: 7px 10px;
+}
+#header_form input[type='submit'] {
+    background-color: #3B8686;
+    color: #FFFFFF;
+    font-family: 'Titillium web',Arial,Helvetica,Sans;
+    font-size: 1.1em;
+    padding: 3px 15px 4px;
+    vertical-align: middle;
+}
+
+/* Overview Panel */
+.template-overview-controlpanel #content h2 {
+    margin-left:0;
+    margin-top:30px;
+}
+.template-overview-controlpanel #content ul li a img {
+    padding-right: 5px;
+}
+.template-overview-controlpanel #content ul li {
+    list-style-type: none;
+    padding: 5px 0;
+}
+.visualClear {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
 }

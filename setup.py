@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '0.9'
+version = '1.0'
 
 setup(name='graphite.theme',
       version=version,
@@ -24,7 +24,7 @@ setup(name='graphite.theme',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
-          'bika.lims',
+          'bika.lims>=3.1.5',
           'plone.app.theming',
       ],
       extras_require={

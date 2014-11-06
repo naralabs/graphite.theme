@@ -20,7 +20,7 @@ class GraphiteThemeLayoutPolicy(LayoutPolicy):
         not support this.
         """
 
-        # We only do this for the right column in the Optilux theme
+        # We only do this for the right column
 
         if manager_name != 'plone.leftcolumn':
             force_disable = self.request.get('disable_' + manager_name, None)

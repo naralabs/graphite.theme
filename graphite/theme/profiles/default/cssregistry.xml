@@ -6,12 +6,17 @@
         applyPrefix="True" />
 
     <stylesheet id="++theme++graphite.theme/css/graphite.theme.main.css"
-        expression="request/HTTP_X_THEME_ENABLED | nothing"
+        expression="python:request.cookies.get('bika.graphite.disabled', '0')=='0' and request['HTTP_X_THEME_ENABLED']"
         applyPrefix="True" />
 
     <stylesheet id="++theme++graphite.theme/css/graphite.theme.iefixes.css"
-        expression="request/HTTP_X_THEME_ENABLED | nothing"
+        expression="python:request.cookies.get('bika.graphite.disabled', '0')=='0' and request['HTTP_X_THEME_ENABLED']"
         conditionalcomment="IE"
+        applyPrefix="True" />
+
+    <!-- CSS for ON/OFF styling when theme is inactive -->
+    <stylesheet id="++theme++graphite.theme/css/graphite.theme.inactive.css"
+        expression="python:request.cookies.get('bika.graphite.disabled', '0')=='1' and request['HTTP_X_THEME_ENABLED']"
         applyPrefix="True" />
 
 
