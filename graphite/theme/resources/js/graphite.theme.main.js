@@ -976,7 +976,7 @@ function GraphiteTheme() {
         $('#portal-alert').html('').fadeOut();
 
         // Bika LIMS
-        window.bika.lims.initialize();
+        window.bika.lims.loadControllers(true);
 
         // Remove bika-spinner
         $(document).unbind("ajaxStart");
