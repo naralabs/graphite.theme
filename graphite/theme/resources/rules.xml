@@ -104,7 +104,13 @@
 
 
             <!-- logo -->
-            <replace css:content="#portal-logo" css:theme-children="#logo" />
+            <!--replace css:content="#portal-logo" css:theme-children="#logo" />-->
+            <after css:theme-children="#logo">
+                <xsl:for-each css:select="#portal-logo">
+                <a href="{@href}" id="{@id}"><span class="bikalims-prefix">Bika</span>LIMS</a>
+                </xsl:for-each>
+            </after>
+            <xsl:value-of css:select="div > a"/>
             <!--drop css:theme="#logo" css:if-not-content="body.section-front-page"/-->
 
             <!-- Breadcrumbs -->

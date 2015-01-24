@@ -83,16 +83,15 @@ body.userrole-anonymous #content-wrapper .column-left {
     float: left;
     margin: 0;
     padding: 0;
-    font-size: 1.1em;
     margin-top: 5px;
     text-align: left;
 }
 #portal-globalnav li a:hover {
-    opacity:0.8;
+    /*opacity:0.8;
     moz-opacity:0.8;
     filter:alpha(opacity=80);
     -moz-opacity: 0.8;
-    -khtml-opacity: 0.8;
+    -khtml-opacity: 0.8;*/
     -webkit-transition: all 250ms ease-in-out;
     -moz-transition: all 250ms ease-in-out;
     -o-transition: all 250ms ease-in-out;
@@ -103,10 +102,11 @@ body.userrole-anonymous #content-wrapper .column-left {
 #portal-globalnav li a:hover {
     background-color: #333;
     box-shadow: 0px 1px 10px #666;
+    color:#fff;
 }
 #portal-globalnav li a {
-    color: #fff;
-    padding: 16px 20px;
+    color: #d1d1d1;
+    padding: 10px 20px;
     background-color: #333;
 }
 #portal-globalnav li {
@@ -122,7 +122,7 @@ body.userrole-anonymous #content-wrapper .column-left {
     position: fixed;
     right: 20px;
     left: 218px;
-    top: 8px;
+    top: 6px;
     z-index: 2100;
 }
 
@@ -130,6 +130,7 @@ body.userrole-anonymous #content-wrapper .column-left {
 #portal-searchbox {
     font-size: 0.9em;
     float: right;
+    padding-top:3px;
 }
 #portal-searchbox div.searchSection {
     border: 1px solid red;
@@ -137,10 +138,10 @@ body.userrole-anonymous #content-wrapper .column-left {
     display: none;
 }
 #portal-searchbox input[type="submit"] {
-    margin-left: 5px;
-    color: #fff;
+    margin-left: -3px;
+    color: #d1d1d1;
     background-color: transparent;
-    font-size: 1.3em;
+    font-size: 1.1em;
     font-family: 'Open Sans';
     border: none;
 }
@@ -151,31 +152,59 @@ body.userrole-anonymous #content-wrapper .column-left {
     background-color: #ddd;
     border-radius: 3px;
 }
+#portal-searchbox input[type="submit"]:hover {
+    color:#fff;
+    opacity:1;
+    moz-opacity:1;
+    filter:alpha(opacity=100);
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    -webkit-transition: all 250ms ease-in-out;
+    -moz-transition: all 250ms ease-in-out;
+    -o-transition: all 250ms ease-in-out;
+    -ms-transition: all 250ms ease-in-out;
+    transition: all 250ms ease-in-out;
+}
+#portal-searchbox input[type="text"]:focus {
+    background-color:#fff;
+    -webkit-transition: background 250ms ease-in;
+    -moz-transition: background 250ms ease-in;
+    -o-transition: background 250ms ease-in;
+    -ms-transition: background 250ms ease-in;
+    transition: background 250ms ease-in;
+}
 .LSBox {
     text-align: right;
 }
 #LSResult {
-    background-color: #FFFFFF;
-    border-radius: 5px 5px 5px 5px;
-    box-shadow: 1px 1px 5px #999;
-    margin-right: 20px;
-    padding: 20px;
-    text-align: left;
+    background-color: #efefef;
+    border-radius: 0 0 0 5px;
+    display: none;
     font-size: 1.1em;
+    margin: 9px -20px;
+    padding: 15px 35px 20px;
+    position: absolute;
+    right: 0;
+    text-align: left;
     width: 400px;
-    display:none;
 }
 #LSResult #livesearchLegend {
     font-weight: 600;
     font-size: 1.1em;
 }
 #LSResult li {
-    margin: 0;
-    padding: 0 0 5px 0;
     line-height: 130%;
+    list-style: none outside none;
+    margin: 0;
+    padding: 3px 0 7px;
 }
 #LSResult ul {
-    padding: 0 0 0 20px;
+    padding: 0;
+}
+#LSResult .LSDescr {
+    color: #555;
+    font-size: 0.9em;
+    padding: 3px 0 0 5px;
 }
 
 /* portal personal tools */
@@ -197,34 +226,33 @@ body.userrole-anonymous #content-wrapper .column-left {
     margin: 0;
     padding: 0;
     text-align: right;
-    padding: 1px 0;
+    padding: 5px 0;
 }
 #portal-personaltools .actionMenuContent {
-    background-color: #FFFFFF;
-    border-radius: 5px 5px 5px 5px;
-    box-shadow: 1px 1px 5px #999;
+    background-color: #efefef;
+    border-radius: 0 0 0 5px;
     font-size: 1.1em;
-    padding: 20px;
+    margin-right: -20px;
+    margin-top: 8px;
+    padding: 15px 35px 30px;
+    position: absolute;
+    right: 0;
     text-align: left;
 }
 #portal-personaltools .actionMenuHeader a,
 #portal-personaltools li#anon-personalbar a {
-    color: #FFFFFF;
-    font-size: 0.8em;
+    color: #d1d1d1;
+    /*font-size: 0.8em;*/
     text-transform: capitalize;
 }
 #portal-personaltools .actionMenuHeader a:hover,
 #portal-personaltools li#anon-personalbar a:hover {
-        opacity:0.7;
-    moz-opacity:0.7;
-    filter:alpha(opacity=70);
-    -moz-opacity: 0.7;
-    -khtml-opacity: 0.7;
-    -webkit-transition: opacity 250ms ease-in-out;
-    -moz-transition: opacity 250ms ease-in-out;
-    -o-transition: opacity 250ms ease-in-out;
-    -ms-transition: opacity 250ms ease-in-out;
-    transition: opacity 250ms ease-in-out;
+    color:#fff;
+    -webkit-transition: all 250ms ease-in-out;
+    -moz-transition: all 250ms ease-in-out;
+    -o-transition: all 250ms ease-in-out;
+    -ms-transition: all 250ms ease-in-out;
+    transition: all 250ms ease-in-out;
 }
 
 li#anon-personalbar {
@@ -355,18 +383,24 @@ div.constraint {
 #logo {
     background-color: #454545;
     border-bottom: 1px solid #CCCCCC;
-    box-shadow: 0 0 10px 2px #999999;
+    box-shadow: 0 0 30px 20px #fff;
     left: 0;
     top: 0;
-    padding: 10px;
+    padding: 10px 10px 10px 15px;
     position: fixed;
     right: 0;
     z-index: 2000;
+    height:20px;
 }
 a#portal-logo {
-    background-color: #EFEFEF;
-    margin: -10px 0 0 -10px;
-    padding: 21px 109px 10px 10px;
+    text-transform:uppercase;
+    color:#fff;
+    font-size:1.1em;
+}
+a#portal-logo span.bikalims-prefix {
+font-size:1.1em;
+    font-weight: bold;
+    text-transform:lowercase;
 }
 .backgrey {
     background-color:#f5f5f5;
@@ -1021,6 +1055,7 @@ div.error-page {
     bottom:0;
     background-color:#efefef;
     padding-bottom:10px;
+    display:none;
 }
 #footer br {
     display:none;
@@ -1199,6 +1234,14 @@ dd.actionMenuContent ul {
     margin: 0;
     padding: 0;
 }
+dd.actionMenuContent ul li {
+    list-style: none outside none;
+    margin: 0;
+    padding: 3px 0;
+}
+dd.actionMenuContent ul li a {
+    font-size: 0.9em;
+}
 dt.actionMenuHeader a span {
     margin-right: 10px;
     font-weight: 300;
@@ -1208,17 +1251,11 @@ dt.actionMenuHeader a,dt.actionMenuHeader:hover {
     font-weight: 400;
 }
 dt.actionMenuHeader {
-    font-size: 1.4em;
-    color: #333;
     margin-bottom: 10px;
     float:left;
 }
 dt.actionMenuHeader span.arrowDownAlternative {
     display: none;
-}
-dd.actionMenuContent a {
-    margin-right: 10px;
-    background-color: #fff;
 }
 dd.actionMenuContent {
     float: left;
@@ -1998,14 +2035,16 @@ table.manage_results_header th {
     color: #FFFFFF;
     float: right;
     padding: 7px 20px;
+    font-size:0.9em;
 }
 #portal-theme a {
-    color:#fff;
+    color:#d1d1d1;
+    font-size:0.9em;
 }
 #portal-theme #graphite-theme-status {
     background-color: #777777;
     border-radius: 5px 5px 5px 5px;
-    margin-left: 6px;
+    margin-left: 4px;
 }
 #portal-theme #graphite-theme-status span {
     padding:0 6px;
@@ -2014,7 +2053,6 @@ table.manage_results_header th {
     background-color: #008000;
     border-radius: 5px 5px 5px 5px;
     color: #FFFFFF;
-    font-size: 1em;
     font-weight: bold;
     text-shadow: 1px 0 10px #FFFFFF;
 }
@@ -2022,7 +2060,30 @@ table.manage_results_header th {
     color: #CCCCCC;
     padding-left: 2px;
 }
-
+#portal-theme a {
+    color:#d1d1d1;
+}
+#portal-theme a:hover #graphite-theme-status span {
+    -webkit-transition: background 250ms ease-in;
+    -moz-transition: background 250ms ease-in;
+    -o-transition: background 250ms ease-in;
+    -ms-transition: background 250ms ease-in;
+    transition: background 250ms ease-in;
+}
+#portal-theme a:hover #graphite-theme-status span.on {
+    color: #CCCCCC;
+    background-color:#777;
+    font-weight:normal;
+    text-shadow: none;
+}
+#portal-theme a:hover #graphite-theme-status span.off {
+    color:#fff;
+    background-color:red;
+    font-weight:bold;
+    text-shadow: 1px 0 10px #fff;
+    border-radius:5px 5px 5px 5px;
+    padding-left:3px;
+}
 
 /* Header table (i.e. AR Details view) */
 .header_table {
@@ -2066,4 +2127,10 @@ table.manage_results_header th {
     content: " ";
     clear: both;
     height: 0;
+}
+.template-search form#searchform {
+    padding-top: 20px;
+}
+.template-search form#searchform input.searchButton{
+    text-shadow: none;
 }
