@@ -1,6 +1,15 @@
+'use strict;'
+
 function GraphiteTheme() {
 
     /** CUSTOM VARS **/
+
+    // Navigator menu layout
+    // top: shows the nav menu on the top.
+    // left: shows the nav menu on the left.
+    // By default: left
+    var navmenu_layout = 'top';
+
     // Portal Logo dimensions
     // default: {'width': '100px', 'height': '25px'};
     var portal_logo_dimensions = {'width': '100px',
@@ -99,7 +108,7 @@ function GraphiteTheme() {
                                 ],
                         },
         'Tools':        {'id': 'nav-tools',
-                         'items': ['report',
+                         'items': ['reports',
                                    'import'
                                 ],
                         },
@@ -275,15 +284,100 @@ function GraphiteTheme() {
     }
 
     /**
-     * Loads the left nav menu dynamically, grouping the items in
-     * accordance with the values assigned to the navmenu var
+     * Loads the nav menu in accordance to the navmenu_layout value.
+     * If navmenu_layout = 'left', loads the left menu. Otherwise,
+     * loads the top menu
      */
     function loadNavMenu() {
+        if (navmenu_layout == 'left') {
+            loadLeftNavMenu();
+        } else {
+            loadTopNavMenu();
+        }
+    }
+
+    /**
+     * Loads the top menu dynamically, grouping the items in accordance
+     * to the values assigned to the navmenu bar.
+     */
+    function loadTopNavMenu() {
         var portal_url = window.portal_url;
         $('ul.navtree li a').each(function() {
             $(this).attr('href', portal_url + $(this).attr('href'));
         });
+        // Get all items from Site setup
+        var sitesetup_url = portal_url + '/bika_setup?diazo.off=1';
+        $.ajax(sitesetup_url)
+        .done(function(data) {
+            var htmldata = data;
+            htmldata = $(htmldata).find('#portal-column-one dl.portletNavigationTree').html();
+            $(htmldata).find('a').each(function() {
+                var href = $(this).attr('href');
+                var id = $(this).attr('href').split("/");
+                var img = $(this).find('img');
+                id = id[id.length-1];
+                runtimenav[id] = [$(this).attr('href'),
+                                  $(this).find('span').length ? $.trim($(this).find('span').html()) : $.trim($(this).html()),
+                                  $(this).find('img').length ? $(this).find('img').attr('src') : ""];
+            });
+            // Populate the nav-menu
+            var activedetected = false;
+            for (var section in navmenu) {
+                var items = navmenu[section]['items'];
+                $.each(items, function(i, item) {
+                    if (item in runtimenav) {
+                        var runitem = runtimenav[item];
+                        var active = !activedetected && currsectionid.indexOf('/'+item) > -1;
+                        var cssclass = ' class="'+item;
+                        if (active) {
+                            cssclass += " active";
+                            activedetected = true;
+                        }
+                        cssclass += '"';
+                        var itemli = '<li'+cssclass+'><a href="'+runitem[0]+'"><img src="'+runitem[2]+'">'+runitem[1]+'</a></li>';
+                        var sectionid = navmenu[section]['id']
+                        var sectionul = null;
+                        if ($('#portal-tools-wrapper ul#portal-globalnav li.'+sectionid).length < 1) {
+                            var sectionli = '<li class="plain '+sectionid+'"><a href="#" data-section="'+sectionid+'">'+_b(section)+'</a></li>';
+                            var contextmenu = '<ul class="'+sectionid+' hidden">'+itemli+'</ul>';
+                            $('#portal-tools-wrapper ul#portal-globalnav').append(sectionli);
+                            $('#contextual-menu-wrapper').append(contextmenu);
+                        } else {
+                            $('#contextual-menu-wrapper ul.'+sectionid).append(itemli);
+                        }
+                    }
+                });
+            }
+        })
+        .always(function() {
+            // Move all plone's portaltab-* menus inside Tools section
+            if ($('#portal-tools-wrapper ul#portal-globalnav li.tools').length < 1) {
+                // Add the tools section
+                $('#portal-tools-wrapper ul#portal-globalnav').append('<li class="tools"><a data-section="nav-tools" href="#">'+_b('Tools')+'</a></li>');
+                $('#contextual-menu-wrapper').append('<ul class="tools hidden"></ul>');
+            }
+            $('#portal-tools-wrapper ul#portal-globalnav li[id^="portaltab-"]').each(function() {
+                $('#contextual-menu-wrapper ul.tools').append($(this));
+            });
+            loadActiveNavSection();
+            loadBreadcrumbs();
+            loadNavMenuTransitions();
+            $('#contextual-menu-wrapper a').unbind("click");
+            $('#contextual-menu-wrapper a').click(processLink);
+            $('#portal-globalnav').fadeIn();
+        });
+    }
 
+    /**
+     * Loads the left nav menu dynamically, grouping the items in
+     * accordance with the values assigned to the navmenu var
+     */
+    function loadLeftNavMenu() {
+        $('#portal-globalnav').fadeIn();
+        var portal_url = window.portal_url;
+        $('ul.navtree li a').each(function() {
+            $(this).attr('href', portal_url + $(this).attr('href'));
+        });
         // Get all items from Site setup
         var sitesetup_url = portal_url + '/bika_setup?diazo.off=1';
         $.ajax(sitesetup_url)
@@ -360,10 +454,46 @@ function GraphiteTheme() {
     }
 
     /**
+     * Nav menu transitions effects. If the navmenu_layout is left, loads
+     * the transitions for the left menu. Otherwise, the transitions
+     * for the top menu
+     */
+    function loadNavMenuTransitions() {
+        if (navmenu_layout == 'left') {
+            loadLeftNavMenuTransitions();
+        } else {
+            loadTopNavMenuTransitions();
+        }
+    }
+
+    /**
+     * Transition effects (slide up and slide down) for the top
+     * nav-menu when main section links get hover and/or selected.
+     */
+    function loadTopNavMenuTransitions() {
+        $('#portal-tools-wrapper ul#portal-globalnav li a').click(function(e) {
+            e.preventDefault();
+            var section = $(this).attr('data-section');
+            $('#contextual-menu-wrapper ul.active').hide().removeClass('active');
+            $('#contextual-menu-wrapper ul.'+section).fadeIn().addClass('active');
+            $('#portal-tools-wrapper ul#portal-globalnav li.selected').removeClass('selected').addClass('plain');
+            $(this).closest('li').addClass('selected').remove('plain');
+            var height = $('#contextual-menu-wrapper').innerHeight() + $('#logo').innerHeight();
+            $('#content-wrapper').animate({'margin-top': height+'px'},'slow');
+        });
+        $('#portal-tools-wrapper ul#portal-globalnav li a').mouseenter(function(e) {
+            var section = $(this).attr('data-section');
+            if (!$('#contextual-menu-wrapper ul.'+section).hasClass('active')) {
+                $(this).click();
+            }
+        });
+    }
+
+    /**
      * Transition effects (slide up and slide down) for the left
      * nav-menu when links get hover and/or selected.
      */
-    function loadNavMenuTransitions() {
+    function loadLeftNavMenuTransitions() {
         $('ul.navtree li').not("ul.navtree li ul li").mouseenter(function() {
             $(this).addClass('open');
             $(this).find('ul').slideDown('fast', function() {
