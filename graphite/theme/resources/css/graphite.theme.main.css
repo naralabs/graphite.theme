@@ -100,14 +100,13 @@ body.userrole-anonymous #content-wrapper .column-left {
 }
 #portal-globalnav li.selected a,
 #portal-globalnav li a:hover {
-    background-color: #333;
+    background-color: #333;a
     box-shadow: 0px 1px 10px #666;
     color:#fff;
 }
 #portal-globalnav li a {
     color: #d1d1d1;
     padding: 10px 20px;
-    background-color: #333;
 }
 #portal-globalnav li {
     list-style-type: none;
@@ -240,13 +239,15 @@ body.userrole-anonymous #content-wrapper .column-left {
     text-align: left;
 }
 #portal-personaltools .actionMenuHeader a,
-#portal-personaltools li#anon-personalbar a {
+#portal-personaltools li#anon-personalbar a,
+#portal-personaltools.deactivated .actionMenuHeader a {
     color: #d1d1d1;
     /*font-size: 0.8em;*/
     text-transform: capitalize;
 }
 #portal-personaltools .actionMenuHeader a:hover,
-#portal-personaltools li#anon-personalbar a:hover {
+#portal-personaltools li#anon-personalbar a:hover,
+#portal-personaltools.activated .actionMenuHeader a {
     color:#fff;
     -webkit-transition: all 250ms ease-in-out;
     -moz-transition: all 250ms ease-in-out;
@@ -254,7 +255,6 @@ body.userrole-anonymous #content-wrapper .column-left {
     -ms-transition: all 250ms ease-in-out;
     transition: all 250ms ease-in-out;
 }
-
 li#anon-personalbar {
     font-size: 1.35em;
     list-style-type: none;
@@ -2131,6 +2131,31 @@ table.manage_results_header th {
 .template-search form#searchform {
     padding-top: 20px;
 }
-.template-search form#searchform input.searchButton{
+.template-search form#searchform input.searchPage {
+    border: 1px solid #cdcdcd;
+    font-size: 1.1em;
+    line-height: 130%;
+    margin-right: 5px;
+    padding: 2px 10px;
+}
+.template-search form#searchform input.searchButton {
     text-shadow: none;
+    padding: 1px 10px;
+    background-color:#efefef;
+    color:#333;
+    margin-left:10px;
+}
+.template-search form#searchform div.row {
+    padding-top:10px;
+}
+.template-search form#searchform dd.actionMenuContent,
+.template-search form#searchform dd.actionMenuHeader {
+    display:none;
+}
+.template-search form#searchform dl.searchResults dt {
+    border-top: 1px solid #efefef;
+    padding-top: 10px;
+}
+.template-search form#searchform dl.searchResults dd {
+    padding-bottom: 10px;
 }

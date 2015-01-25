@@ -196,6 +196,17 @@ function GraphiteTheme() {
         $('.column-center a').unbind("click");
         $('.column-center a').click(processLink);
 
+        // User link from top-right must display the options on hover
+        // This prevents the user to do an additional click
+        $('#portal-personaltools dt.actionMenuHeader #user-name').mouseover(function() {
+            if ($(this).closest('dl').hasClass('deactivated')) {
+                $(this).click();
+            }
+        });
+        $('#portal-personaltools dd.actionMenuContent').mouseleave(function() {
+            $(this).closest('dl').removeClass('activated').addClass('deactivated');
+        });
+
         // Loads additional JS styling
         loadStyles();
 
