@@ -372,7 +372,7 @@ div.constraint {
     margin-top: 10px;
 }
 #content-wrapper div.column-center {
-    margin-left: 40px;
+    margin-left: 30px;
 }
 #content-wrapper:after {
     visibility: hidden;
@@ -2203,7 +2203,7 @@ table.manage_results_header th {
     box-shadow: 0 15px 25px #fff;
     clear: both;
     font-size: 0.9em;
-    margin: 35px -20px 0 -100px;
+    margin: 35px -20px 0 -90px;
     padding: 12px 4px 13px;
 }
 .hidden {
