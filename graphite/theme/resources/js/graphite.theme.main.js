@@ -305,13 +305,10 @@ function GraphiteTheme() {
         $('ul.navtree li a').each(function() {
             $(this).attr('href', portal_url + $(this).attr('href'));
         });
-        // Get all items from Site setup
-        var sitesetup_url = portal_url + '/bika_setup?diazo.off=1';
-        $.ajax(sitesetup_url)
-        .done(function(data) {
-            var htmldata = data;
-            htmldata = $(htmldata).find('#portal-column-one dl.portletNavigationTree').html();
-            $(htmldata).find('a').each(function() {
+        if ($("body.userrole-anonymous").length > 0) {
+            // Anonymous access.. we'll not categorize the nav items.
+            // Retrieve the menus from the nav-bar
+            $('#portal-nav-1 li:not(.section-bika-lims) a').each(function() {
                 var href = $(this).attr('href');
                 var id = $(this).attr('href').split("/");
                 var img = $(this).find('img');
@@ -319,53 +316,79 @@ function GraphiteTheme() {
                 runtimenav[id] = [$(this).attr('href'),
                                   $(this).find('span').length ? $.trim($(this).find('span').html()) : $.trim($(this).html()),
                                   $(this).find('img').length ? $(this).find('img').attr('src') : ""];
+                var sectionli = '<li class="plain '+id+'"><a href="'+$(this).attr('href')+'" data-section="'+id+'">'+runtimenav[id][1]+'</a></li>';
+                $('#portal-tools-wrapper ul#portal-globalnav').append(sectionli);
+
             });
-            // Populate the nav-menu
-            var activedetected = false;
-            for (var section in navmenu) {
-                var items = navmenu[section]['items'];
-                $.each(items, function(i, item) {
-                    if (item in runtimenav) {
-                        var runitem = runtimenav[item];
-                        var active = !activedetected && currsectionid.indexOf('/'+item) > -1;
-                        var cssclass = ' class="'+item;
-                        if (active) {
-                            cssclass += " active";
-                            activedetected = true;
-                        }
-                        cssclass += '"';
-                        var itemli = '<li'+cssclass+'><a href="'+runitem[0]+'"><img src="'+runitem[2]+'">'+runitem[1]+'</a></li>';
-                        var sectionid = navmenu[section]['id']
-                        var sectionul = null;
-                        if ($('#portal-tools-wrapper ul#portal-globalnav li.'+sectionid).length < 1) {
-                            var sectionli = '<li class="plain '+sectionid+'"><a href="#" data-section="'+sectionid+'">'+_b(section)+'</a></li>';
-                            var contextmenu = '<ul class="'+sectionid+' hidden">'+itemli+'</ul>';
-                            $('#portal-tools-wrapper ul#portal-globalnav').append(sectionli);
-                            $('#contextual-menu-wrapper').append(contextmenu);
-                        } else {
-                            $('#contextual-menu-wrapper ul.'+sectionid).append(itemli);
-                        }
-                    }
-                });
-            }
-        })
-        .always(function() {
-            // Move all plone's portaltab-* menus inside Tools section
-            if ($('#portal-tools-wrapper ul#portal-globalnav li.tools').length < 1) {
-                // Add the tools section
-                $('#portal-tools-wrapper ul#portal-globalnav').append('<li class="tools"><a data-section="nav-tools" href="#">'+_b('Tools')+'</a></li>');
-                $('#contextual-menu-wrapper').append('<ul class="tools hidden"></ul>');
-            }
-            $('#portal-tools-wrapper ul#portal-globalnav li[id^="portaltab-"]').each(function() {
-                $('#contextual-menu-wrapper ul.tools').append($(this));
-            });
-            loadActiveNavSection();
+           // loadActiveNavSection();
+             loadActiveNavSection();
             loadBreadcrumbs();
-            loadNavMenuTransitions();
-            $('#contextual-menu-wrapper a').unbind("click");
-            $('#contextual-menu-wrapper a').click(processLink);
+            //loadNavMenuTransitions();
             $('#portal-globalnav').fadeIn();
-        });
+
+        } else {
+            // Get all items from Site setup
+            var sitesetup_url = portal_url + '/bika_setup?diazo.off=1';
+            $.ajax(sitesetup_url)
+            .done(function(data) {
+                var htmldata = data;
+                htmldata = $(htmldata).find('#portal-column-one dl.portletNavigationTree').html();
+                $(htmldata).find('a').each(function() {
+                    var href = $(this).attr('href');
+                    var id = $(this).attr('href').split("/");
+                    var img = $(this).find('img');
+                    id = id[id.length-1];
+                    runtimenav[id] = [$(this).attr('href'),
+                                      $(this).find('span').length ? $.trim($(this).find('span').html()) : $.trim($(this).html()),
+                                      $(this).find('img').length ? $(this).find('img').attr('src') : ""];
+                });
+                // Populate the nav-menu
+                var activedetected = false;
+                for (var section in navmenu) {
+                    var items = navmenu[section]['items'];
+                    $.each(items, function(i, item) {
+                        if (item in runtimenav) {
+                            var runitem = runtimenav[item];
+                            var active = !activedetected && currsectionid.indexOf('/'+item) > -1;
+                            var cssclass = ' class="'+item;
+                            if (active) {
+                                cssclass += " active";
+                                activedetected = true;
+                            }
+                            cssclass += '"';
+                            var itemli = '<li'+cssclass+'><a href="'+runitem[0]+'"><img src="'+runitem[2]+'">'+runitem[1]+'</a></li>';
+                            var sectionid = navmenu[section]['id']
+                            var sectionul = null;
+                            if ($('#portal-tools-wrapper ul#portal-globalnav li.'+sectionid).length < 1) {
+                                var sectionli = '<li class="plain '+sectionid+'"><a href="#" data-section="'+sectionid+'">'+_b(section)+'</a></li>';
+                                var contextmenu = '<ul class="'+sectionid+' hidden">'+itemli+'</ul>';
+                                $('#portal-tools-wrapper ul#portal-globalnav').append(sectionli);
+                                $('#contextual-menu-wrapper').append(contextmenu);
+                            } else {
+                                $('#contextual-menu-wrapper ul.'+sectionid).append(itemli);
+                            }
+                        }
+                    });
+                }
+            })
+            .always(function() {
+                // Move all plone's portaltab-* menus inside Tools section
+                if ($('#portal-tools-wrapper ul#portal-globalnav li.tools').length < 1) {
+                    // Add the tools section
+                    $('#portal-tools-wrapper ul#portal-globalnav').append('<li class="tools"><a data-section="nav-tools" href="#">'+_b('Tools')+'</a></li>');
+                    $('#contextual-menu-wrapper').append('<ul class="tools hidden"></ul>');
+                }
+                $('#portal-tools-wrapper ul#portal-globalnav li[id^="portaltab-"]').each(function() {
+                    $('#contextual-menu-wrapper ul.tools').append($(this));
+                });
+                loadActiveNavSection();
+                loadBreadcrumbs();
+                loadNavMenuTransitions();
+                $('#contextual-menu-wrapper a').unbind("click");
+                $('#contextual-menu-wrapper a').click(processLink);
+                $('#portal-globalnav').fadeIn();
+            });
+        }
     }
 
     /**
@@ -1106,10 +1129,14 @@ function GraphiteTheme() {
         */
 
         // unlockOnFormUnload.js
-        $(plone.UnlockHandler.init);
+        try {
+            $(plone.UnlockHandler.init);
+        } catch (e) { }
 
         // Tiny MCE
-        window.initTinyMCE(document);
+        try {
+            window.initTinyMCE(document);
+        } catch (e) { }
 
         // Reload other js by reheading
         //loadNonInitializableJS();

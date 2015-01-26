@@ -259,7 +259,6 @@ body.userrole-anonymous #content-wrapper .column-left {
     transition: all 250ms ease-in-out;
 }
 li#anon-personalbar {
-    font-size: 1.35em;
     list-style-type: none;
     margin: 0;
     padding: 0;
