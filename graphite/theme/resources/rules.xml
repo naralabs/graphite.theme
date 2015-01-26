@@ -159,11 +159,11 @@
                         </li>
                     </xsl:if>
                 </xsl:for-each>
-                <xsl:for-each css:select="#portal-globalnav li">
+                <!--xsl:for-each css:select="#portal-globalnav li">
                     <li class='level1'>
                         <a href="{a/@href}"><xsl:value-of css:select="a"/></a>
                     </li>
-                </xsl:for-each>
+                </xsl:for-each-->
             </after>
             <after css:theme-children='#portal-nav-2'>
                 <xsl:for-each css:select="ul.navTreeLevel0 > li.navTreeItemInPath > ul > li">

@@ -201,8 +201,8 @@ function GraphiteTheme() {
         loadNavMenu();
 
         // Dynamic page load behavior to links
-        $('#portal-globalnav li a').unbind("click");
-        $('#portal-globalnav li a').click(processLink);
+        $('#lims-nav li a').unbind("click");
+        $('#lims-nav li a').click(processLink);
         $('.column-center a').unbind("click");
         $('.column-center a').click(processLink);
 
@@ -306,9 +306,9 @@ function GraphiteTheme() {
         $('ul.navtree li a').each(function() {
             $(this).attr('href', portal_url + $(this).attr('href'));
         });
+        // Anonymous access.. we'll not categorize the nav items.
+        // Retrieve the menus from the nav-bar
         if ($("body.userrole-anonymous").length > 0) {
-            // Anonymous access.. we'll not categorize the nav items.
-            // Retrieve the menus from the nav-bar
             $('#portal-nav-1 li:not(.section-bika-lims) a').each(function() {
                 var href = $(this).attr('href');
                 var id = $(this).attr('href').split("/");
@@ -319,10 +319,7 @@ function GraphiteTheme() {
                                   $(this).find('img').length ? $(this).find('img').attr('src') : ""];
                 var sectionli = '<li class="plain '+id+'"><a href="'+$(this).attr('href')+'" data-section="'+id+'">'+runtimenav[id][1]+'</a></li>';
                 $('#portal-tools-wrapper ul#portal-globalnav').append(sectionli);
-
             });
-           // loadActiveNavSection();
-            loadActiveNavSection();
             loadBreadcrumbs();
             $('#portal-globalnav').fadeIn();
 
@@ -332,6 +329,7 @@ function GraphiteTheme() {
             $.ajax(sitesetup_url)
             .done(function(data) {
                 var htmldata = data;
+                var filled = false;
                 htmldata = $(htmldata).find('#portal-column-one dl.portletNavigationTree').html();
                 $(htmldata).find('a').each(function() {
                     var href = $(this).attr('href');
@@ -341,7 +339,20 @@ function GraphiteTheme() {
                     runtimenav[id] = [$(this).attr('href'),
                                       $(this).find('span').length ? $.trim($(this).find('span').html()) : $.trim($(this).html()),
                                       $(this).find('img').length ? $(this).find('img').attr('src') : ""];
+                    filled = true;
                 });
+                if (!filled) {
+                    // Not a LabMan? Use the portal-nav instead
+                    $('#portal-nav-1 li a').each(function() {
+                        var href = $(this).attr('href');
+                        var id = $(this).attr('href').split("/");
+                        var img = $(this).find('img');
+                        id = id[id.length-1];
+                        runtimenav[id] = [$(this).attr('href'),
+                                          $(this).find('span').length ? $.trim($(this).find('span').html()) : $.trim($(this).html()),
+                                          $(this).find('img').length ? $(this).find('img').attr('src') : ""];
+                    });
+                }
                 // Populate the nav-menu
                 var activedetected = false;
                 for (var section in navmenu) {
@@ -359,34 +370,52 @@ function GraphiteTheme() {
                             var itemli = '<li'+cssclass+'><a href="'+runitem[0]+'"><img src="'+runitem[2]+'">'+runitem[1]+'</a></li>';
                             var sectionid = navmenu[section]['id']
                             var sectionul = null;
-                            if ($('#portal-tools-wrapper ul#portal-globalnav li.'+sectionid).length < 1) {
+                            if ($('#portal-tools-wrapper ul#lims-nav li.'+sectionid).length < 1) {
                                 var sectionli = '<li class="plain '+sectionid+'"><a href="#" data-section="'+sectionid+'">'+_b(section)+'</a></li>';
                                 var contextmenu = '<ul class="'+sectionid+' hidden" data-section="'+sectionid+'">'+itemli+'</ul>';
-                                $('#portal-tools-wrapper ul#portal-globalnav').append(sectionli);
+                                $('#portal-tools-wrapper ul#lims-nav').append(sectionli);
                                 $('#contextual-menu-wrapper').append(contextmenu);
                             } else {
                                 $('#contextual-menu-wrapper ul.'+sectionid).append(itemli);
                             }
+                            $('#portal-nav-1 li.section-'+item).remove();
                         }
                     });
                 }
             })
             .always(function() {
                 // Move all plone's portaltab-* menus inside Tools section
-                if ($('#portal-tools-wrapper ul#portal-globalnav li.tools').length < 1) {
+                if ($('#portal-tools-wrapper ul#lims-nav li.tools').length < 1) {
                     // Add the tools section
-                    $('#portal-tools-wrapper ul#portal-globalnav').append('<li class="tools"><a data-section="tools" href="#">'+_b('Tools')+'</a></li>');
+                    $('#portal-tools-wrapper ul#lims-nav').append('<li class="tools"><a data-section="tools" href="#">'+_b('Tools')+'</a></li>');
                     $('#contextual-menu-wrapper').append('<ul class="tools hidden" data-section="tools"></ul>');
                 }
                 $('#portal-tools-wrapper ul#portal-globalnav li[id^="portaltab-"]').each(function() {
-                    $('#contextual-menu-wrapper ul.tools').append($(this));
+                    $(this).detach().appendTo($('#contextual-menu-wrapper ul.tools'));
                 });
+
+                // Move all remaining items to the portal-globalnav
+                $('#portal-nav-1 li a').each(function() {
+                    var href = $(this).attr('href');
+                    var id = $(this).attr('href').split("/");
+                    var img = $(this).find('img');
+                    id = id[id.length-1];
+                    runtimenav[id] = [$(this).attr('href'),
+                                      $(this).find('span').length ? $.trim($(this).find('span').html()) : $.trim($(this).html()),
+                                      $(this).find('img').length ? $(this).find('img').attr('src') : ""];
+                    var cssclass = $(this).closest('li').hasClass('navTreeCurrentNode') ? 'selected' : 'plain';
+                    var sectionli = '<li class="'+cssclass+' '+id+'"><a href="'+$(this).attr('href')+'" data-section="'+id+'">'+runtimenav[id][1]+'</a></li>';
+                    $('#portal-tools-wrapper ul#portal-globalnav').append(sectionli);
+                });
+
                 loadActiveNavSection();
                 loadBreadcrumbs();
                 loadNavMenuTransitions();
                 $('#contextual-menu-wrapper a').unbind("click");
                 $('#contextual-menu-wrapper a').click(processLink);
                 $('#portal-globalnav').fadeIn();
+                $('#lims-nav-wrapper').fadeIn();
+                //$('#lims-nav').fadeIn();
                 setActiveNavItem(window.location.href);
             });
         }
@@ -496,17 +525,17 @@ function GraphiteTheme() {
      * nav-menu when main section links get hover and/or selected.
      */
     function loadTopNavMenuTransitions() {
-        $('#portal-tools-wrapper ul#portal-globalnav li a').click(function(e) {
+        $('#portal-tools-wrapper ul#lims-nav li a').click(function(e) {
             e.preventDefault();
             var section = $(this).attr('data-section');
             $('#contextual-menu-wrapper ul.active').hide().removeClass('active');
             $('#contextual-menu-wrapper ul.'+section).fadeIn().addClass('active');
-            $('#portal-tools-wrapper ul#portal-globalnav li.selected').removeClass('selected').addClass('plain');
+            $('#portal-tools-wrapper ul#lims-nav li.selected').removeClass('selected').addClass('plain');
             $(this).closest('li').addClass('selected').remove('plain');
-            var height = $('#contextual-menu-wrapper').innerHeight() + $('#logo').innerHeight() + 5;
-            $('#content-wrapper').animate({'margin-top': height+'px'},'slow');
+            var height = $('#lims-nav-wrapper').innerHeight() + $('#logo').innerHeight() + 5;
+            $('#content-wrapper').animate({'margin-top': height+'px'}, 'fast');
         });
-        $('#portal-tools-wrapper ul#portal-globalnav li a').mouseenter(function(e) {
+        $('#portal-tools-wrapper ul#lims-nav li a').mouseenter(function(e) {
             var section = $(this).attr('data-section');
             if (!$('#contextual-menu-wrapper ul.'+section).hasClass('active')) {
                 $(this).click();
@@ -645,8 +674,8 @@ function GraphiteTheme() {
                     '<span id="breadcrumbs-1" dir="ltr">' +
                     '<a href="'+$(currnode).attr('href')+'">'+currnodetext+'</a>' +
                     '</span>';
-            } else if ($('#portal-globalnav li.selected').length > 0) {
-                var currnode = $('#portal-globalnav li.selected a');
+            } else if ($('#lims-nav li.selected').length > 0) {
+                var currnode = $('#lims-nav li.selected a');
                 var currnodetext = $(currnode).find('span').length ? $.trim($(currnode).find('span').html()) : $.trim($(currnode).html());
                 breadhtml +=
                     '<span class="breadcrumbSeparator"> › </span>' +
@@ -688,7 +717,7 @@ function GraphiteTheme() {
                 if (parturl.contains(itemurl)) {
                     $(this).closest('li').addClass('active');
                     var sectionid = $(this).closest('ul').attr('data-section');
-                    $('#portal-globalnav li.'+sectionid).addClass('selected').removeClass('plain');
+                    $('#lims-nav li.'+sectionid).addClass('selected').removeClass('plain');
                     found = true;
                     return false;
                 }
@@ -701,7 +730,7 @@ function GraphiteTheme() {
                     if (parturl.contains(itemurl)) {
                         $(this).closest('li').addClass('active');
                         var sectionid = $(this).closest('ul').attr('data-section');
-                        $('#portal-globalnav li.'+sectionid+' a').click();
+                        $('#lims-nav li.'+sectionid+' a').click();
                         found = true;
                         return false;
                     }
@@ -709,7 +738,7 @@ function GraphiteTheme() {
             }
             if (!found) {
                 // By default, Quick access
-                $('#portal-globalnav li.nav-quick a').click();
+                $('#lims-nav li.nav-quick a').click();
             }
         }
     }
@@ -857,13 +886,14 @@ function GraphiteTheme() {
             }
         });
         if (!omit) {
-            $('#portal-globalnav li a').each(function() {
+            $('#lims-nav li a').each(function() {
                 if (url.lastIndexOf($(this).attr('href'), 0) === 0) {
                     $(this).parent('li').removeClass('plain').addClass('selected');
                 } else {
                     $(this).parent('li').removeClass('selected').addClass('plain');
                 }
             });
+            $('#portal-globalnav li.selected').removeClass('selected').addClass('plain');
             requestPage(this.href, $(this).html());
             return false;
         }
