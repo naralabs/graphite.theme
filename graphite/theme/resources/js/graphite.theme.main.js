@@ -387,6 +387,7 @@ function GraphiteTheme() {
                 $('#contextual-menu-wrapper a').unbind("click");
                 $('#contextual-menu-wrapper a').click(processLink);
                 $('#portal-globalnav').fadeIn();
+                setActiveNavItem(window.location.href);
             });
         }
     }
@@ -692,15 +693,20 @@ function GraphiteTheme() {
             });
             if (!found) {
                 // No està obert, cal obrir el primer que tingui l'item
-                $('#contextual-menu-wrapper ul.active li a').each(function() {
+                $('#contextual-menu-wrapper ul li a').each(function() {
                     var itemurl = $(this).attr('href');
                     itemurl = itemurl.replace(window.portal_url, '');
                     if (parturl.contains(itemurl)) {
                         var sectionid = $(this).closest('ul').attr('data-section');
                         $('#portal-globalnav li.'+sectionid+' a').click();
+                        found = true;
                         return false;
                     }
                 });
+            }
+            if (!found) {
+                // By default, Quick access
+                $('#portal-globalnav li.nav-quick a').click();
             }
         }
     }
