@@ -98,7 +98,10 @@ function GraphiteTheme() {
                                  'bika_manufacturers',
                                  'bika_preservations',
                                  'bika_storagelocations',
-                                 'bika_suppliers'
+                                 'bika_suppliers',
+                                 'bika_attachmenttypes',
+                                 'bika_batchlabels',
+                                 'bika_subgroups',
                                 ],
                         },
         'Accounting':   {'id': 'nav-accounting',
@@ -113,9 +116,7 @@ function GraphiteTheme() {
                                 ],
                         },
         'Other':        {'id': 'nav-other',
-                        'items': ['bika_attachmenttypes',
-                                 'bika_batchlabels',
-                                 'bika_subgroups',
+                        'items': [
                                  ],
                         },
     };
@@ -321,9 +322,8 @@ function GraphiteTheme() {
 
             });
            // loadActiveNavSection();
-             loadActiveNavSection();
+            loadActiveNavSection();
             loadBreadcrumbs();
-            //loadNavMenuTransitions();
             $('#portal-globalnav').fadeIn();
 
         } else {
@@ -444,6 +444,7 @@ function GraphiteTheme() {
             }
         })
         .always(function() {
+            $('div.column-left').fadeIn();
             loadActiveNavSection();
             loadBreadcrumbs();
             loadNavMenuTransitions();

@@ -2176,15 +2176,17 @@ table.manage_results_header th {
     display: none;
 }
 #contextual-menu-wrapper ul li {
-    list-style-type: none;
+    list-style-type: square;
+    list-style-position: inside;
     float: left;
     padding: 3px 4px;
-    min-width:140px;
+    min-width:160px;
 }
 
 #contextual-menu-wrapper ul {
     margin: 0;
     padding: 0;
+    width: 1000px;
 }
 #contextual-menu-wrapper ul:after {
     visibility: hidden;
@@ -2200,10 +2202,13 @@ table.manage_results_header th {
     box-shadow: 0 15px 25px #fff;
     clear: both;
     font-size: 0.9em;
-    margin: 35px -20px 0 -110px;
+    margin: 35px -20px 0 -90px;
     padding: 12px 4px 13px;
 }
 .hidden {
+    display:none;
+}
+div.column-left {
     display:none;
 }
 /*
