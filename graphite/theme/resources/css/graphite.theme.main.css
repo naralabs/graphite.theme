@@ -2173,10 +2173,11 @@ table.manage_results_header th {
     padding: 4px 8px;
 }
 #contextual-menu-wrapper ul li a img {
-    display: none;
+    padding-right: 6px;
+    vertical-align: middle;
 }
 #contextual-menu-wrapper ul li {
-    list-style-type: square;
+    list-style-type: none;
     list-style-position: inside;
     float: left;
     padding: 3px 4px;
@@ -2202,7 +2203,7 @@ table.manage_results_header th {
     box-shadow: 0 15px 25px #fff;
     clear: both;
     font-size: 0.9em;
-    margin: 35px -20px 0 -90px;
+    margin: 35px -20px 0 -100px;
     padding: 12px 4px 13px;
 }
 .hidden {
