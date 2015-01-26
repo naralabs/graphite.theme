@@ -2211,7 +2211,8 @@ table.manage_results_header th {
 div.column-left {
     display:none;
 }
-/*
- * url("http://localhost:8090/Plone/portal_css/Sunburst%20Theme/++theme++graphite.theme/images/context-nav-selected.png")
-<li class="plain"><a href="#" style="color: rgb(255, 255, 255);">Quick Access</a></li><li class="plain"><a href="#">Laboratory</a></li><li class="plain"><a href="#">Workflow</a></li><li class="plain"><a href="#">Samples</a></li><li class="plain"><a href="#">Management</a></li><li class="plain"><a href="#">Tools</a></li>
-*/
+
+#contextual-menu-wrapper ul li.active a {
+    font-weight:bold;
+    color:#333;
+}

@@ -681,10 +681,12 @@ function GraphiteTheme() {
         } else {
             // Està ja obert el context-nav que toca?
             var found = false;
+            $('#contextual-menu-wrapper ul li').removeClass('active');
             $('#contextual-menu-wrapper ul.active li a').each(function() {
                 var itemurl = $(this).attr('href');
                 itemurl = itemurl.replace(window.portal_url, '');
                 if (parturl.contains(itemurl)) {
+                    $(this).closest('li').addClass('active');
                     var sectionid = $(this).closest('ul').attr('data-section');
                     $('#portal-globalnav li.'+sectionid).addClass('selected').removeClass('plain');
                     found = true;
@@ -697,6 +699,7 @@ function GraphiteTheme() {
                     var itemurl = $(this).attr('href');
                     itemurl = itemurl.replace(window.portal_url, '');
                     if (parturl.contains(itemurl)) {
+                        $(this).closest('li').addClass('active');
                         var sectionid = $(this).closest('ul').attr('data-section');
                         $('#portal-globalnav li.'+sectionid+' a').click();
                         found = true;
