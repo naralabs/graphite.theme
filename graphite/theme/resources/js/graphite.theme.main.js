@@ -361,7 +361,7 @@ function GraphiteTheme() {
                             var sectionul = null;
                             if ($('#portal-tools-wrapper ul#portal-globalnav li.'+sectionid).length < 1) {
                                 var sectionli = '<li class="plain '+sectionid+'"><a href="#" data-section="'+sectionid+'">'+_b(section)+'</a></li>';
-                                var contextmenu = '<ul class="'+sectionid+' hidden">'+itemli+'</ul>';
+                                var contextmenu = '<ul class="'+sectionid+' hidden" data-section="'+sectionid+'">'+itemli+'</ul>';
                                 $('#portal-tools-wrapper ul#portal-globalnav').append(sectionli);
                                 $('#contextual-menu-wrapper').append(contextmenu);
                             } else {
@@ -375,8 +375,8 @@ function GraphiteTheme() {
                 // Move all plone's portaltab-* menus inside Tools section
                 if ($('#portal-tools-wrapper ul#portal-globalnav li.tools').length < 1) {
                     // Add the tools section
-                    $('#portal-tools-wrapper ul#portal-globalnav').append('<li class="tools"><a data-section="nav-tools" href="#">'+_b('Tools')+'</a></li>');
-                    $('#contextual-menu-wrapper').append('<ul class="tools hidden"></ul>');
+                    $('#portal-tools-wrapper ul#portal-globalnav').append('<li class="tools"><a data-section="tools" href="#">'+_b('Tools')+'</a></li>');
+                    $('#contextual-menu-wrapper').append('<ul class="tools hidden" data-section="tools"></ul>');
                 }
                 $('#portal-tools-wrapper ul#portal-globalnav li[id^="portaltab-"]').each(function() {
                     $('#contextual-menu-wrapper ul.tools').append($(this));
@@ -502,7 +502,7 @@ function GraphiteTheme() {
             $('#contextual-menu-wrapper ul.'+section).fadeIn().addClass('active');
             $('#portal-tools-wrapper ul#portal-globalnav li.selected').removeClass('selected').addClass('plain');
             $(this).closest('li').addClass('selected').remove('plain');
-            var height = $('#contextual-menu-wrapper').innerHeight() + $('#logo').innerHeight();
+            var height = $('#contextual-menu-wrapper').innerHeight() + $('#logo').innerHeight() + 5;
             $('#content-wrapper').animate({'margin-top': height+'px'},'slow');
         });
         $('#portal-tools-wrapper ul#portal-globalnav li a').mouseenter(function(e) {
@@ -662,25 +662,54 @@ function GraphiteTheme() {
      */
     function setActiveNavItem(url) {
         var parturl = url.replace(window.portal_url, '');
-        $('ul.navtree li a').each(function() {
-            var itemurl = $(this).attr('href');
-            itemurl = itemurl.replace(window.portal_url, '');
-            if (parturl.contains(itemurl)) {
-                if ($(this).closest('li').hasClass('active')) {
+        if (navmenu_layout == 'left') {
+            $('ul.navtree li a').each(function() {
+                var itemurl = $(this).attr('href');
+                itemurl = itemurl.replace(window.portal_url, '');
+                if (parturl.contains(itemurl)) {
+                    if ($(this).closest('li').hasClass('active')) {
+                        return false;
+                    }
+                    $('ul.navtree li.active').removeClass('active');
+                    $('ul.navtree li.child-active').removeClass('child-active');
+                    $(this).closest('li').addClass('active');
+                    $(this).closest('li.nav-tree-item').addClass('child-active');
                     return false;
                 }
-                $('ul.navtree li.active').removeClass('active');
-                $('ul.navtree li.child-active').removeClass('child-active');
-                $(this).closest('li').addClass('active');
-                $(this).closest('li.nav-tree-item').addClass('child-active');
-                return false;
+            });
+        } else {
+            // Està ja obert el context-nav que toca?
+            var found = false;
+            $('#contextual-menu-wrapper ul.active li a').each(function() {
+                var itemurl = $(this).attr('href');
+                itemurl = itemurl.replace(window.portal_url, '');
+                if (parturl.contains(itemurl)) {
+                    var sectionid = $(this).closest('ul').attr('data-section');
+                    $('#portal-globalnav li.'+sectionid).addClass('selected').removeClass('plain');
+                    found = true;
+                    return false;
+                }
+            });
+            if (!found) {
+                // No està obert, cal obrir el primer que tingui l'item
+                $('#contextual-menu-wrapper ul.active li a').each(function() {
+                    var itemurl = $(this).attr('href');
+                    itemurl = itemurl.replace(window.portal_url, '');
+                    if (parturl.contains(itemurl)) {
+                        var sectionid = $(this).closest('ul').attr('data-section');
+                        $('#portal-globalnav li.'+sectionid+' a').click();
+                        return false;
+                    }
+                });
             }
-        });
+        }
     }
 
     function loadActiveNavSection() {
-        $('ul.navtree li.child-active').removeClass('child-active');
-        $('ul.navtree li.active').closest('li.navtree-item').addClass('child-active');
+        if (navmenu_layout == 'left') {
+            $('ul.navtree li.child-active').removeClass('child-active');
+            $('ul.navtree li.active').closest('li.navtree-item').addClass('child-active');
+        }
     }
 
     /**
