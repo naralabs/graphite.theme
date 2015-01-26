@@ -217,6 +217,14 @@ function GraphiteTheme() {
             $(this).closest('dl').removeClass('activated').addClass('deactivated');
         });
 
+        $('.column-center').mouseenter(function() {
+            if ($('#lims-nav li.selected').length > 0) {
+                $('#lims-nav li.selected').removeClass('selected').addClass('plain');
+                $('#contextual-menu-wrapper').hide();
+                $('#content-wrapper').animate({'margin-top': 80}, 'fast');
+            }
+        });
+
         // Loads additional JS styling
         loadStyles();
 
@@ -528,6 +536,7 @@ function GraphiteTheme() {
         $('#portal-tools-wrapper ul#lims-nav li a').click(function(e) {
             e.preventDefault();
             var section = $(this).attr('data-section');
+            $('#contextual-menu-wrapper').show();
             $('#contextual-menu-wrapper ul.active').hide().removeClass('active');
             $('#contextual-menu-wrapper ul.'+section).fadeIn().addClass('active');
             $('#portal-tools-wrapper ul#lims-nav li.selected').removeClass('selected').addClass('plain');
@@ -537,9 +546,10 @@ function GraphiteTheme() {
         });
         $('#portal-tools-wrapper ul#lims-nav li a').mouseenter(function(e) {
             var section = $(this).attr('data-section');
-            if (!$('#contextual-menu-wrapper ul.'+section).hasClass('active')) {
+            if (!$('#contextual-menu-wrapper ul.'+section).hasClass('selected')) {
                 $(this).click();
             }
+            ;
         });
     }
 
