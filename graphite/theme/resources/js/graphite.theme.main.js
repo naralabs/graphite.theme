@@ -727,7 +727,7 @@ function GraphiteTheme() {
                 if (parturl.contains(itemurl)) {
                     $(this).closest('li').addClass('active');
                     var sectionid = $(this).closest('ul').attr('data-section');
-                    $('#lims-nav li.'+sectionid).addClass('selected').removeClass('plain');
+                    //$('#lims-nav li.'+sectionid).addClass('selected').removeClass('plain');
                     found = true;
                     return false;
                 }
@@ -740,7 +740,7 @@ function GraphiteTheme() {
                     if (parturl.contains(itemurl)) {
                         $(this).closest('li').addClass('active');
                         var sectionid = $(this).closest('ul').attr('data-section');
-                        $('#lims-nav li.'+sectionid+' a').click();
+                       // $('#lims-nav li.'+sectionid+' a').click();
                         found = true;
                         return false;
                     }
@@ -748,7 +748,7 @@ function GraphiteTheme() {
             }
             if (!found) {
                 // By default, Quick access
-                $('#lims-nav li.nav-quick a').click();
+                //$('#lims-nav li.nav-quick a').click();
             }
         }
     }
