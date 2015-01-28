@@ -148,7 +148,8 @@ function GraphiteTheme() {
                             'at_download',
                             '/sticker?',
                             'mailto:',
-                            'error_log/getLogEntryAsText'];
+                            'error_log/getLogEntryAsText',
+                            'workflow_action='];
 
     // After every request, unbind events with a 'live' handler attached
     // which don't follow the recommended behavior and their 'live'
@@ -203,8 +204,23 @@ function GraphiteTheme() {
         // Dynamic page load behavior to links
         $('#lims-nav li a').unbind("click");
         $('#lims-nav li a').click(processLink);
-        $('.column-center a').unbind("click");
-        $('.column-center a').click(processLink);
+
+        // Bind ajax call for content's links, but only for those to not
+        // be omitted (omitajaxrequests array)
+        $('.column-center a').each(function(i) {
+            var omit = false;
+            var url = $(this).attr('href');
+            $.each(omitajaxrequests, function(i, item) {
+                if (url.indexOf(item) > -1) {
+                    omit = true;
+                    return;
+                }
+            });
+            if (!omit) {
+                $('.column-center a').unbind("click");
+                $('.column-center a').click(processLink);
+            }
+        });
 
         // User link from top-right must display the options on hover
         // This prevents the user to do an additional click
