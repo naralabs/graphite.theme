@@ -234,7 +234,7 @@ function GraphiteTheme() {
         });
 
         $('.column-center').mouseenter(function() {
-            if ($('#lims-nav li.selected').length > 0) {
+            if ($('#contextual-menu-wrapper').is(':visible')) {
                 $('#lims-nav li.selected').removeClass('selected').addClass('plain');
                 $('#contextual-menu-wrapper').hide();
                 $('#content-wrapper').animate({'margin-top': 80}, 'fast');
