@@ -210,12 +210,14 @@ function GraphiteTheme() {
         $('.column-center a').each(function(i) {
             var omit = false;
             var url = $(this).attr('href');
-            $.each(omitajaxrequests, function(i, item) {
-                if (url.indexOf(item) > -1) {
-                    omit = true;
-                    return;
-                }
-            });
+            if (url !== undefined) {
+                $.each(omitajaxrequests, function(i, item) {
+                    if (url.indexOf(item) > -1) {
+                        omit = true;
+                        return;
+                    }
+                });
+            }
             if (!omit) {
                 $('.column-center a').unbind("click");
                 $('.column-center a').click(processLink);
