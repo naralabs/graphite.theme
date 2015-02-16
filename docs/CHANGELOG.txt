@@ -1,6 +1,13 @@
 Changelog
 =========
 
+1.1 (unreleased)
+----------------
+- Selective loading of CSS - fix cached CSS malfunctioning
+- Left menu removal. Contextual top menu
+- Compatibility with Bika LIMS 3.1.7
+
+
 1.0 (2014-11-06)
 ----------------
 - GRTH-23 Add Contact to Client throws error
