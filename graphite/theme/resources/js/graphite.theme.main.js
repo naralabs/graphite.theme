@@ -177,6 +177,10 @@ function GraphiteTheme() {
         var disabled = readCookie("bika.graphite.disabled");
         var disabled = disabled == '1';
 
+        /*$('head link[type="text/css"]').each(function(e) {
+            console.log($(this).attr('href'));
+        });*/
+
         // Graphite Theme control bar
         $('#portal-theme a').click(function(e) {
             e.preventDefault();

@@ -12,4 +12,13 @@
         sortkey="1"
         profile="graphite.theme:default"/>
 
+ <genericsetup:upgradeStep
+        title="Load base CSS only if the theme is disabled"
+        description=""
+        source="*"
+        destination="1.1"
+        handler="graphite.theme.upgrade.010100.upgrade"
+        sortkey="1"
+        profile="graphite.theme:default"/>
+
 </configure>
