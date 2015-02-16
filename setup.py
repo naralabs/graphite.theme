@@ -1,13 +1,13 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.0'
+version = '1.1'
 
 setup(name='graphite.theme',
       version=version,
       description="Graphite Theme for Bika LIMS",
       long_description=open("README.md").read() + "\n\n" +
-                       open("CHANGELOG.txt").read(),
+                       open("docs/CHANGELOG.txt").read(),
       # Get more strings from
       # http://pypi.python.org/pypi?:action=list_classifiers
       classifiers=[
@@ -24,7 +24,7 @@ setup(name='graphite.theme',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
-          'bika.lims>=3.1.5',
+          'bika.lims==3.1.7',
           'plone.app.theming',
       ],
       extras_require={
