@@ -29,7 +29,7 @@ If you have questions, please post to one of our mailing lists:
 * LIMS design: https://groups.google.com/forum/?hl=en#%21forum/bika-design
 * Developers: http://lists.sourceforge.net/lists/listinfo/bika-developers
 
-Please log issues, feature requests, or bug reports in the [issue tracker](http://jira.bikalabs.com/)
+Please log issues, feature requests, or bug reports in the [issue tracker](http://jira.bikalabs.com/browse/GRTH)
 
 ***
 
