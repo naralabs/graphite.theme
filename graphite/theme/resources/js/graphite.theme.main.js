@@ -575,7 +575,7 @@ function GraphiteTheme() {
             var section = $(this).attr('data-section');
             $('#contextual-menu-wrapper').show();
             $('#contextual-menu-wrapper ul.active').hide().removeClass('active');
-            $('#contextual-menu-wrapper ul.'+section).fadeIn().addClass('active');
+            $('#contextual-menu-wrapper ul.'+section).show().addClass('active');
             $('#portal-tools-wrapper ul#lims-nav li.selected').removeClass('selected').addClass('plain');
             $(this).closest('li').addClass('selected').remove('plain');
             var height = $('#lims-nav-wrapper').innerHeight() + $('#logo').innerHeight() + 5;
