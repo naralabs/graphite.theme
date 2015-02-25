@@ -2180,6 +2180,8 @@ table.manage_results_header th {
 #contextual-menu-wrapper ul li a.contenttype-folder {
     background: url("++resource++bika.lims.images/folder.png") no-repeat scroll 8px 5px transparent;
     padding-left: 31px;
+   /* background: url("++resource++bika.lims.images/folder.png") no-repeat scroll 0 5px transparent;
+    padding-left: 21px;*/
 }
 #contextual-menu-wrapper ul li {
     list-style-type: none;
@@ -2187,6 +2189,15 @@ table.manage_results_header th {
     float: left;
     padding: 3px 4px;
     min-width:160px;
+    height:19px;
+}
+#contextual-menu-wrapper ul.tools li a:before {
+    color:#333;
+    content: "\f13e";
+    font-family: "Ionicons";
+    font-size: 1.2em;
+    padding-right: 8px;
+
 }
 
 #contextual-menu-wrapper ul {
