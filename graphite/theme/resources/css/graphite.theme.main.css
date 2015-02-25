@@ -2180,8 +2180,9 @@ table.manage_results_header th {
 #contextual-menu-wrapper ul li a.contenttype-folder {
     background: url("++resource++bika.lims.images/folder.png") no-repeat scroll 8px 5px transparent;
     padding-left: 31px;
-   /* background: url("++resource++bika.lims.images/folder.png") no-repeat scroll 0 5px transparent;
-    padding-left: 21px;*/
+}
+#contextual-menu-wrapper ul li.arimports a {
+    background: url("++resource++bika.lims.images/arimport.png") no-repeat scroll 8px 5px transparent;
 }
 #contextual-menu-wrapper ul li {
     list-style-type: none;
