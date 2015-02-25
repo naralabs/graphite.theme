@@ -243,7 +243,7 @@ function GraphiteTheme() {
             if ($('#contextual-menu-wrapper').is(':visible')) {
                 $('#lims-nav li.selected').removeClass('selected').addClass('plain');
                 $('#contextual-menu-wrapper').hide();
-                $('#content-wrapper').animate({'margin-top': 80}, 'fast');
+                $('#content-wrapper').animate({'margin-top': 70}, 'fast');
             }
         });
 
@@ -445,6 +445,8 @@ function GraphiteTheme() {
                 $('#contextual-menu-wrapper a').click(processLink);
                 $('#portal-globalnav').fadeIn();
                 $('#lims-nav-wrapper').fadeIn();
+                $('#contextual-menu-wrapper').hide();
+                $('#content-wrapper').animate({'margin-top': 70}, 'fast');
                 //$('#lims-nav').fadeIn();
                 setActiveNavItem(window.location.href);
             });
