@@ -223,9 +223,9 @@ function GraphiteTheme() {
                     }
                 });
             }
-            if (!omit) {
-                $('.column-center a').unbind("click");
-                $('.column-center a').click(processLink);
+            if (omit == false) {
+                $(this).unbind("click");
+                $(this).click(processLink);
             }
         });
 
