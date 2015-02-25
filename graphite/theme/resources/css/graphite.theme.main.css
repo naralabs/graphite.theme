@@ -1185,7 +1185,7 @@ input.applytemplate:hover {
 }
 
 #edit-bar {
-    margin-bottom: 10px;
+
 }
 
 #edit-bar ul#content-views {
@@ -1362,7 +1362,6 @@ div.table-empty-results span.ico {
 div.table-empty-results {
     font-size: 1.3em;
     color: #0B486B;
-    background-color: #efefef;
     padding: 10px 20px;
 }
 
