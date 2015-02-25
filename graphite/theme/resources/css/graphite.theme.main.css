@@ -1491,6 +1491,8 @@ input.saveRemarks:hover {
     vertical-align: top;
 }
 
+dt.actionMenuHeader span.state-private,
+dt.actionMenuHeader span.state-visible,
 dt.actionMenuHeader span.state-sample_due,
 dt.actionMenuHeader span.state-open,
 dt.actionMenuHeader span.state-active,
@@ -1548,6 +1550,8 @@ dt.actionMenuHeader span.state-assigned {
 dt.actionMenuHeader span.state-unassigned {
     background-color: #dcdcdc;
 }*/
+dd.actionMenuContent a#workflow-transition-show,
+dd.actionMenuContent a#workflow-transition-hide,
 dd.actionMenuContent a#workflow-transition-sample,
 dd.actionMenuContent a#workflow-transition-receive,
 dd.actionMenuContent a#workflow-transition-republish,
@@ -1563,6 +1567,8 @@ dd.actionMenuContent a#workflow-transition-assign,
 dd.actionMenuContent a#workflow-transition-activate {
     color:#333;
 }
+dd.actionMenuContent a#workflow-transition-show:before,
+dd.actionMenuContent a#workflow-transition-hide:before,
 dd.actionMenuContent a#workflow-transition-sample:before,
 dd.actionMenuContent a#workflow-transition-receive:before,
 dd.actionMenuContent a#workflow-transition-republish:before,
@@ -1585,6 +1591,14 @@ dd.actionMenuContent a#workflow-transition-assign:before {
     font-family: "Ionicons";
     font-size: 1.3em;
     padding-right: 2px;
+}
+dd.actionMenuContent a#workflow-transition-hide:before {
+    content: "\f2bb";
+    color:red;
+}
+dd.actionMenuContent a#workflow-transition-show:before {
+    content: "\f16d";
+    color:#74ae0b;
 }
 dd.actionMenuContent a#workflow-transition-assign:hover,
 dd.actionMenuContent a#workflow-transition-assign:before {
@@ -2297,6 +2311,9 @@ div.column-left {
 #contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader span {
     display:none;
 }
+
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader span.state-private,
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader span.state-visible,
 #contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader span.state-sample_due,
 #contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader span.state-open,
 #contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader span.state-active,
@@ -2320,6 +2337,23 @@ div.column-left {
 }
 #contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader a:before {
     color:#333;
+}
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader.label-state-visible a:before {
+    color:#74ae0b;
+    /*content:'\f16e';*/
+    content:none;
+    font-size:1.8em;
+}
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader.label-state-private a:before {
+    color:red;
+    content:none;
+    /*content:'\f1ae';*/
+    font-size:1.8em;
+}
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader.label-state-published a:before {
+    content:none;
+    /*content:'\f1ae';*/
+    font-size:1.8em;
 }
 #contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader.label-state-submitted a:before,
 #contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader.label-state-sample_due a:before {
