@@ -265,12 +265,6 @@ function GraphiteTheme() {
             $('#loading-pane').css('height', winheight - topoffset);
             $('#loading-pane').css('padding-top',((winheight - topoffset)/2)-60);
             $('#loading-pane').css('margin-top', topfixed);
-            $('#portal-alert').css({
-                'position':'fixed',
-                'left':'0',
-                'right':'0',
-                'margin-bottom':'0',
-            });
         });
 
         $('body').append('<div id="tooltip-box"></div>');
@@ -285,8 +279,7 @@ function GraphiteTheme() {
      * be triggered every timeout millisec.
      */
     function fixTopPosition(timeout) {
-        //var offset = $('#content-wrapper').offset().top - parseInt($('#content-wrapper').css('margin-top'));
-        var offset =  $('#portal-alert').length > 0 && $('#portal-alert').is(':visible') ? $('#portal-alert').outerHeight() : 0;
+        var offset = 0;
         if (offset != topoffset) {
             topoffset = offset;
             $(window).scroll();
@@ -1259,8 +1252,6 @@ function GraphiteTheme() {
 
         // Reload other js by reheading
         //loadNonInitializableJS();
-
-        $('#portal-alert').html('').fadeOut();
 
         // Bika LIMS
         window.bika.lims.loadControllers(true);

@@ -148,6 +148,9 @@
 
             <replace css:theme-children='#portletNavigationTree' css:content='.portletNavigationTree'/>
 
+            <!-- Portal alerts -->
+            <replace css:content="#portal-alert" css:theme="#portal-alert"/>
+
             <!-- Document Edit bar -->
             <replace css:content="#edit-bar" css:theme="#edit-bar" />
 

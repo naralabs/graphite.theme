@@ -1471,12 +1471,10 @@ input.saveRemarks:hover {
 
 
 #portal-alert {
-    margin-top: 45px;
-    padding: 20px 20px 30px;
-    background-color: #F4EAD5;
-    color: #CC333F;
-    margin-bottom:-50px;
-    z-index: 1990;
+    background-color: #f4ead5;
+    color: #cc333f;
+    margin: -1px -15px 15px -30px;
+    padding: 20px 30px;
 }
 #portal-alert p {
     padding: 0 0 0 40px;
