@@ -595,8 +595,8 @@ div.show-column-left a:hover {
 
 #content h2 {
     font-size: 1.6em;
-    margin-left: 47px;
-    margin-top: -15px;
+  /*  margin-left: 47px;
+    margin-top: -15px;*/
 }
 
 .bika-listing-table-container {
@@ -1205,6 +1205,23 @@ input.applytemplate:hover {
     color: #333333;
     text-shadow: 1px 1px 1px #EFEFEF;
 }
+#edit-bar ul#content-views li.plain a,
+#content li.formTab a.plain,
+#content-core li.formTab a.plain {
+    background-color: #efefef;
+    border: 1px solid #dedede;
+    border-radius: 5px;
+    color: #777;
+    padding: 4px 7px;
+}
+
+#edit-bar ul#content-views li.plain a:hover,
+#content li.formTab a.plain:hover,
+#content-core li.formTab a.plain:hover {
+    border:none;
+    padding: 5px 8px;
+}
+
 #edit-bar ul#content-views li a,
 #content li.formTab a,
 #content-core li.formTab  {
