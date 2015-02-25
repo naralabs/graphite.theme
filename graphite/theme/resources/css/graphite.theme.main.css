@@ -1412,7 +1412,7 @@ input.saveRemarks:hover {
     padding: 5px 0 0 5px;
 }
 .portalMessage {
-    background-color: #F4EAD5;
+    background-color: #E2F1C5;
     padding: 10px 20px 20px;
     margin-top: 10px;
 }
@@ -1618,10 +1618,12 @@ dd.actionMenuContent a#workflow-transition-assign:before {
 dd.actionMenuContent a#workflow-transition-sample:hover,
 dd.actionMenuContent a#workflow-transition-sample:before {
     color:#F38630;
+    content: "\f138";
 }
 dd.actionMenuContent a#workflow-transition-receive:hover,
 dd.actionMenuContent a#workflow-transition-receive:before {
    /* color:#E0E4CC;*/
+   content: "\f183";
 }
 dd.actionMenuContent a#workflow-transition-submit:hover,
 dd.actionMenuContent a#workflow-transition-submit:before {
@@ -1630,12 +1632,14 @@ dd.actionMenuContent a#workflow-transition-submit:before {
 dd.actionMenuContent a#workflow-transition-verify:hover,
 dd.actionMenuContent a#workflow-transition-verify:before{
     color: #69D2E7;
+    content: "\f334";
 }
 dd.actionMenuContent a#workflow-transition-republish:before,
 dd.actionMenuContent a#workflow-transition-publish:before,
 dd.actionMenuContent a#workflow-transition-republish:hover,
 dd.actionMenuContent a#workflow-transition-publish:hover {
     color:#83AF9B;
+    content: "\f186";
 }
 dd.actionMenuContent a#workflow-transition-deactivate:hover,
 dd.actionMenuContent a#workflow-transition-deactivate:before,
@@ -1644,12 +1648,14 @@ dd.actionMenuContent a#workflow-transition-cancel:before,
 dd.actionMenuContent a#workflow-transition-reject:hover,
 dd.actionMenuContent a#workflow-transition-reject:before{
     color: #FF6B6B;
+    content: "\f2bb";
 }
 dd.actionMenuContent a#workflow-transition-retract_ar:hover,
 dd.actionMenuContent a#workflow-transition-retract_ar:before,
 dd.actionMenuContent a#workflow-transition-retract:hover,
 dd.actionMenuContent a#workflow-transition-retract:before{
-    color: #dcdcdc;
+    color: #666;
+    content: "\f1ed";
 }
 dd.actionMenuContent a#workflow-transition-advanced {
     display:none;
@@ -2150,7 +2156,7 @@ table.manage_results_header th {
 .header_table tr td.key {
     font-weight: bold;
     margin-right: 20px;
-    background-color: #DCDCDC;
+    background-color: #f1f1f1;
     padding: 7px 10px;
 }
 #header_form input[type='submit'] {
@@ -2304,7 +2310,7 @@ div.column-left {
 }
 
 #contentActionMenus #plone-contentmenu-workflow dd ul li {
-    padding-right:15px;
+    padding-right:30px;
 }
 
 #contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader {
@@ -2427,4 +2433,9 @@ div#viewlet-above-content-title #panel-notification div.succeed-notification-ite
     background: url("/Plone/++resource++bika.lims.images/ok.png") no-repeat scroll 15px center #E2F1C5;
     border-radius: 5px;
     padding: 15px 30px 15px 40px;
+}
+a.print_button:before {
+    content: "\f1cc";
+    font-family:"Ionicons";
+    padding-right:8px;
 }
