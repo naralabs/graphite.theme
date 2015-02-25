@@ -206,6 +206,7 @@ function GraphiteTheme() {
         loadNavMenu();
 
         // Dynamic page load behavior to links
+        $('#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader a').attr('href', '#');
         $('#lims-nav li a').unbind("click");
         $('#lims-nav li a').click(processLink);
 
@@ -305,8 +306,10 @@ function GraphiteTheme() {
      */
     function loadPartial() {
         loadBreadcrumbs();
+        $('#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader a').attr('href', '#');
         $('.column-center a').unbind("click");
         $('.column-center a').click(processLink);
+        // Disable content-status history link
         loadStyles();
         loadActiveNavSection();
         loadBikaTableBehavior();

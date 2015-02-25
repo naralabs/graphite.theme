@@ -2314,6 +2314,10 @@ div.column-left {
 #contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader span.state-unassigned {
     display:inline;
 }
+
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader a {
+    cursor:default;
+}
 #contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader a:before {
     color:#333;
 }
