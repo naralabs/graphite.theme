@@ -1473,7 +1473,7 @@ input.saveRemarks:hover {
 #portal-alert {
     background-color: #f4ead5;
     color: #cc333f;
-    margin: -1px -15px 15px -30px;
+    margin: -5px -15px 15px -30px;
     padding: 20px 30px;
 }
 #portal-alert p {
@@ -2264,7 +2264,7 @@ table.manage_results_header th {
 #contextual-menu-wrapper {
     background-color: #fafafa;
     border-bottom: 1px solid #fff;
-    box-shadow: 0 15px 25px #fff;
+    /*box-shadow: 0 15px 25px #fff;*/
     clear: both;
     font-size: 0.9em;
     margin: 0 -20px 0 -100px;
