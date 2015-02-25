@@ -611,7 +611,7 @@ table.bika-listing-table {
 }
 
 table.bika-listing-table thead tr th {
-    background-color: #DCDCDC;
+    border-bottom: 1px solid #DCDCDC;
     padding: 5px;
     text-align: left;
 }
@@ -857,13 +857,17 @@ td.state-invalid a:hover {
 
 
 #content .bika-listing-table td.review_state_selector {
-    padding-bottom: 8px;
+    padding-bottom: 15px;
 }
 #content .bika-listing-table thead tr td.listing-filter-row a {
-    background-color: #efefef;
     padding: 8px 10px 5px 10px;
     color: #333;
     border-radius:0 0 2px 2px;
+    opacity:0.5;
+    moz-opacity:0.5;
+    filter:alpha(opacity=50);
+    -moz-opacity: 0.5;
+    -khtml-opacity: 0.5;
 }
 #content .bika-listing-table thead tr td.listing-filter-row a#default,
 #content .bika-listing-table thead tr td.listing-filter-row a#all {
@@ -913,23 +917,29 @@ td.state-invalid a:hover {
     /*background-color: #3B8686;
     color: #fff;
     border-right: 1px solid #3B8686;*/
-    opacity: 0.6;
-    moz-opacity:0.6;
-    filter:alpha(opacity=60);
-    -moz-opacity: 0.6;
-    -khtml-opacity: 0.6;
+    opacity: 1;
+    moz-opacity:1;
+    filter:alpha(opacity=100);
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
     transition: all 250ms ease-in;
     -webkit-transition: all 250ms ease-in;
     -moz-transition: all 250ms ease-in;
     -o-transition: all 250ms ease-in;
     -ms-transition: all 250ms ease-in;
 }
-#content .bika-listing-table thead tr td.listing-filter-row a.selected {
-    background-color: #DCDCDC;
+#content .bika-listing-table thead tr td.listing-filter-row a.selected,
+#content .bika-listing-table thead tr td.listing-filter-row a:hover {
+    background-color:#fff;
     color: #000;
+    opacity: 1;
+    moz-opacity:1;
+    filter:alpha(opacity=100);
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    text-shadow: 1px 1px 1px #cdcdcd;
 }
 #content .bika-listing-table tbody.item-listing-tbody tr:hover {
-    background-color:#efefef;
 }
 #content .bika-listing-table tfoot td.workflow_actions {
     position:absolute;
@@ -947,7 +957,7 @@ td.state-invalid a:hover {
     padding: 10px;
 }
 #content .bika-listing-table tfoot table {
-    background-color:#dcdcdc;
+    border-top:1px solid #dcdcdc;
     padding: 10px 20px 10px 10px;
 }
 #content .bika-listing-table tfoot td.batching span.pagesize_selector {
@@ -1129,7 +1139,7 @@ input.applytemplate {
     padding: 3px 15px 4px 15px;
     color: #fff;
     vertical-align: middle;*/
-    background-color: #EFEFEF;
+    background-color: #fefefe;
     border: 1px solid #CCCCCC;
     border-radius: 5px 5px 5px 5px;
     color: #333333;
@@ -1150,8 +1160,8 @@ h2 a.context_action_link:hover,
 input.context_action_link:hover,
 a.ws-analyses-search-button:hover,
 input.applytemplate:hover {
-    background-color: #EAEAEA;
-    border: 1px solid #DDDDDD;
+    background-color: #fafafa;
+    border: 1px solid #ccc;
     transition: background 250ms ease-in 0s;
     transition: background 250ms ease-in;
     -webkit-transition: background 250ms ease-in;
@@ -1208,8 +1218,8 @@ input.applytemplate:hover {
 #edit-bar ul#content-views li.plain a,
 #content li.formTab a.plain,
 #content-core li.formTab a.plain {
-    background-color: #efefef;
-    border: 1px solid #dedede;
+    background-color: #fefefe;
+    border: 1px solid #e6e6e6;
     border-radius: 5px;
     color: #777;
     padding: 4px 7px;
@@ -1220,6 +1230,7 @@ input.applytemplate:hover {
 #content-core li.formTab a.plain:hover {
     border:none;
     padding: 5px 8px;
+    color:#333;
 }
 
 #edit-bar ul#content-views li a,
