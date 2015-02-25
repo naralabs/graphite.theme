@@ -368,7 +368,8 @@ function GraphiteTheme() {
                     id = id[id.length-1];
                     runtimenav[id] = [$(this).attr('href'),
                                       $(this).find('span').length ? $.trim($(this).find('span').html()) : $.trim($(this).html()),
-                                      $(this).find('img').length ? $(this).find('img').attr('src') : ""];
+                                      $(this).find('img').length ? $(this).find('img').attr('src') : "",
+                                      $(this).attr('class')];
                     filled = true;
                 });
                 if (!filled) {
@@ -380,7 +381,8 @@ function GraphiteTheme() {
                         id = id[id.length-1];
                         runtimenav[id] = [$(this).attr('href'),
                                           $(this).find('span').length ? $.trim($(this).find('span').html()) : $.trim($(this).html()),
-                                          $(this).find('img').length ? $(this).find('img').attr('src') : ""];
+                                          $(this).find('img').length ? $(this).find('img').attr('src') : "",
+                                          $(this).attr('class')];
                     });
                 }
                 // Populate the nav-menu
@@ -396,8 +398,19 @@ function GraphiteTheme() {
                                 cssclass += " active";
                                 activedetected = true;
                             }
+                            var aclass = '';
+                            if (runitem[3] != '') {
+                                // We only need the contentype-xx class
+                                var re = /contenttype-.+/g;
+                                var matches = runitem[3].match(re);
+                                if (matches.length > 0) {
+                                    aclass = 'class="'+matches[0]+'"';
+                                }
+                            }
                             cssclass += '"';
-                            var itemli = '<li'+cssclass+'><a href="'+runitem[0]+'"><img src="'+runitem[2]+'">'+runitem[1]+'</a></li>';
+                            var itemli = '<li'+cssclass+'><a '+aclass+' href="'+runitem[0]+'">';
+                            itemli += runitem[2] != '' ? '<img src="'+runitem[2]+'">' : '';
+                            itemli += runitem[1]+'</a></li>';
                             var sectionid = navmenu[section]['id']
                             var sectionul = null;
                             if ($('#portal-tools-wrapper ul#lims-nav li.'+sectionid).length < 1) {

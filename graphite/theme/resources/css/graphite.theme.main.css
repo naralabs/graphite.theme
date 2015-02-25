@@ -2177,6 +2177,10 @@ table.manage_results_header th {
     padding-right: 6px;
     vertical-align: middle;
 }
+#contextual-menu-wrapper ul li a.contenttype-folder {
+    background: url("++resource++bika.lims.images/folder.png") no-repeat scroll 8px 5px transparent;
+    padding-left: 31px;
+}
 #contextual-menu-wrapper ul li {
     list-style-type: none;
     list-style-position: inside;
