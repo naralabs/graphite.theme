@@ -1267,7 +1267,7 @@ dd.actionMenuContent ul li {
     padding: 3px 0;
 }
 dd.actionMenuContent ul li a {
-    font-size: 0.9em;
+    /*font-size: 0.9em;*/
 }
 dt.actionMenuHeader a span {
     margin-right: 10px;
@@ -1278,7 +1278,7 @@ dt.actionMenuHeader a,dt.actionMenuHeader:hover {
     font-weight: 400;
 }
 dt.actionMenuHeader {
-    margin-bottom: 10px;
+    /*margin-bottom: 10px;*/
     float:left;
 }
 dt.actionMenuHeader span.arrowDownAlternative {
@@ -1288,7 +1288,6 @@ dd.actionMenuContent {
     float: left;
     margin: 0;
     margin-left: 15px;
-    padding-top: 5px;
 }
 
 #edit-bar div.contentActions:after {
@@ -1507,10 +1506,11 @@ dt.actionMenuHeader span.state-closed,
 dt.actionMenuHeader span.state-invalid,
 dt.actionMenuHeader span.state-assigned,
 dt.actionMenuHeader span.state-unassigned {
-    border-radius: 5px 5px 5px 5px;
-    color: #FFFFFF;
-    padding: 2px 15px;
-}
+    color: #333;
+    font-size: 1.1em;
+    font-weight: 400;
+    padding: 2px 5px;
+}/*
 dt.actionMenuHeader span.state-submitted,
 dt.actionMenuHeader span.state-sample_due {
     background-color: #F38630;
@@ -1547,7 +1547,7 @@ dt.actionMenuHeader span.state-assigned {
 }
 dt.actionMenuHeader span.state-unassigned {
     background-color: #dcdcdc;
-}
+}*/
 dd.actionMenuContent a#workflow-transition-sample,
 dd.actionMenuContent a#workflow-transition-receive,
 dd.actionMenuContent a#workflow-transition-republish,
@@ -1559,7 +1559,8 @@ dd.actionMenuContent a#workflow-transition-cancel,
 dd.actionMenuContent a#workflow-transition-retract,
 dd.actionMenuContent a#workflow-transition-retract_ar,
 dd.actionMenuContent a#workflow-transition-reject,
-dd.actionMenuContent a#workflow-transition-assign {
+dd.actionMenuContent a#workflow-transition-assign,
+dd.actionMenuContent a#workflow-transition-activate {
     color:#333;
 }
 dd.actionMenuContent a#workflow-transition-sample:before,
@@ -1572,16 +1573,17 @@ dd.actionMenuContent a#workflow-transition-deactivate:before,
 dd.actionMenuContent a#workflow-transition-cancel:before,
 dd.actionMenuContent a#workflow-transition-retract:before,
 dd.actionMenuContent a#workflow-transition-retract_ar:before,
-dd.actionMenuContent a#workflow-transition-reject:before {
-    content: "\f13e";
+dd.actionMenuContent a#workflow-transition-reject:before,
+dd.actionMenuContent a#workflow-transition-activate:before {
+    content: "\f1b7";/*"\f13e";*/
     font-family: "Ionicons";
-    font-size: 1.2em;
-    padding-right: 2px;
+    font-size: 1.6em;
+    padding-right: 3px;
 }
 dd.actionMenuContent a#workflow-transition-assign:before {
     content: "\f211";
     font-family: "Ionicons";
-    font-size: 1.2em;
+    font-size: 1.3em;
     padding-right: 2px;
 }
 dd.actionMenuContent a#workflow-transition-assign:hover,
@@ -1594,7 +1596,7 @@ dd.actionMenuContent a#workflow-transition-sample:before {
 }
 dd.actionMenuContent a#workflow-transition-receive:hover,
 dd.actionMenuContent a#workflow-transition-receive:before {
-    color:#E0E4CC;
+   /* color:#E0E4CC;*/
 }
 dd.actionMenuContent a#workflow-transition-submit:hover,
 dd.actionMenuContent a#workflow-transition-submit:before {
@@ -2274,4 +2276,85 @@ div.column-left {
 }
 #lims-nav li.selected a {
     color:#000;
+}
+
+#contentActionMenus #plone-contentmenu-workflow dd ul li {
+    padding-right:15px;
+}
+
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader {
+
+}
+
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader a:before {
+    content: "\f21b";
+    font-family: "Ionicons";
+    font-size: 1.4em;
+    padding-right: 2px;
+    /*text-shadow: 0 0 3px #666;*/
+}
+
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader span {
+    display:none;
+}
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader span.state-sample_due,
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader span.state-open,
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader span.state-active,
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader span.state-submitted,
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader span.state-imported,
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader span.state-sample_received,
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader span.state-to_be_verified,
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader span.state-verified,
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader span.state-published,
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader span.state-cancelled,
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader span.state-inactive,
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader span.state-closed,
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader span.state-invalid,
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader span.state-assigned,
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader span.state-unassigned {
+    display:inline;
+}
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader a:before {
+    color:#333;
+}
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader.label-state-submitted a:before,
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader.label-state-sample_due a:before {
+    color: #F38630;
+}
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader.label-state-active a:before,
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader.label-state-open a:before {
+    color:#E0E4CC;
+}
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader.label-state-sample_received a:before {
+    color: #E0E4CC;
+}
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader.label-state-to_be_verified a:before {
+    color: #A7DBD8;
+}
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader.label-state-verified a:before {
+    color: #69D2E7;
+}
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader.label-state-imported a:before,
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader.label-state-published a:before {
+    color: #83AF9B;
+}
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader.label-state-cancelled a:before,
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader.label-state-inactive a:before {
+    color: #FF6B6B;
+}
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader.label-state-closed a:before {
+    color: #aaaaaa;
+}
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader.label-state-invalid a:before {
+    color: #C44D58;
+}
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader.label-state-assigned a:before {
+    color: #dcdcdc;
+}
+#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader.label-state-unassigned a:before {
+    color: #dcdcdc;
+}
+
+.column-center #content {
+    padding-top:3px;
 }
