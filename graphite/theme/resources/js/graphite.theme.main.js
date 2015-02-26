@@ -157,7 +157,8 @@ function GraphiteTheme() {
                             '/sticker?',
                             'mailto:',
                             'error_log/getLogEntryAsText',
-                            'workflow_action='];
+                            'workflow_action=',
+                            '/invoice_print'];
 
     var omitajaxrequests_css = ['referencewidget-',];
 
