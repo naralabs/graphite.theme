@@ -599,9 +599,13 @@ div.show-column-left a:hover {
   /*  margin-left: 47px;
     margin-top: -15px;*/
 }
-
-.bika-listing-table-container {
+div.bika-listing-table-container,
+.bika-listing-table-container,
+#content div.bika-listing-table-container,
+#content .bika-listing-table-container {
     overflow: auto;
+    box-shadow: none;
+    border-radius: 0;
 }
 
 table.bika-listing-table {
@@ -1195,6 +1199,21 @@ input.applytemplate:hover {
     margin-top: 15px;
 }
 
+#edit-bar ul#content-views li.plain a,
+div.overlay li.formTab a.plain,
+#content li.formTab a.plain,
+#content-core li.formTab a.plain,
+#edit-bar ul#content-views li a,
+div.overlay li.formTab a,
+#content li.formTab a,
+#content-core li.formTab a {
+    background-color: #fefefe;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    color: #777;
+    padding: 4px 7px;
+}
+
 #edit-bar ul#content-views li a:hover,
 div.overlay li.formTab a:hover,
 #content li.formTab a:hover,
@@ -1219,17 +1238,6 @@ div.overlay li.formTab a.selected:hover,
     color: #333333;
     text-shadow: 1px 1px 1px #EFEFEF;
 }
-#edit-bar ul#content-views li.plain a,
-div.overlay li.formTab a.plain,
-#content li.formTab a.plain,
-#content-core li.formTab a.plain {
-    background-color: #fefefe;
-    border: 1px solid #e6e6e6;
-    border-radius: 5px;
-    color: #777;
-    padding: 4px 7px;
-}
-
 #edit-bar ul#content-views li.plain a:hover,
 div.overlay li.formTab a.plain:hover,
 #content li.formTab a.plain:hover,
@@ -1710,14 +1718,14 @@ dl#plone-contentmenu-factories.actionMenu {
 }
 
 /* Form/View tabs */
-div.overlay ul.formTabs, #content-core ul.formTabs
+div.overlay ul.formTabs, #content-core ul.formTabs,
 #content ul.formTabs, #content-core ul.formTabs {
     display: block;
     margin: 20px 0;
     padding: 0;
     padding: 5px 0px;
 }
-div.overlay li.formTab, #content-core li.formTab
+div.overlay li.formTab, #content-core li.formTab,
 #content li.formTab, #content-core li.formTab {
     display: inline;
     margin: 0;
@@ -2464,5 +2472,20 @@ a.add-button.referencewidget-add-button:before {
 }
 a.edit-button.referencewidget-edit-button:before {
     content: "\f12c";
+}
+#content fieldset {
+    border:none;
+}
+
+#batch-base-edit fieldset {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: -moz-use-text-color #cdcdcd #cdcdcd;
+    border-image: none;
+    border-style: none solid solid;
+    border-width: medium 1px 1px;
+    width: 100%;
 }
 
