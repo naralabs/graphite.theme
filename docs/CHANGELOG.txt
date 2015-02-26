@@ -1,8 +1,10 @@
 Changelog
 =========
 
-1.1 (unreleased)
+1.1 (2015-02-26)
 ----------------
+- GRTH-34 Print invoice doesn't show the invoice to print
+- GRTH-4 No doctor, patient, diseases... access in menu bar
 - GRTH-30 Overlays don't work
 - GRTH-26 Portal instrument alerts not shown
 - GRTH-25 After autosave something in AR/view, the notification panel hasn't style.
