@@ -151,6 +151,8 @@ function GraphiteTheme() {
                             'error_log/getLogEntryAsText',
                             'workflow_action='];
 
+    var omitajaxrequests_css = ['referencewidget-',];
+
     // After every request, unbind events with a 'live' handler attached
     // which don't follow the recommended behavior and their 'live'
     // event is still triggered after new requests loaded dynamically.
@@ -213,20 +215,7 @@ function GraphiteTheme() {
         // Bind ajax call for content's links, but only for those to not
         // be omitted (omitajaxrequests array)
         $('.column-center a').each(function(i) {
-            var omit = false;
-            var url = $(this).attr('href');
-            if (url !== undefined) {
-                $.each(omitajaxrequests, function(i, item) {
-                    if (url.indexOf(item) > -1) {
-                        omit = true;
-                        return;
-                    }
-                });
-            }
-            if (omit == false) {
-                $(this).unbind("click");
-                $(this).click(processLink);
-            }
+            bindAnchor(this);
         });
 
         // User link from top-right must display the options on hover
@@ -300,14 +289,48 @@ function GraphiteTheme() {
     function loadPartial() {
         loadBreadcrumbs();
         $('#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader a').attr('href', '#');
-        $('.column-center a').unbind("click");
-        $('.column-center a').click(processLink);
+        $('.column-center a').each(function(i) {
+            bindAnchor(this);
+        });
         // Disable content-status history link
         loadStyles();
         loadActiveNavSection();
         loadBikaTableBehavior();
         fixLayout();
         initializeJavascripts();
+    }
+
+    /**
+     * Binds ajax call to an anchor element, but only if not to be
+     * be omitted (omitajaxrequests or omitajazrequests_css)
+     */
+    function bindAnchor(el) {
+        var omit = false;
+        var url = $(el).attr('href');
+        if (url !== undefined) {
+            var css = el.className;
+            if (css !== undefined) {
+                $.each(omitajaxrequests_css, function(i, item) {
+                    if (css.match(item)) {
+                        omit = true;
+                        return;
+                    }
+                });
+                if (omit == true) {
+                    return;
+                }
+            }
+            $.each(omitajaxrequests, function(i, item) {
+                if (url.indexOf(item) > -1) {
+                    omit = true;
+                    return;
+                }
+            });
+        }
+        if (omit == false) {
+            $(el).unbind("click");
+            $(el).click(processLink);
+        }
     }
 
     /**

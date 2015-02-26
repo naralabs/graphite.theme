@@ -3,6 +3,7 @@ Changelog
 
 1.1 (unreleased)
 ----------------
+- GRTH-30 Overlays don't work
 - GRTH-26 Portal instrument alerts not shown
 - GRTH-25 After autosave something in AR/view, the notification panel hasn't style.
 - GRTH-29 On AR publish, the page is not redirected to the publication preview
