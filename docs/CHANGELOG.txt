@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.2 (unreleased)
+----------------
+
+
 1.1 (2015-02-26)
 ----------------
 - GRTH-34 Print invoice doesn't show the invoice to print

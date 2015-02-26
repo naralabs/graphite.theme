@@ -1,6 +1,6 @@
 Graphite Theme is a Diazo Theme for Bika Open Source LIMS
 The files contained in these directories are part of Graphite Theme.
-Copyright (C) 2014 Naralabs <info@naralabs.com>
+Copyright (C) 2014-2015 Naralabs <info@naralabs.com>
 
 This program is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the
