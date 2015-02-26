@@ -51,6 +51,7 @@ function GraphiteTheme() {
                                    'bika_analysisprofiles',
                                    'analysisrequests',
                                    'bika_artemplates',
+                                   'bika_arpriorities',
                                    'bika_analysisservices',
                                    'bika_analysisspecs',
                                    'arimports',
@@ -67,6 +68,7 @@ function GraphiteTheme() {
                                    'bika_analysisprofiles',
                                    'analysisrequests',
                                    'bika_artemplates',
+                                   'bika_arpriorities',
                                    'analysisservices',
                                    'analysisspecs',
                                    'arimports',
@@ -75,13 +77,15 @@ function GraphiteTheme() {
                                    'bika_calculations',
                                    'methods',
                                    'worksheets',
-                                   'worksheettemplates'
+                                   'worksheettemplates',
+                                   'bika_worksheettemplates',
                                   ],
                         },
         'Samples':      {'id': 'nav-samples',
                          'items': ['samples',
                                  'bika_sampleconditions',
                                  'bika_samplematrices',
+                                 'bika_samplepoints',
                                  'bika_sampletypes',
                                  'bika_samplingdeviations',
                                  'bika_srtemplates',
@@ -90,11 +94,15 @@ function GraphiteTheme() {
                                 ],
                         },
         'Management':   {'id': 'nav-management',
-                         'items': ['clients',
+                         'items': [
+                                 'laboratory',
+                                 'clients',
                                  'bika_instruments',
                                  'bika_instrumenttypes',
                                  'bika_containers',
+                                 'bika_containertypes',
                                  'bika_products',
+                                 'bika_labproducts',
                                  'bika_manufacturers',
                                  'bika_preservations',
                                  'bika_storagelocations',
@@ -379,6 +387,7 @@ function GraphiteTheme() {
             .done(function(data) {
                 var htmldata = data;
                 var filled = false;
+                var grabbed = []
                 htmldata = $(htmldata).find('#portal-column-one dl.portletNavigationTree').html();
                 $(htmldata).find('a').each(function() {
                     var href = $(this).attr('href');
@@ -390,6 +399,7 @@ function GraphiteTheme() {
                                       $(this).find('img').length ? $(this).find('img').attr('src') : "",
                                       $(this).attr('class')];
                     filled = true;
+                    grabbed.push(id);
                 });
                 if (!filled) {
                     // Not a LabMan? Use the portal-nav instead
@@ -402,8 +412,28 @@ function GraphiteTheme() {
                                           $(this).find('span').length ? $.trim($(this).find('span').html()) : $.trim($(this).html()),
                                           $(this).find('img').length ? $(this).find('img').attr('src') : "",
                                           $(this).attr('class')];
+                        grabbed.push(id);
                     });
                 }
+                // Find orphan menuitems and populate 'Others'
+                var registered = [];
+                for (var section in navmenu) {
+                    var items = navmenu[section]['items'];
+                    $.each(items, function(i, item) {
+                        registered.push(item);
+                        return;
+                    });
+                }
+                if (!('Other' in navmenu)) {
+                    navmenu['Other'] = {'id': 'nav-other',
+                                        'items': []};
+                }
+                for (var key in runtimenav) {
+                    if (key != 'sitemap' && key!='Plone' && registered.indexOf(key) < 0) {
+                        navmenu['Other']['items'].push(key);
+                    }
+                }
+
                 // Populate the nav-menu
                 var activedetected = false;
                 for (var section in navmenu) {
@@ -422,7 +452,7 @@ function GraphiteTheme() {
                                 // We only need the contentype-xx class
                                 var re = /contenttype-.+/g;
                                 var matches = runitem[3].match(re);
-                                if (matches.length > 0) {
+                                if (matches && matches.length > 0) {
                                     aclass = 'class="'+matches[0]+'"';
                                 }
                             }

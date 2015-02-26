@@ -2242,6 +2242,8 @@ table.manage_results_header th {
 #contextual-menu-wrapper ul li a img {
     padding-right: 6px;
     vertical-align: middle;
+    height:16px;
+    width:16px;
 }
 #contextual-menu-wrapper ul li a.contenttype-folder {
     background: url("++resource++bika.lims.images/folder.png") no-repeat scroll 8px 5px transparent;
