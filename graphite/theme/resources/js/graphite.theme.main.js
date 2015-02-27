@@ -320,10 +320,12 @@ function GraphiteTheme() {
             var css = el.className;
             if (css !== undefined) {
                 $.each(omitajaxrequests_css, function(i, item) {
-                    if (css.match(item)) {
-                        omit = true;
-                        return;
-                    }
+                    try {
+                        if (css.match(item)) {
+                            omit = true;
+                            return;
+                        }
+                    } catch (e) {}
                 });
                 if (omit == true) {
                     return;
@@ -449,13 +451,15 @@ function GraphiteTheme() {
                                 activedetected = true;
                             }
                             var aclass = '';
-                            if (runitem[3] != '') {
+                            if (runitem[3] !== undefined) {
                                 // We only need the contentype-xx class
-                                var re = /contenttype-.+/g;
-                                var matches = runitem[3].match(re);
-                                if (matches && matches.length > 0) {
-                                    aclass = 'class="'+matches[0]+'"';
-                                }
+                                try {
+                                    var re = /contenttype-.+/g;
+                                    var matches = runitem[3].match(re);
+                                    if (matches && matches.length > 0) {
+                                        aclass = 'class="'+matches[0]+'"';
+                                    }
+                                } catch (e) {}
                             }
                             cssclass += '"';
                             var itemli = '<li'+cssclass+'><a '+aclass+' href="'+runitem[0]+'">';
