@@ -792,6 +792,7 @@ function GraphiteTheme() {
      * Sets the left-nav item menu active for an url
      */
     function setActiveNavItem(url) {
+        console.log(url)
         var parturl = url.replace(window.portal_url, '');
         if (navmenu_layout == 'left') {
             $('ul.navtree li a').each(function() {
@@ -828,7 +829,8 @@ function GraphiteTheme() {
                 $('#contextual-menu-wrapper ul li a').each(function() {
                     var itemurl = $(this).attr('href');
                     itemurl = itemurl.replace(window.portal_url, '');
-                    if (parturl.contains(itemurl)) {
+                    //---if (parturl.contains(itemurl))--- doesn't work on chrome
+                    if (parturl.indexOf(itemurl) != -1){
                         $(this).closest('li').addClass('active');
                         var sectionid = $(this).closest('ul').attr('data-section');
                        // $('#lims-nav li.'+sectionid+' a').click();
