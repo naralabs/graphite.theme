@@ -1425,6 +1425,9 @@ input.saveRemarks:hover {
     height: 0;
     padding: 5px 0 0 5px;
 }
+#content .portalMessage {
+    display:none;
+}
 .portalMessage {
     background-color: #E2F1C5;
     padding: 10px 20px 20px;
