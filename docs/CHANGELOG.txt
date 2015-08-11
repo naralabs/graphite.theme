@@ -3,6 +3,7 @@ Changelog
 
 1.2 (unreleased)
 ----------------
+- GRTH-39 graphite.theme 1.1.1 requires 'bika.lims==3.1.7'
 - Graphite Theme doesn't work properly on production mode
 
 

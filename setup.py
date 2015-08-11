@@ -24,7 +24,7 @@ setup(name='graphite.theme',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
-          'bika.lims==3.1.7',
+          'bika.lims>=3.1.7',
           'plone.app.theming',
       ],
       extras_require={
