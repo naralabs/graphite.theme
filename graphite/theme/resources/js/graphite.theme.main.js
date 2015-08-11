@@ -385,7 +385,7 @@ function GraphiteTheme() {
 
         } else {
             // Get all items from Site setup
-            var sitesetup_url = portal_url + '/bika_setup?diazo.off=1';
+            var sitesetup_url = portal_url + '/bika_setup?bika.graphite.disabled=1';
             $.ajax(sitesetup_url)
             .done(function(data) {
                 var htmldata = data;
@@ -531,7 +531,7 @@ function GraphiteTheme() {
             $(this).attr('href', portal_url + $(this).attr('href'));
         });
         // Get all items from Site setup
-        var sitesetup_url = portal_url + '/bika_setup?diazo.off=1';
+        var sitesetup_url = portal_url + '/bika_setup?bika.graphite.disabled=1';
         $.ajax(sitesetup_url)
         .done(function(data) {
             var htmldata = data;

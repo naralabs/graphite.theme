@@ -3,6 +3,7 @@ Changelog
 
 1.2 (unreleased)
 ----------------
+- Graphite Theme doesn't work properly on production mode
 
 
 1.1 (2015-02-26)
