@@ -361,19 +361,27 @@ div.constraint {
     margin-top: 50px;
     margin-bottom: 100px;
 }
-#content-wrapper div.column-left,
-#content-wrapper div.column-center,
-#content-wrapper div.column-right {
-    float:left;
-}
 #content-wrapper div.column-left {
+    float:left;
     width:180px;
     background-color:#efefef;
     height:100%;
     margin-top: 10px;
 }
 #content-wrapper div.column-center {
-    margin-left: 30px;
+    float:left;
+    padding-left: 30px;
+}
+#content-wrapper div.column-right {
+    background-color: #efefef;
+    font-size: 0.9em;
+    padding: 0 30px 0 20px;
+    position:absolute;
+    top:74px;
+    right:0;
+    min-height:100%;
+    width: 300px;
+    z-index:1900;
 }
 #content-wrapper:after {
     visibility: hidden;

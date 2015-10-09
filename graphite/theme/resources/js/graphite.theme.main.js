@@ -667,14 +667,15 @@ function GraphiteTheme() {
      * Adjusts the current contents to the window's width
      */
     function fixLayout() {
+        "use strict";
         var winwidth  = $("#content-wrapper").innerWidth();
         var left = $("div.column-left").is(':visible') ? $("div.column-left").outerWidth() : 0;
-        left += parseInt($('div.column-center').css('margin-left'));
-        left += parseInt($('div.column-left').css('margin-left'));
-        left += 15;
-        var col2width = $("div.column-right").outerWidth();
-        var contentw = Math.floor(winwidth - left);
-        $('div.column-center').css('width', contentw);
+        var margin = $("div.column-center").outerWidth()-$("div.column-center").width();
+        // The may be fractional and is not guaranteed to be accurate and we
+        // cannot assume it is an integer, so we substract 15px to avoid
+        // potential problems.
+        var width = Math.floor(winwidth - left) - 15 - margin;
+        $('div.column-center').css('width', width);
         $('#loading-pane').css('margin-left', (left-15)+"px");
     }
 
