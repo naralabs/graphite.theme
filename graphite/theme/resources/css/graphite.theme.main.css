@@ -2493,4 +2493,162 @@ a.edit-button.referencewidget-edit-button:before {
     border-width: medium 1px 1px;
     width: 100%;
 }
+#content div.arresultsinterpretation-container {
+    padding-top:15px;
+}
+#content div.arresultsinterpretation-container ul {
+    list-style:none outside none;
+    margin:0;
+    padding:0;
+}
+#content div.arresultsinterpretation-container ul li {
+    display:inline;
+    padding-right: 5px;
+}
+#content div.arresultsinterpretation-container ul li a {
+    padding:5px 10px;
+    border: 1px solid #dcdcdc;
+    color: #888;
+    padding: 5px 10px;
+}
+#content div.arresultsinterpretation-container ul li a:hover,
+#content div.arresultsinterpretation-container ul li a.selected {
+    background-color: #fff;
+    border: 1px solid #999;
+    color: #333;
+    padding: 5px 10px;
+}
+#content div.arresultsinterpretation-container div.department-area {
+    padding-top:15px;
+}
+#content div.arresultsinterpretation-container .fieldTextFormat,
+#content div.arresultsinterpretation-container .mceButton.mce_image,
+#content div.arresultsinterpretation-container .mceButton.mce_code,
+#content div.arresultsinterpretation-container .mceButton.mce_save, {
+    display:none;
+}
+.bika-listing-table td.interim input[type="text"]:-moz-read-only,
+.bika-listing-table td.Result input[type="text"]:-moz-read-only {
+    color: #555;
+    cursor: not-allowed;
+}
+.bika-listing-table td.interim input[type="text"]:-moz-read-only:focus,
+.bika-listing-table td.Result input[type="text"]:-moz-read-only:focus{
+    background-color: transparent;
+}
+.bika-listing-table td.interim input[type="text"]:read-only,
+.bika-listing-table td.Result input[type="text"]:read-onl {
+    color: #555;
+    cursor: not-allowed;
+}
+.bika-listing-table td.interim input[type="text"]:read-only:focus,
+.bika-listing-table td.Result input[type="text"]:read-only:focus {
+    background-color: transparent;
+}
 
+div.div-table-first-row {
+    line-height: 1.5em;
+    margin-left: 1%;
+    padding: .25em;
+}
+div.div-table-first-row span {
+    padding-left: 1em;
+}
+div.div-table-left {
+    float: left;
+    width: 50%;
+    margin-left: 1%;
+    line-height: 1.5em;
+    padding: .25em;
+}
+div.div-table-left span {
+    padding-left: 1em;
+}
+div.div-table-right {
+    margin-left: 51%;
+    line-height: 1.5em;
+    padding: .25em;
+}
+div.div-table-right span {
+    padding-left: 1em;
+}
+
+table.invoice-items {
+    width: 100%;
+    margin-top: 25px;
+    border-collapse: collapse;
+}
+
+table.invoice-items thead tr {
+    border-top: 2px solid #ddd;
+    border-bottom: 2px solid #ddd;
+}
+
+table.invoice-items th {
+    padding: .25em;
+    text-align: center;
+}
+
+table.invoice-items tr {
+    line-height: 1.5em;
+    border-bottom: 1px solid #ddd;
+}
+
+table.invoice-items tr.category {
+    font-weight: bold;
+    border-bottom-width: 2px;
+}
+
+table.invoice-items tr.totals {
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
+    border-top: 2px solid #ddd;
+}
+
+table.invoice-items td:nth-child(1),
+table.invoice-items th:nth-child(1) {
+    text-align: left;
+}
+
+table.invoice-items td {
+    padding: .25em;
+    text-align: right;
+}
+
+table.invoice-items th.text, table.invoice-items td.text {
+    text-align: left;
+}
+
+table.invoice-items th.currency, table.invoice-items td.currency {
+    text-align: right;
+    width: 10%;
+}
+
+table.invoice-items th.center, table.invoice-items td.center {
+    text-align: center
+}
+
+table.invoice-items td.number {
+    width: 100px;
+    text-align: center;
+}
+
+table.invoice-items td.number input {
+    width: 60%;
+    text-align: right;
+}
+
+table.invoice-items tr.totals td.title {
+    font-size: 1.1em;
+    text-align: right;
+    text-transform: uppercase;
+}
+table.invoice-items tr.totals {
+    border-bottom:none;
+}
+.template-invoice #content-core {
+    border: 1px solid #cdcdcd;
+    box-shadow: 5px 10px 10px #dcdcdc;
+    max-width: 1024px;
+    padding: 50px 30px 70px 30px;
+}
