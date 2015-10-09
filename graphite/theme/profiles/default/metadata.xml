@@ -1,8 +1,7 @@
 <?xml version="1.0"?>
 <metadata>
-  <version>1.1</version>
+  <version>1.2</version>
   <dependencies>
     <dependency>profile-plone.app.theming:default</dependency>
-    <dependency>profile-bika.lims:default</dependency>
   </dependencies>
 </metadata>
