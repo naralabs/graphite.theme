@@ -373,16 +373,53 @@ div.constraint {
     padding-left: 30px;
 }
 #content-wrapper div.column-right {
-    background-color: #efefef;
-    font-size: 0.9em;
-    border-left: 1px solid #fff;
-    padding: 0 30px 0 20px;
     position:absolute;
-    top:74px;
     right:0;
-    min-height:100%;
-    width: 300px;
     z-index:1900;
+    overflow:hidden;
+    min-height:100%;
+}
+#column-right-wrapper {
+    margin-right: -350px;
+    margin-top:-10px;
+    padding-left: 32px;
+}
+#portal-column-two {
+    background-color: #efefef;
+    border-left: 1px solid #fff;
+    font-size: 0.9em;
+    min-height: 100%;
+    padding: 30px 30px 30px 20px;
+    width: 300px;
+}
+#column-right-toggle {
+    opacity: 0.5;
+    moz-opacity:0.5;
+    filter:alpha(opacity=50);
+    -moz-opacity: 0.5;
+    -khtml-opacity: 0.5;
+    background-color: #efefef;
+    border-radius: 5px 0 0 5px;
+    color: #333;
+    margin-top: 64px;
+    margin-left:-32px;
+    padding: 10px;
+    font-size:18px;
+    position: absolute;
+}
+#column-right-toggle:hover,
+#column-right-toggle.collapse {
+    opacity:1;
+    moz-opacity:1;
+    filter:alpha(opacity=100);
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    -webkit-transition: opacity 250ms ease-in-out;
+    -moz-transition: opacity 250ms ease-in-out;
+    -o-transition: opacity 250ms ease-in-out;
+    -ms-transition: opacity 250ms ease-in-out;
+    transition: opacity 250ms ease-in-out;
+    color: #888;
 }
 #content-wrapper:after {
     visibility: hidden;

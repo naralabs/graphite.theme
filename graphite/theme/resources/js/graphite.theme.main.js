@@ -6,8 +6,8 @@ function GraphiteTheme() {
 
     // Navigator menu layout
     // top: shows the nav menu on the top.
-    // left: shows the nav menu on the left.
-    // By default: left
+    // left: shows the nav menu on the left. (experimental)
+    // By default: top
     var navmenu_layout = 'top';
 
     // Portal Logo dimensions
@@ -215,6 +215,9 @@ function GraphiteTheme() {
 
         // Loads left-navigation menu
         loadNavMenu();
+
+        // Loads right column
+        loadRightColumn();
 
         // Dynamic page load behavior to links
         $('#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader a').attr('href', '#');
@@ -661,6 +664,27 @@ function GraphiteTheme() {
         if ($('ul.navtree li.open').length == 0) {
             $('ul.navtree li.active').closest('li').mouseenter();
         }
+    }
+
+    /**
+     * Transition effects for right column (with portlets)
+     */
+    function loadRightColumn() {
+        "use strict";
+        $('#column-right-toggle').click(function(e) {
+            e.preventDefault();
+            if ($(this).hasClass('expand')) {
+                // Expand the right column
+                $('#column-right-wrapper').animate({'margin-right':'0px'}, 'fast', function() {
+                    $('#column-right-toggle').removeClass('expand').addClass('collapse');
+                });
+            } else {
+                // Collapse the right column
+                $('#column-right-wrapper').animate({'margin-right':'-350px'}, 'fast', function() {
+                    $('#column-right-toggle').removeClass('collapse').addClass('expand');
+                });
+            }
+        });
     }
 
     /**
