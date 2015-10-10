@@ -6,8 +6,8 @@ function GraphiteTheme() {
 
     // Navigator menu layout
     // top: shows the nav menu on the top.
-    // left: shows the nav menu on the left.
-    // By default: left
+    // left: shows the nav menu on the left. (experimental)
+    // By default: top
     var navmenu_layout = 'top';
 
     // Portal Logo dimensions
@@ -215,6 +215,9 @@ function GraphiteTheme() {
 
         // Loads left-navigation menu
         loadNavMenu();
+
+        // Loads right column
+        loadRightColumn();
 
         // Dynamic page load behavior to links
         $('#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader a').attr('href', '#');
@@ -664,18 +667,52 @@ function GraphiteTheme() {
     }
 
     /**
+     * Transition effects for right column (with portlets)
+     */
+    function loadRightColumn() {
+        "use strict";
+        $('#column-right-toggle').click(function(e) {
+            e.preventDefault();
+            if ($(this).hasClass('expand')) {
+                // Expand the right column
+                $('#column-right-wrapper').animate({'margin-right':'0px'}, 'fast', function() {
+                    $('#column-right-toggle').removeClass('expand').addClass('collapse');
+                    $('#portal-column-two').removeClass('expanded').css('min-height','');
+                    $(this).addClass('expanded');
+                    $('#column-right-wrapper').css('height','100%');
+                });
+            } else {
+                // Collapse the right column
+                $('#column-right-wrapper').animate({'margin-right':'-350px'}, 'fast', function() {
+                    $(this).removeClass('expanded');
+                    $('#column-right-toggle').removeClass('collapse').addClass('expand');
+                    $('#column-right-wrapper').css('height', '200px');
+                });
+            }
+        });
+        // Late analyses? other alerts?
+        if ($('#portlet-late-analysis dd').not('.portletFooter').length > 0) {
+            // There is the late analysis portlet, with late analyses. Set
+            // a prominent icon to the toggle button
+            $('#column-right-toggle').addClass('alert').attr('title', "Late analyses");
+        }
+    }
+
+    /**
      * Adjusts the current contents to the window's width
      */
     function fixLayout() {
+        "use strict";
         var winwidth  = $("#content-wrapper").innerWidth();
         var left = $("div.column-left").is(':visible') ? $("div.column-left").outerWidth() : 0;
-        left += parseInt($('div.column-center').css('margin-left'));
-        left += parseInt($('div.column-left').css('margin-left'));
-        left += 15;
-        var col2width = $("div.column-right").outerWidth();
-        var contentw = Math.floor(winwidth - left);
-        $('div.column-center').css('width', contentw);
+        var margin = $("div.column-center").outerWidth()-$("div.column-center").width();
+        // The may be fractional and is not guaranteed to be accurate and we
+        // cannot assume it is an integer, so we substract 15px to avoid
+        // potential problems.
+        var width = Math.floor(winwidth - left) - 15 - margin;
+        $('div.column-center').css('width', width);
         $('#loading-pane').css('margin-left', (left-15)+"px");
+        $('#portal-column-two').css('min-height', $(document).height());
     }
 
     /**

@@ -160,6 +160,14 @@
             <!-- Document Content -->
             <replace css:content="#content" css:theme="#content" />
 
+            <!-- Right column -->
+            <rules css:if-content="body.userrole-anonymous">
+                <!-- Don't show the right column when anonymous users -->
+                <drop css:content="#portal-column-two"/>
+                <drop css:theme="#content-wrapper div.column-right"/>
+            </rules>
+            <replace css:content="#portal-column-two" css:theme="#portal-column-two" />
+
             <!-- Footer -->
             <replace css:content-children="#portal-footer-wrapper" css:theme-children="#footer"/>
             <after css:theme-children='#footer'>
