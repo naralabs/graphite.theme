@@ -685,6 +685,12 @@ function GraphiteTheme() {
                 });
             }
         });
+        // Late analyses? other alerts?
+        if ($('#portlet-late-analysis dd').not('.portletFooter').length > 0) {
+            // There is the late analysis portlet, with late analyses. Set
+            // a prominent icon to the toggle button
+            $('#column-right-toggle').addClass('alert').attr('title', "Late analyses");
+        }
     }
 
     /**
