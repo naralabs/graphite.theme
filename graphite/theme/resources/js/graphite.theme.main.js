@@ -158,6 +158,7 @@ function GraphiteTheme() {
                             'mailto:',
                             'error_log/getLogEntryAsText',
                             'workflow_action=',
+                            '/Request new analyses/ar_add',
                             '/invoice_print'];
 
     var omitajaxrequests_css = ['referencewidget-',];
