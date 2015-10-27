@@ -6,8 +6,8 @@ function GraphiteTheme() {
 
     // Navigator menu layout
     // top: shows the nav menu on the top.
-    // left: shows the nav menu on the left.
-    // By default: left
+    // left: shows the nav menu on the left. (experimental)
+    // By default: top
     var navmenu_layout = 'top';
 
     // Portal Logo dimensions
@@ -158,9 +158,11 @@ function GraphiteTheme() {
                             'mailto:',
                             'error_log/getLogEntryAsText',
                             'workflow_action=',
+                            '/Request new analyses/ar_add',
                             '/invoice_print'];
 
-    var omitajaxrequests_css = ['referencewidget-',];
+    var omitajaxrequests_css = ['referencewidget-',
+                                'ws-analyses-search-button',];
 
     // After every request, unbind events with a 'live' handler attached
     // which don't follow the recommended behavior and their 'live'
@@ -216,6 +218,9 @@ function GraphiteTheme() {
         // Loads left-navigation menu
         loadNavMenu();
 
+        // Loads right column
+        loadRightColumn();
+
         // Dynamic page load behavior to links
         $('#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader a').attr('href', '#');
         $('#lims-nav li a').unbind("click");
@@ -248,6 +253,8 @@ function GraphiteTheme() {
 
         // Loads additional JS styling
         loadStyles();
+
+        loadDeferredActions();
 
         // Fix layout in accordance to the window dimensions
         fixLayout();
@@ -307,6 +314,20 @@ function GraphiteTheme() {
         loadBikaTableBehavior();
         fixLayout();
         initializeJavascripts();
+        loadDeferredActions();
+    }
+
+    function loadDeferredActions() {
+        // GRTH-50 Worksheet filter doesn't work
+        $("a.ws-analyses-search-button").mouseup(function() {
+            setTimeout(function() {
+                if ($('td.workflow_actions').is(':visible')) {
+                    loadBikaTableBehavior();
+                } else {
+                    $("a.ws-analyses-search-button").mouseup();
+                }
+            }, 500);
+        });
     }
 
     /**
@@ -385,7 +406,7 @@ function GraphiteTheme() {
 
         } else {
             // Get all items from Site setup
-            var sitesetup_url = portal_url + '/bika_setup?diazo.off=1';
+            var sitesetup_url = portal_url + '/bika_setup?bika.graphite.disabled=1';
             $.ajax(sitesetup_url)
             .done(function(data) {
                 var htmldata = data;
@@ -531,7 +552,7 @@ function GraphiteTheme() {
             $(this).attr('href', portal_url + $(this).attr('href'));
         });
         // Get all items from Site setup
-        var sitesetup_url = portal_url + '/bika_setup?diazo.off=1';
+        var sitesetup_url = portal_url + '/bika_setup?bika.graphite.disabled=1';
         $.ajax(sitesetup_url)
         .done(function(data) {
             var htmldata = data;
@@ -664,18 +685,52 @@ function GraphiteTheme() {
     }
 
     /**
+     * Transition effects for right column (with portlets)
+     */
+    function loadRightColumn() {
+        "use strict";
+        $('#column-right-toggle').click(function(e) {
+            e.preventDefault();
+            if ($(this).hasClass('expand')) {
+                // Expand the right column
+                $('#column-right-wrapper').animate({'margin-right':'0px'}, 'fast', function() {
+                    $('#column-right-toggle').removeClass('expand').addClass('collapse');
+                    $('#portal-column-two').removeClass('expanded').css('min-height','');
+                    $(this).addClass('expanded');
+                    $('#column-right-wrapper').css('height','100%');
+                });
+            } else {
+                // Collapse the right column
+                $('#column-right-wrapper').animate({'margin-right':'-350px'}, 'fast', function() {
+                    $(this).removeClass('expanded');
+                    $('#column-right-toggle').removeClass('collapse').addClass('expand');
+                    $('#column-right-wrapper').css('height', '200px');
+                });
+            }
+        });
+        // Late analyses? other alerts?
+        if ($('#portlet-late-analysis dd').not('.portletFooter').length > 0) {
+            // There is the late analysis portlet, with late analyses. Set
+            // a prominent icon to the toggle button
+            $('#column-right-toggle').addClass('alert').attr('title', "Late analyses");
+        }
+    }
+
+    /**
      * Adjusts the current contents to the window's width
      */
     function fixLayout() {
+        "use strict";
         var winwidth  = $("#content-wrapper").innerWidth();
         var left = $("div.column-left").is(':visible') ? $("div.column-left").outerWidth() : 0;
-        left += parseInt($('div.column-center').css('margin-left'));
-        left += parseInt($('div.column-left').css('margin-left'));
-        left += 15;
-        var col2width = $("div.column-right").outerWidth();
-        var contentw = Math.floor(winwidth - left);
-        $('div.column-center').css('width', contentw);
+        var margin = $("div.column-center").outerWidth()-$("div.column-center").width();
+        // The may be fractional and is not guaranteed to be accurate and we
+        // cannot assume it is an integer, so we substract 15px to avoid
+        // potential problems.
+        var width = Math.floor(winwidth - left) - 15 - margin;
+        $('div.column-center').css('width', width);
         $('#loading-pane').css('margin-left', (left-15)+"px");
+        $('#portal-column-two').css('min-height', $(document).height());
     }
 
     /**
@@ -792,6 +847,7 @@ function GraphiteTheme() {
      * Sets the left-nav item menu active for an url
      */
     function setActiveNavItem(url) {
+        console.log(url)
         var parturl = url.replace(window.portal_url, '');
         if (navmenu_layout == 'left') {
             $('ul.navtree li a').each(function() {
@@ -828,7 +884,8 @@ function GraphiteTheme() {
                 $('#contextual-menu-wrapper ul li a').each(function() {
                     var itemurl = $(this).attr('href');
                     itemurl = itemurl.replace(window.portal_url, '');
-                    if (parturl.contains(itemurl)) {
+                    //---if (parturl.contains(itemurl))--- doesn't work on chrome
+                    if (parturl.indexOf(itemurl) != -1){
                         $(this).closest('li').addClass('active');
                         var sectionid = $(this).closest('ul').attr('data-section');
                        // $('#lims-nav li.'+sectionid+' a').click();

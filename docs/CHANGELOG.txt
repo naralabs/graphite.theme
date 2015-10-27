@@ -1,6 +1,21 @@
 Changelog
 =========
 
+1.2 (unreleased)
+----------------
+- GRTH-50 Worksheet Filter does not work
+- GRTH-51 Creating New AR doesn't function correctly until a refresh
+- GRTH-45 Analysis Request: Ugly results interpretation
+- GRTH-44 Analysis Request's invoice doesn't look properly
+- GRTH-40 Add form analyses don't expand
+- GRTH-23 Add Contact to Client throws error
+- GRTH-35 Lack of AR invoice (and proforma) formatting
+- GRTH-6 Add an acces to Late Analyses
+- GRTH-39 graphite.theme 1.1.1 requires 'bika.lims==3.1.7'
+- portalMessage rendered twice in setup view
+- Graphite Theme doesn't work properly on production mode
+
+
 1.1 (2015-02-26)
 ----------------
 - GRTH-34 Print invoice doesn't show the invoice to print
@@ -29,4 +44,3 @@ Changelog
 - GRTH-9 No good construction in Add AR Form
 
 - ON/OFF button to deactivate/activate Grpahite Theme
-

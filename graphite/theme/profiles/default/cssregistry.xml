@@ -6,94 +6,94 @@
         applyPrefix="True" />
 
     <stylesheet id="++theme++graphite.theme/css/graphite.theme.main.css"
-        expression="python:request.cookies.get('bika.graphite.disabled', '0')=='0' and request['HTTP_X_THEME_ENABLED']"
+        expression="python:request.cookies.get('bika.graphite.disabled', '0')=='0' and request.form.get('bika.graphite.disabled', '0')=='0' and request['HTTP_X_THEME_ENABLED']"
         applyPrefix="True" />
 
     <stylesheet id="++theme++graphite.theme/css/graphite.theme.iefixes.css"
-        expression="python:request.cookies.get('bika.graphite.disabled', '0')=='0' and request['HTTP_X_THEME_ENABLED']"
+        expression="python:request.cookies.get('bika.graphite.disabled', '0')=='0' and request.form.get('bika.graphite.disabled', '0')=='0' and request['HTTP_X_THEME_ENABLED']"
         conditionalcomment="IE"
         applyPrefix="True" />
 
     <!-- CSS for ON/OFF styling when theme is inactive -->
     <stylesheet id="++theme++graphite.theme/css/graphite.theme.inactive.css"
-        expression="python:request.cookies.get('bika.graphite.disabled', '0')=='1' and request['HTTP_X_THEME_ENABLED']"
+        expression="python:(request.cookies.get('bika.graphite.disabled', '0')=='1' or request.form.get('bika.graphite.disabled', '0')=='1') and request['HTTP_X_THEME_ENABLED']"
         applyPrefix="True" />
 
     <!-- Stylesheets we don't want to pull in if theme is enabled -->
     <stylesheet id="bika_listing.css"
-        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1'"
+        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1' or request.form.get('bika.graphite.disabled','0')=='1'"
         applyPrefix="True"
         enabled="True" />
     <stylesheet id="reset.css"
-        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1'"
+        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1' or request.form.get('bika.graphite.disabled','0')=='1'"
         applyPrefix="True"
         enabled="True" />
     <stylesheet id="member.css"
-        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1'"
+        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1' or request.form.get('bika.graphite.disabled','0')=='1'"
         applyPrefix="True"
         enabled="True" />
     <stylesheet id="base.css"
-        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1'"
+        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1' or request.form.get('bika.graphite.disabled','0')=='1'"
         applyPrefix="True"
         enabled="True" />
     <stylesheet id="public.css"
-        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1'"
+        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1' or request.form.get('bika.graphite.disabled','0')=='1'"
         applyPrefix="True"
         enabled="True" />
     <stylesheet id="columns.css"
-        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1'"
+        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1' or request.form.get('bika.graphite.disabled','0')=='1'"
         applyPrefix="True"
         enabled="True" />
     <stylesheet id="authoring.css"
-        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1'"
+        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1' or request.form.get('bika.graphite.disabled','0')=='1'"
         applyPrefix="True"
         enabled="True" />
     <stylesheet id="portlets.css"
-        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1'"
+        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1' or request.form.get('bika.graphite.disabled','0')=='1'"
         applyPrefix="True"
         enabled="True" />
     <stylesheet id="controlpanel.css"
-        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1'"
+        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1' or request.form.get('bika.graphite.disabled','0')=='1'"
         applyPrefix="True"
         enabled="True" />
     <stylesheet id="deprecated.css"
-        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1'"
+        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1' or request.form.get('bika.graphite.disabled','0')=='1'"
         applyPrefix="True"
         enabled="True" />
     <stylesheet id="navtree.css"
-        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1'"
+        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1' or request.form.get('bika.graphite.disabled','0')=='1'"
         applyPrefix="True"
         enabled="True" />
     <stylesheet id="invisibles.css"
-        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1'"
+        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1' or request.form.get('bika.graphite.disabled','0')=='1'"
         applyPrefix="True"
         enabled="True" />
     <stylesheet id="forms.css"
-        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1'"
+        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1' or request.form.get('bika.graphite.disabled','0')=='1'"
         applyPrefix="True"
         enabled="True" />
     <stylesheet id="++resource++plone.app.discussion.stylesheets/discussion.css"
-        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1'"
+        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1' or request.form.get('bika.graphite.disabled','0')=='1'"
         applyPrefix="True"
         enabled="True" />
     <stylesheet id="print.css"
-        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1'"
+        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1' or request.form.get('bika.graphite.disabled','0')=='1'"
         applyPrefix="True"
         enabled="True" />
     <stylesheet id="mobile.css"
-        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1'"
+        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1' or request.form.get('bika.graphite.disabled','0')=='1'"
         applyPrefix="True"
         enabled="True" />
     <stylesheet id="ploneCustom.css"
-        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1'"
+        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1' or request.form.get('bika.graphite.disabled','0')=='1'"
         applyPrefix="True"
         enabled="True" />
     <stylesheet id="bika_listing.css"
-        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1'"
+        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1' or request.form.get('bika.graphite.disabled','0')=='1'"
         applyPrefix="True"
         enabled="True" />
     <stylesheet id="bika_invoice.css"
-        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1'"
+        expression="python:not request['HTTP_X_THEME_ENABLED'] or request.cookies.get('bika.graphite.disabled','0')=='1' or request.form.get('bika.graphite.disabled','0')=='1'"
         applyPrefix="True"
         enabled="True" />
 

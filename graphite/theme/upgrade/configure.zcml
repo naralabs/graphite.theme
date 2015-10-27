@@ -21,4 +21,12 @@
         sortkey="1"
         profile="graphite.theme:default"/>
 
+ <genericsetup:upgradeStep
+        title="Upgrade to GT 1.2"
+        description=""
+        source="1.1"
+        destination="1.2"
+        handler="graphite.theme.upgrade.010200.upgrade"
+        sortkey="1"
+        profile="graphite.theme:default"/>
 </configure>
