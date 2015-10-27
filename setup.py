@@ -1,11 +1,11 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.1.1'
+version = '1.2'
 
 setup(name='graphite.theme',
       version=version,
-      description="Graphite Theme for Bika LIMS",
+      description="Graphite Theme for Bika OS LIMS",
       long_description=open("README.md").read() + "\n\n" +
                        open("docs/CHANGELOG.txt").read(),
       # Get more strings from
@@ -36,6 +36,4 @@ setup(name='graphite.theme',
       [z3c.autoinclude.plugin]
       target = plone
       """,
-      #setup_requires=["PasteScript"],
-      #paster_plugins=["ZopeSkel"],
       )
