@@ -161,7 +161,8 @@ function GraphiteTheme() {
                             '/Request new analyses/ar_add',
                             '/invoice_print'];
 
-    var omitajaxrequests_css = ['referencewidget-',];
+    var omitajaxrequests_css = ['referencewidget-',
+                                'ws-analyses-search-button',];
 
     // After every request, unbind events with a 'live' handler attached
     // which don't follow the recommended behavior and their 'live'
@@ -253,6 +254,8 @@ function GraphiteTheme() {
         // Loads additional JS styling
         loadStyles();
 
+        loadDeferredActions();
+
         // Fix layout in accordance to the window dimensions
         fixLayout();
         $(window).on("resize", fixLayout);
@@ -311,6 +314,20 @@ function GraphiteTheme() {
         loadBikaTableBehavior();
         fixLayout();
         initializeJavascripts();
+        loadDeferredActions();
+    }
+
+    function loadDeferredActions() {
+        // GRTH-50 Worksheet filter doesn't work
+        $("a.ws-analyses-search-button").mouseup(function() {
+            setTimeout(function() {
+                if ($('td.workflow_actions').is(':visible')) {
+                    loadBikaTableBehavior();
+                } else {
+                    $("a.ws-analyses-search-button").mouseup();
+                }
+            }, 500);
+        });
     }
 
     /**

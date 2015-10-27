@@ -3,6 +3,7 @@ Changelog
 
 1.2 (unreleased)
 ----------------
+- GRTH-50 Worksheet Filter does not work
 - GRTH-51 Creating New AR doesn't function correctly until a refresh
 - GRTH-45 Analysis Request: Ugly results interpretation
 - GRTH-44 Analysis Request's invoice doesn't look properly
