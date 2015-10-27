@@ -1,7 +1,7 @@
 Graphite Theme
 ==============
 
-v1.2
+Latest stable version: **v1.2** · released: 2015-10-27
 
 Graphite Theme is a Diazo Theme for [Bika Open Source LIMS](https://github.com/bikalabs/Bika-LIMS), mainly focused on improving usability and user experience. The highlights are a clear and clean design that allows to maximize the workspace, quick access to most of the Bika LIMS features with only one click and dynamic loading of views without page refresh.
 
