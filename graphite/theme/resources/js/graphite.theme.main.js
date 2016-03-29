@@ -159,7 +159,8 @@ function GraphiteTheme() {
                             'error_log/getLogEntryAsText',
                             'workflow_action=',
                             '/Request new analyses/ar_add',
-                            '/invoice_print'];
+                            '/invoice_print',
+                            '/print'];
 
     var omitajaxrequests_css = ['referencewidget-',
                                 'ws-analyses-search-button',];
@@ -914,8 +915,8 @@ function GraphiteTheme() {
     function loadBikaTableBehavior() {
         if (inline_table_actions_behavior == true) {
             // Show the actions pane when at least one checkbox is checked
-            $('table.bika-listing-table tfoot td.workflow_actions').hide();
-            $('table.bika-listing-table tbody.item-listing-tbody tr').each(function(e) {
+            $('table.bika-listing-table:not(.bika-listing-table-transposed) tfoot td.workflow_actions').hide();
+            $('table.bika-listing-table:not(.bika-listing-table-transposed) tbody.item-listing-tbody tr').each(function(e) {
                 $(this).find('td:first input[type="checkbox"]').on('click change keypress blur keyup',function(e) {
                     if ($(this).is(':checked')) {
                         $(this).closest('tr').addClass('selected');
@@ -925,7 +926,7 @@ function GraphiteTheme() {
                     updateSelectedItems($(this).closest('table.bika-listing-table'));
                 });
             });
-            $('table.bika-listing-table thead th input[type="checkbox"]').click(function(e) {
+            $('table.bika-listing-table:not(.bika-listing-table-transposed) thead th input[type="checkbox"]').click(function(e) {
                 if ($(this).is(':checked')) {
                     $(this).closest('table.bika-listing-table').find('tbody.item-listing-tbody tr').each(function(e) {
                         if ($(this).find('td:first input[type="checkbox"]').length > 0) {
@@ -937,7 +938,7 @@ function GraphiteTheme() {
                 }
                 updateSelectedItems($(this).closest('table.bika-listing-table'));
             });
-            $('table.bika-listing-table tbody.item-listing-tbody tr').mousemove(function(e) {
+            $('table.bika-listing-table:not(.bika-listing-table-transposed) tbody.item-listing-tbody tr').mousemove(function(e) {
                 if ($(this).find('td:first input[type="checkbox"]:checked').length > 0) {
                     var firstchk = $(this).find('td:first input[type="checkbox"]');
                     var leftpos = $(firstchk).offset().left;
