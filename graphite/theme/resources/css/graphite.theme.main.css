@@ -2724,3 +2724,82 @@ table.invoice-items tr.totals {
     max-width: 1024px;
     padding: 50px 30px 70px 30px;
 }
+
+
+div.combogrid div.cg-DivItem,
+div.combogrid div.cg-comboButton,
+div.combogrid div.cg-colHeader {
+    font-family: "Open Sans",Helvetica,Arial,sans-serif;
+}
+
+div.combogrid div.cg-DivItem {
+    font-size: 1.2em;
+    text-align:left;
+}
+div.combogrid div.cg-comboButton {
+    font-size:1.4em;
+}
+div.combogrid div.cg-colHeader {
+    font-size:1.4em;
+    font-weight:normal;
+}
+
+.template-ar_add .bika-listing-table {
+    width:auto;
+}
+
+table.bika-listing-table-transposed {
+    width: inherit;
+}
+table.bika-listing-table-transposed tbody tr th {
+    vertical-align:top;
+    width: 125px;
+    background-color: #ddd;
+    border: 1px solid #cdcdcd;
+    padding:5px;
+    text-align:left;
+}
+table.bika-listing-table-transposed tbody tr td.filled-cell {
+    background-color:#eee;
+}
+table.bika-listing-table-transposed tbody tr td {
+    border: 1px solid #ddd;
+    padding:5px;
+}
+table.bika-listing-table-transposed tbody tr td div.interims {
+
+}
+table.bika-listing-table-transposed tbody tr td div.interim {
+    border-bottom: 1px solid #ddd;
+    margin: 2px -5px;
+    padding: 2px 5px 5px;
+}
+table.bika-listing-table-transposed tbody tr td div.interim-title {
+    color: #333;
+    display: block;
+    font-size: 0.95em;
+}
+
+table.bika-listing-table-transposed tbody tr td span.result {
+    font-weight:bold;
+    font-size:1.3em;
+}
+table.bika-listing-table-transposed tbody tr td span.result-uncertainty {
+    font-size:1.2em;
+}
+table.bika-listing-table-transposed table.worksheet-position tbody tr,
+table.bika-listing-table-transposed table.worksheet-position tbody tr td {
+    border:none;
+}
+
+
+#content table.bika-listing-table.bika-listing-table-transposed tfoot tr td.workflow_actions {
+    padding: 5px;
+    position: relative;
+    left:auto;
+    top:auto;
+}
+table.bika-listing-table-transposed tbody tr:first-child td {
+    background-color: #efefef;
+    border: 1px solid #cdcdcd;
+}

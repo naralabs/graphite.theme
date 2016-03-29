@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.3 (unreleased)
+----------------
+- GRTH-43 Worksheet: Worksheet's Transposed layout doesn't look as expected
+
 1.2 (2015-10-27)
 ----------------
 - GRTH-50 Worksheet Filter does not work
