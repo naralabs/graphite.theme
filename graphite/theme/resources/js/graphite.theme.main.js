@@ -1006,13 +1006,23 @@ function GraphiteTheme() {
         /*$('img[src$="/sticker_large.png"]').addClass('tooltip');
         $('img[src$="/sticker_small.png"]').addClass('tooltip');*/
         //$('#content .bika-listing-table img[title]').addClass('tooltip');
+
+        $('div.field label span.formHelp').each(function(i) {
+            $(this).hide();
+            var helpinfo = $(this).html();
+            if (helpinfo !== '') {
+                $(this).before('<span data-id="'+$(this).attr('id')+'" class="tooltip tooltip-form-help"/>');
+            }
+        });
         $('.tooltip').each(function() {
             $(this).attr('data-title', $(this).attr('title'));
             $(this).attr('title','');
         });
         $('.tooltip').hover(function() {
-            if ($(this).attr('data-title') != '') {
+            if ($(this).attr('data-title') !== undefined && $(this).attr('data-title') !== '') {
                 $('#tooltip-box').html($(this).attr('data-title')).fadeIn(100);
+            } else if ($(this).attr('data-id') !== undefined && $(this).attr('data-id') !== '') {
+                $('#tooltip-box').html($('#'+$(this).attr('data-id')).html()).fadeIn(100);
             }
         }, function() {
             $('#tooltip-box').html("").hide();

@@ -1253,12 +1253,14 @@ input.applytemplate:hover {
 
 #tooltip-box {
     background: none repeat scroll 0 0 #4E4E4E;
-    font-size: 12px;
-    padding: 5px 10px;
     position: absolute;
     z-index: 10;
     border-radius: 5px;
     color: #ffffff;
+    font-size: 1.1em;
+    line-height: 140%;
+    max-width: 300px;
+    padding: 20px;
 }
 
 #edit-bar {
@@ -2802,4 +2804,20 @@ table.bika-listing-table-transposed table.worksheet-position tbody tr td {
 table.bika-listing-table-transposed tbody tr:first-child td {
     background-color: #efefef;
     border: 1px solid #cdcdcd;
+}
+
+div.field label.formQuestion span.tooltip-form-help:before {
+    color: #ffa100;
+    content: "\f19b";
+    display: inline;
+    font-family: Ionicons;
+    font-size: 1.3em;
+    padding-left: 5px;
+    visibility: visible;
+    font-weight:bold;
+}
+div.field label.formQuestion:after {
+    content: "\A ";
+    display: block;
+    padding-bottom: 5px;
 }
