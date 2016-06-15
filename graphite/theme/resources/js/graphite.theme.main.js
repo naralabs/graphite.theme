@@ -160,7 +160,8 @@ function GraphiteTheme() {
                             'workflow_action=',
                             '/Request new analyses/ar_add',
                             '/invoice_print',
-                            '/print'];
+                            '/print',
+                            'bika-dashboard?p='];
 
     var omitajaxrequests_css = ['referencewidget-',
                                 'ws-analyses-search-button',];
@@ -209,6 +210,27 @@ function GraphiteTheme() {
         if (disabled) {
             // No theme. Do nothing!
             return;
+        }
+        
+        // A client?
+        
+        if ($("body.userrole-client").length > 0) {
+            navmenu = {
+                'Quick access': {'id':'nav-quick',
+                                 'items': ['clients',
+                                           'batches',
+                                           'analysisrequests',
+                                           'samples',
+                                           'worksheets',
+                                           'arimports',
+                                           'methods',
+                                           'referencesamples',
+                                           'supplyorders',
+                                           'pricelists',
+                                           'invoices'
+                                           ],
+                                },
+            };
         }
 
 
