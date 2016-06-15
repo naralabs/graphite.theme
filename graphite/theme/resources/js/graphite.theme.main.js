@@ -160,6 +160,7 @@ function GraphiteTheme() {
                             'workflow_action=',
                             '/Request new analyses/ar_add',
                             '/invoice_print',
+                            '/print',
                             'bika-dashboard?p='];
 
     var omitajaxrequests_css = ['referencewidget-',
@@ -936,8 +937,8 @@ function GraphiteTheme() {
     function loadBikaTableBehavior() {
         if (inline_table_actions_behavior == true) {
             // Show the actions pane when at least one checkbox is checked
-            $('table.bika-listing-table tfoot td.workflow_actions').hide();
-            $('table.bika-listing-table tbody.item-listing-tbody tr').each(function(e) {
+            $('table.bika-listing-table:not(.bika-listing-table-transposed) tfoot td.workflow_actions').hide();
+            $('table.bika-listing-table:not(.bika-listing-table-transposed) tbody.item-listing-tbody tr').each(function(e) {
                 $(this).find('td:first input[type="checkbox"]').on('click change keypress blur keyup',function(e) {
                     if ($(this).is(':checked')) {
                         $(this).closest('tr').addClass('selected');
@@ -947,7 +948,7 @@ function GraphiteTheme() {
                     updateSelectedItems($(this).closest('table.bika-listing-table'));
                 });
             });
-            $('table.bika-listing-table thead th input[type="checkbox"]').click(function(e) {
+            $('table.bika-listing-table:not(.bika-listing-table-transposed) thead th input[type="checkbox"]').click(function(e) {
                 if ($(this).is(':checked')) {
                     $(this).closest('table.bika-listing-table').find('tbody.item-listing-tbody tr').each(function(e) {
                         if ($(this).find('td:first input[type="checkbox"]').length > 0) {
@@ -959,7 +960,7 @@ function GraphiteTheme() {
                 }
                 updateSelectedItems($(this).closest('table.bika-listing-table'));
             });
-            $('table.bika-listing-table tbody.item-listing-tbody tr').mousemove(function(e) {
+            $('table.bika-listing-table:not(.bika-listing-table-transposed) tbody.item-listing-tbody tr').mousemove(function(e) {
                 if ($(this).find('td:first input[type="checkbox"]:checked').length > 0) {
                     var firstchk = $(this).find('td:first input[type="checkbox"]');
                     var leftpos = $(firstchk).offset().left;
@@ -1027,13 +1028,23 @@ function GraphiteTheme() {
         /*$('img[src$="/sticker_large.png"]').addClass('tooltip');
         $('img[src$="/sticker_small.png"]').addClass('tooltip');*/
         //$('#content .bika-listing-table img[title]').addClass('tooltip');
+
+        $('div.field label span.formHelp').each(function(i) {
+            $(this).hide();
+            var helpinfo = $(this).html();
+            if (helpinfo !== '') {
+                $(this).before('<span data-id="'+$(this).attr('id')+'" class="tooltip tooltip-form-help"/>');
+            }
+        });
         $('.tooltip').each(function() {
             $(this).attr('data-title', $(this).attr('title'));
             $(this).attr('title','');
         });
         $('.tooltip').hover(function() {
-            if ($(this).attr('data-title') != '') {
+            if ($(this).attr('data-title') !== undefined && $(this).attr('data-title') !== '') {
                 $('#tooltip-box').html($(this).attr('data-title')).fadeIn(100);
+            } else if ($(this).attr('data-id') !== undefined && $(this).attr('data-id') !== '') {
+                $('#tooltip-box').html($('#'+$(this).attr('data-id')).html()).fadeIn(100);
             }
         }, function() {
             $('#tooltip-box').html("").hide();
