@@ -88,9 +88,9 @@ function GraphiteTheme() {
                                  'bika_samplepoints',
                                  'bika_sampletypes',
                                  'bika_samplingdeviations',
-                                 'bika_srtemplates',
                                  'referencesamples',
                                  'bika_referencedefinitions',
+                                 'bika_srtemplates',
                                 ],
                         },
         'Management':   {'id': 'nav-management',
@@ -211,9 +211,9 @@ function GraphiteTheme() {
             // No theme. Do nothing!
             return;
         }
-        
+
         // A client?
-        
+
         if ($("body.userrole-client").length > 0) {
             navmenu = {
                 'Quick access': {'id':'nav-quick',

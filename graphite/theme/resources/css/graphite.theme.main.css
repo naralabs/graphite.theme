@@ -2347,9 +2347,14 @@ table.manage_results_header th {
 }
 
 #contextual-menu-wrapper ul {
-    margin: 0;
-    padding: 0;
-    width: 1000px;
+    margin:0;
+    padding:0;
+    -moz-column-count: 2;
+    -moz-column-gap: 20px;
+    -webkit-column-count: 2;
+    -webkit-column-gap: 20px;
+    column-count: 2;
+    column-gap: 20px;
 }
 #contextual-menu-wrapper ul:after {
     visibility: hidden;
