@@ -2877,4 +2877,11 @@ div.field label.formQuestion:after {
     color:#fff !important;
     background-color:#205c90;
 }
-
+.ar_count.context_action_link {
+    border-radius: 5px !important;
+    font-size: 0.6em;
+    font-weight: normal !important;
+    margin-left: 10px;
+    padding: 4px 0 4px 4px !important;
+    width: 40px !important;
+}
