@@ -771,6 +771,8 @@ function GraphiteTheme() {
                             hideLoadingPanel();
                         }
                     });
+                } else {
+                    hideLoadingPanel();
                 }
             },loading_panel_delay);
         }
