@@ -249,7 +249,7 @@ function GraphiteTheme() {
         loadRightColumn();
 
         // Dynamic page load behavior to links
-        if (dynamic_load) {
+        if (dynamic_load===true) {
             $('#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader a').attr('href', '#');
             $('#lims-nav li a').unbind("click");
             $('#lims-nav li a').click(processLink);
@@ -364,6 +364,9 @@ function GraphiteTheme() {
      * be omitted (omitajaxrequests or omitajazrequests_css)
      */
     function bindAnchor(el) {
+        if (dynamic_load===false) {
+            return;
+        }
         var omit = false;
         var url = $(el).attr('href');
         if (url !== undefined) {
@@ -558,8 +561,10 @@ function GraphiteTheme() {
                 loadActiveNavSection();
                 loadBreadcrumbs();
                 loadNavMenuTransitions();
-                $('#contextual-menu-wrapper a').unbind("click");
-                $('#contextual-menu-wrapper a').click(processLink);
+                if (dynamic_load===true) {
+                    $('#contextual-menu-wrapper a').unbind("click");
+                    $('#contextual-menu-wrapper a').click(processLink);
+                }
                 $('#portal-globalnav').fadeIn();
                 $('#lims-nav-wrapper').fadeIn();
                 $('#contextual-menu-wrapper').hide();
@@ -627,8 +632,10 @@ function GraphiteTheme() {
             loadActiveNavSection();
             loadBreadcrumbs();
             loadNavMenuTransitions();
-            $('.nav-container a').unbind("click");
-            $('.nav-container a').click(processLink);
+            if (dynamic_load===true) {
+                $('.nav-container a').unbind("click");
+                $('.nav-container a').click(processLink);
+            }
         });
 
         $('a.hide-column-left').click(function(e) {
