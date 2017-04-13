@@ -164,7 +164,8 @@ function GraphiteTheme() {
                             'bika-dashboard?p='];
 
     var omitajaxrequests_css = ['referencewidget-',
-                                'ws-analyses-search-button',];
+                                'ws-analyses-search-button',
+                                'bika_listing_show_more',];
 
     // After every request, unbind events with a 'live' handler attached
     // which don't follow the recommended behavior and their 'live'
