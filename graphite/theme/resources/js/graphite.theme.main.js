@@ -1278,7 +1278,21 @@ function GraphiteTheme() {
      */
     function loadDynJS(htmlrawdata) {
         var xml = $.parseXML(htmlrawdata)
-        var links = $('head script[src]').map(function() { return $(this).attr('src').split('?')[0]; }).get();
+        var links = $('body script[src], head script[src]').map(function() { return $(this).attr('src').split('?')[0]; }).get();
+        $(xml).find('body script[src]').each(function() {
+            var outsrc = $(this).attr('src');
+            var arrpos = $.inArray(outsrc, links);
+            if (arrpos==-1) {
+                // Adding the script as a link in the head doesn't work.
+                // Must be added as an embedded script for being loaded
+                // at runtime
+                $.get($(this).attr("src"), function(data){
+                    $('head').append('<script type="text/javascript">'+data+'</script>');
+                });
+            } else {
+                links.splice(arrpos, 1);
+            }
+        });
         $(xml).find('head script[src]').each(function() {
             var outsrc = $(this).attr('src');
             var arrpos = $.inArray(outsrc, links);
