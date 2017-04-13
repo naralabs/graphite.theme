@@ -4,6 +4,9 @@ function GraphiteTheme() {
 
     /** CUSTOM VARS **/
 
+    // Use dynamic load of pages via ajax?
+    var dynamic_load = false;
+
     // Navigator menu layout
     // top: shows the nav menu on the top.
     // left: shows the nav menu on the left. (experimental)
@@ -246,15 +249,17 @@ function GraphiteTheme() {
         loadRightColumn();
 
         // Dynamic page load behavior to links
-        $('#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader a').attr('href', '#');
-        $('#lims-nav li a').unbind("click");
-        $('#lims-nav li a').click(processLink);
+        if (dynamic_load) {
+            $('#contentActionMenus #plone-contentmenu-workflow dt.actionMenuHeader a').attr('href', '#');
+            $('#lims-nav li a').unbind("click");
+            $('#lims-nav li a').click(processLink);
 
-        // Bind ajax call for content's links, but only for those to not
-        // be omitted (omitajaxrequests array)
-        $('.column-center a').each(function(i) {
-            bindAnchor(this);
-        });
+            // Bind ajax call for content's links, but only for those to not
+            // be omitted (omitajaxrequests array)
+            $('.column-center a').each(function(i) {
+                bindAnchor(this);
+            });
+        }
 
         // User link from top-right must display the options on hover
         // This prevents the user to do an additional click
